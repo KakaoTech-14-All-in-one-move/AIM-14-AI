@@ -8,7 +8,9 @@ from utils import (
     get_video_duration,
     download_and_sample_video_local,
     analyze_frames,
-    plot_problematic_frames
+    plot_problematic_frames,
+    encode_image,
+    generate_user_prompt
 )
 import openai
 
