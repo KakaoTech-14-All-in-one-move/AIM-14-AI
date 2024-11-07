@@ -8,7 +8,9 @@ from utils import (
     get_video_duration,
     download_and_sample_video_local,
     analyze_frames,
-    plot_problematic_frames
+    plot_problematic_frames,
+    encode_image,
+    generate_user_prompt
 )
 import openai
 
@@ -17,7 +19,7 @@ def main():
     openai.api_key = OPENAI_KEY  # client = OpenAI(api_key=OPENAI_KEY) # 비디오에서 특정 프레임을 추출하는 함수
 
     video_path = "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI/video_storage/test_video.mp4"  # 비디오 파일의 경로
-    segment_length = 60  # 각 세그먼트의 길이 (초 단위)
+    segment_length = 60  # 각 세그먼트의 길이햣 (초 단위)
     frame_interval = 3   # 프레임 추출 간격 (초 단위)
 
     # 비디오의 전체 길이(초 단위)를 가져옵니다.
