@@ -5,9 +5,9 @@ from typing import List, Tuple
 import openai
 import numpy as np
 import math
-from config import SYSTEM_INSTRUCTION
-from constants.behaviors import PROBLEMATIC_BEHAVIORS
-from utils.encoding_image import encode_image
+from vlm_model.config import SYSTEM_INSTRUCTION
+from vlm_model.constants.behaviors import PROBLEMATIC_BEHAVIORS
+from vlm_model.utils.encoding_image import encode_image
 
 # OpenAI 모듈을 client로 정의
 client = openai
