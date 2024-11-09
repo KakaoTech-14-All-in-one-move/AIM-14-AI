@@ -1,13 +1,12 @@
 # main.py
-import sys
-import os
-
-# 현재 파일의 디렉토리를 PYTHONPATH에 추가
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+
 from vlm_model.routers.upload_video import router as upload_video_router
+from vlm_model.routers.send_feedback import router as send_feedback_router
+
 import uvicorn
 import logging
 
@@ -34,6 +33,10 @@ app.add_middleware(
 
 # 라우터 포함
 app.include_router(upload_video_router, prefix="/api/video", tags=["Video Upload"])
+app.include_router(send_feedback_router, prefix="/api/video", tags=["Feedback Retrieval"])
+
+# 정적 파일을 제공할 디렉토리 설정 (선택 사항)
+app.mount("/static", StaticFiles(directory="storage/output_feedback_frame"), name="static")
 
 # 루트 엔드포인트 (선택 사항)
 @app.get("/")
