@@ -1,0 +1,4 @@
+# .gitattributes 파일 내용입니다.
+
+*.jupyter_notebook linguist-vendored
+*.python linguist-vendored=false
