@@ -1,6 +1,6 @@
 # vlm_model/routers/upload_video.py
 
-from fastapi import APIRouter, File, UploadFile, HTTPException, BackgroundTasks
+from fastapi import APIRouter, File, UploadFile, HTTPException, BackgroundTasks, Response
 import os
 import uuid
 import logging
@@ -16,18 +16,23 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 # 로깅 설정
 logger = logging.getLogger(__name__)
-if not logger.handlers:
+if not logger.hasHandlers():
     logger.setLevel(logging.INFO)
     handler = logging.StreamHandler()
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
+
 @router.post("/receive-video/", response_model=UploadResponse)
-async def receive_video_endpoint(file: UploadFile = File(...)):
+async def receive_video_endpoint(file: UploadFile = File(...), response: Response):
     """
     비디오 파일을 업로드 받아 저장하고, video_id를 반환합니다.
     """
+    # 응답 헤더에 CORS 설정 추가
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Credentials"] = "False"
+
     # 지원하는 파일 형식 확인
     ALLOWED_EXTENSIONS = {"webm", "mp4", "mov", "avi", "mkv"}
     file_extension = file.filename.split(".")[-1].lower()
@@ -55,3 +60,5 @@ async def receive_video_endpoint(file: UploadFile = File(...)):
         video_id=video_id,
         message="비디오 업로드 완료. 피드백 데이터를 받으려면 /send-feedback/{video_id} 엔드포인트를 호출하세요."
     )
+    
+
