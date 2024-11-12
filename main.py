@@ -16,10 +16,15 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-# CORS 설정 - 모든 출처를 허용하는 CORS 설정
+# 허용할 출처(origin) 설정
+origins = [
+    "http://211.244.225.211:5173",  # 클라이언트의 실제 출처
+    # 필요한 경우 추가적인 출처를 여기에 추가
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 모든 출처 허용
+    allow_origins=origins,        # 허용할 출처를 명시
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
