@@ -11,22 +11,7 @@ import uvicorn
 import logging
 
 # 로깅 설정
-logging.basicConfig(level=logging.DEBUG)
-
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
-uvicorn_logger = logging.getLogger("uvicorn")
-uvicorn_logger.setLevel(logging.DEBUG)
-
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-console_handler = logging.StreamHandler()
-console_handler.setFormatter(formatter)
-console_handler.setLevel(logging.DEBUG)
-
-logger.addHandler(console_handler)
-uvicorn_logger.addHandler(console_handler)
 
 app = FastAPI()
 
@@ -49,7 +34,9 @@ app.mount("/static", StaticFiles(directory="storage/output_feedback_frame"), nam
 # 루트 엔드포인트 (선택 사항)
 @app.get("/")
 def read_root():
-    return {"message": "VLM Model GPT-4O-Mini API"}
+    logger = logging.getLogger(__name__)
+    logger.info("Root endpoint accessed")
+    return {"message": "Hello, World!"}
 
 # 요청 로깅 미들웨어
 @app.middleware("http")
@@ -63,6 +50,12 @@ async def log_requests(request: Request, call_next):
         logger.error(f"Error processing request: {e}")
         raise e
 
-# 서버 실행 (optional, can also run using uvicorn from command line)
+# 서버 실행 (uvicorn.run()에서 log_config 지정)
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+        log_config="logging_config.json"  # 로깅 설정 파일 지정
+    )
