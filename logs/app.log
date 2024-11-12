@@ -1,0 +1,19 @@
+2024-11-12 18:31:41,958 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI']
+2024-11-12 18:31:41,958 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-11-12 18:31:41,959 - INFO - uvicorn.error - Started reloader process [79566] using WatchFiles
+2024-11-12 18:31:43,152 - INFO - uvicorn.error - Started server process [79571]
+2024-11-12 18:31:43,152 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-12 18:31:43,153 - INFO - uvicorn.error - Application startup complete.
+2024-11-12 18:31:46,699 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/
+2024-11-12 18:31:46,712 - INFO - uvicorn - Response status: 200
+2024-11-12 18:31:49,965 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-11-12 18:31:49,966 - INFO - uvicorn - Response status: 200
+2024-11-12 18:31:50,050 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-11-12 18:31:50,057 - INFO - uvicorn - Response status: 200
+2024-11-12 18:32:16,861 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-11-12 18:32:17,403 - INFO - uvicorn - Response status: 200
+2024-11-12 18:51:05,611 - INFO - uvicorn.error - Shutting down
+2024-11-12 18:51:05,715 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-12 18:51:05,716 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-12 18:51:05,716 - INFO - uvicorn.error - Finished server process [79571]
+2024-11-12 18:51:05,991 - INFO - uvicorn.error - Stopping reloader process [79566]
