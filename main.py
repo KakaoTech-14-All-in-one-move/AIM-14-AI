@@ -6,8 +6,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi import Response
 
-
-
 from vlm_model.routers.upload_video import router as upload_video_router
 from vlm_model.routers.send_feedback import router as send_feedback_router
 
@@ -20,12 +18,14 @@ logger = logging.getLogger("uvicorn")
 app = FastAPI()
 
 # 모든 출처를 허용하는 CORS 설정 (자격 증명 포함 불가)
+# CORS 미들웨어 설정 - 모든 출처 허용, credentials는 False
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],        # 모든 출처 허용
+    allow_origins=["*"],  # 모든 출처 허용
+    allow_credentials=False,  # credentials를 반드시 False로 설정
     allow_methods=["*"],
     allow_headers=["*"],
-    allow_credentials=False,  # 여기서 False로 설정
+    expose_headers=["*"]
 )
 
 # 라우터 포함

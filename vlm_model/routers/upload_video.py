@@ -25,13 +25,10 @@ if not logger.hasHandlers():
 
 
 @router.post("/receive-video/", response_model=UploadResponse)
-async def receive_video_endpoint(file: UploadFile = File(...), response: Response):
+async def receive_video_endpoint(file: UploadFile = File(...)):
     """
     비디오 파일을 업로드 받아 저장하고, video_id를 반환합니다.
     """
-    # 응답 헤더에 CORS 설정 추가
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Credentials"] = "False"
 
     # 요청 수신 로그
     logger.info("receive_video_endpoint called")
