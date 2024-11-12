@@ -4,6 +4,7 @@ from fastapi import APIRouter, File, UploadFile, HTTPException, BackgroundTasks,
 import os
 import uuid
 import logging
+import shutil
 
 from vlm_model.schemas.feedback import UploadResponse
 from vlm_model.utils.video_duration import get_video_duration
@@ -55,8 +56,22 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
     # 비디오 파일 저장
     try:
         with open(file_path, "wb") as buffer:
-            buffer.write(await file.read())
-        logger.info(f"비디오 파일 저장 완료: {file_path}")
+            shutil.copyfileobj(file.file, buffer)
+        logger.info(f"비디오 파일 저장 완료: {os.path.abspath(file_path)}")
+
+        # 파일 존재 여부와 크기 확인
+        if os.path.exists(file_path):
+            file_size = os.path.getsize(file_path)
+            logger.info(f"파일이 성공적으로 저장되었습니다. 크기: {file_size} bytes")
+        else:
+            logger.error("파일이 저장되지 않았습니다.")
+            raise HTTPException(status_code=500, detail="파일 저장에 실패했습니다.")
+
+        # 파일의 일부 내용 로그 (선택 사항)
+        with open(file_path, "rb") as f:
+            content = f.read(1024)  # 처음 1KB 읽기
+            logger.info(f"파일 내용 일부: {content[:50]}...")  # 처음 50바이트만 로그
+
     except Exception as e:
         logger.error(f"파일 저장 중 오류 발생: {e}")
         raise HTTPException(status_code=500, detail=f"파일 저장 중 오류 발생: {e}")
@@ -65,5 +80,14 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
         video_id=video_id,
         message="비디오 업로드 완료. 피드백 데이터를 받으려면 /send-feedback/{video_id} 엔드포인트를 호출하세요."
     )
-    
 
+# 테스트 엔드포인트 (파일 쓰기 권한 확인)
+@router.get("/test-write")
+async def test_write():
+    test_file_path = os.path.join(UPLOAD_DIR, "test.txt")
+    try:
+        with open(test_file_path, "w") as f:
+            f.write("Test")
+        return {"message": "파일 쓰기 성공"}
+    except Exception as e:
+        return {"error": str(e)}
