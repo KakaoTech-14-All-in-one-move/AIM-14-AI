@@ -20,5 +20,6 @@ def get_video_duration(video_path: str) -> Optional[float]:
         cap.release()
         return duration
     except Exception as e:
+        logger.exception(f"Error getting video duration: {e}")
         print(f"비디오 길이 가져오기 중 오류 발생: {e}")
         return None
