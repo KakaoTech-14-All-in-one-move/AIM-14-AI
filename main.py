@@ -3,6 +3,10 @@
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi import Response
+
+
 
 from vlm_model.routers.upload_video import router as upload_video_router
 from vlm_model.routers.send_feedback import router as send_feedback_router
@@ -11,7 +15,7 @@ import uvicorn
 import logging
 
 # 로깅 설정
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("uvicorn")
 
 app = FastAPI()
 
@@ -52,6 +56,9 @@ async def log_requests(request: Request, call_next):
 
 # 서버 실행 (uvicorn.run()에서 log_config 지정)
 if __name__ == "__main__":
+    # 현재 작업 디렉터리를 스크립트의 디렉터리로 설정
+    # os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
     uvicorn.run(
         "main:app",
         host="0.0.0.0",

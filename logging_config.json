@@ -31,17 +31,17 @@
     "loggers": {
       "uvicorn": {
         "handlers": ["default", "file"],
-        "level": "INFO",
+        "level": "DEBUG",
         "propagate": false
       },
       "uvicorn.error": {
         "handlers": ["default", "file"],
-        "level": "INFO",
+        "level": "DEBUG",
         "propagate": false
       },
       "uvicorn.access": {
         "handlers": ["access_file"],
-        "level": "INFO",
+        "level": "DEBUG",
         "propagate": false
       }
     }
