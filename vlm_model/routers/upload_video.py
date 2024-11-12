@@ -33,6 +33,10 @@ async def receive_video_endpoint(file: UploadFile = File(...), response: Respons
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Credentials"] = "False"
 
+    # 요청 수신 로그
+    logger.info("receive_video_endpoint called")
+    logger.info(f"Received file: {file.filename}")
+
     # 지원하는 파일 형식 확인
     ALLOWED_EXTENSIONS = {"webm", "mp4", "mov", "avi", "mkv"}
     file_extension = file.filename.split(".")[-1].lower()

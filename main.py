@@ -25,7 +25,7 @@ app.add_middleware(
     allow_origins=["*"],        # 모든 출처 허용
     allow_methods=["*"],
     allow_headers=["*"],
-    # allow_credentials는 제거하거나 False로 설정
+    allow_credentials=False,  # 여기서 False로 설정
 )
 
 # 라우터 포함
