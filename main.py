@@ -16,16 +16,10 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-# CORS 설정
-origins = [
-    "http://localhost",
-    "http://localhost:5500",  # 예: 로컬 개발 서버
-    # 필요에 따라 추가
-]
-
+# CORS 설정 - 모든 출처를 허용하는 CORS 설정
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # 실제 사용 시 필요한 도메인만 허용
+    allow_origins=["*"],  # 모든 출처 허용
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
