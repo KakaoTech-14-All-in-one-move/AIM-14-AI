@@ -11,8 +11,8 @@ from vlm_model.utils.video_duration import get_video_duration
 
 router = APIRouter()
 
-# 비디오 저장 경로 설정
-UPLOAD_DIR = "storage/input_video"
+# Docker 컨테이너 내부 경로 설정
+UPLOAD_DIR = '/tmp/storage/input_video'
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 # 로깅 설정

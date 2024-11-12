@@ -25,9 +25,14 @@ from vlm_model.config import SYSTEM_INSTRUCTION
 router = APIRouter()
 
 # 비디오 저장 경로와 피드백 저장 경로 설정
-UPLOAD_DIR = Path(os.getenv('UPLOAD_DIR', 'storage/input_video'))
-FEEDBACK_DIR = Path(os.getenv('FEEDBACK_DIR', 'storage/output_feedback_frame'))
+# Docker에서 쓰기 가능한 경로 설정
+UPLOAD_DIR = Path('/tmp/storage/input_video')
+FEEDBACK_DIR = Path('/tmp/storage/output_feedback_frame')
+
+# 디렉토리가 존재하지 않으면 생성
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 FEEDBACK_DIR.mkdir(parents=True, exist_ok=True)
+
 
 # 로깅 설정
 logger = logging.getLogger(__name__)
