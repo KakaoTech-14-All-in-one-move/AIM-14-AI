@@ -5,15 +5,27 @@ import os
 import uuid
 import logging
 import shutil
+from pathlib import Path
 
 from vlm_model.schemas.feedback import UploadResponse
 from vlm_model.utils.video_duration import get_video_duration
 
 router = APIRouter()
 
-# Docker 컨테이너 내부 경로 설정
-UPLOAD_DIR = '/tmp/storage/input_video'
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+# Docker 환경 감지 및 경로 설정
+UPLOAD_DIR = Path("storage/input_video")  # 기본 경로
+try:
+    if os.path.exists("/proc/1/cgroup") and "docker" in open("/proc/1/cgroup").read():
+        UPLOAD_DIR = Path("/tmp/storage/input_video")
+except FileNotFoundError:
+    logger.info("로컬 환경으로 간주합니다. 기본 경로로 설정합니다.")
+
+# 디렉터리가 없으면 생성
+try:
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+except Exception as e:
+    logger.error(f"업로드 디렉터리 생성 실패: {e}")
+    raise HTTPException(status_code=500, detail="업로드 디렉터리 생성 실패")
 
 # 로깅 설정
 logger = logging.getLogger(__name__)
@@ -60,19 +72,28 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
 
         # 파일 존재 여부와 크기 확인
         if not os.path.exists(file_path):
+            logger.error("파일이 저장되지 않았습니다.")
             raise HTTPException(status_code=500, detail="파일이 저장되지 않았습니다.")
         
-        file_size = os.path.getsize(file_path)
-        logger.info(f"파일이 성공적으로 저장되었습니다. 크기: {file_size} bytes")
+        try:
+            file_size = os.path.getsize(file_path)
+            logger.info(f"파일이 성공적으로 저장되었습니다. 크기: {file_size} bytes")
+        except Exception as e:
+            logger.warning(f"파일 크기 확인 중 오류 발생: {e}")
+            raise HTTPException(status_code=500, detail="파일 크기 확인 중 오류 발생")
 
         # 파일의 일부 내용 로그 (선택 사항)
         with open(file_path, "rb") as f:
             content = f.read(1024)  # 처음 1KB 읽기
             logger.info(f"파일 내용 일부: {content[:50]}...")  # 처음 50바이트만 로그
 
-    except Exception as e:
+    except IOError as e:
         logger.error(f"파일 저장 중 오류 발생: {e}")
-        raise HTTPException(status_code=500, detail=f"파일 저장 중 오류 발생: {e}")
+        raise HTTPException(status_code=500, detail="파일 저장 중 오류 발생")
+        
+    except Exception as e:
+        logger.error(f"알 수 없는 오류 발생: {e}")
+        raise HTTPException(status_code=500, detail="파일 처리 중 예기치 않은 오류 발생")
 
     return UploadResponse(
         video_id=video_id,
