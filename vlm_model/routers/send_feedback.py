@@ -70,11 +70,16 @@ def process_video(file_path: str):
 
     feedback_data = []
 
+    # 디렉터리 경로가 지정되었는지 확인
+    if FEEDBACK_DIR is None or not FEEDBACK_DIR.exists():
+        logger.error(f"피드백 이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다: {FEEDBACK_DIR}")
+        return "directory_error"
+
     # 각 세그먼트별로 프레임 추출 및 피드백 분석
     for start_time in range(0, int(video_duration), segment_length):
         segment_index = start_time // segment_length
-
         frames = download_and_sample_video_local(file_path, start_time, segment_length, frame_interval)
+
         if frames is None or len(frames) == 0:
             logger.warning(f"프레임을 추출할 수 없습니다. 비디오 파일에 문제가 있을 수 있습니다: {file_path}")
             return "codec_error"  # 코덱 문제로 인한 프레임 추출 실패를 명확히 나타냄
@@ -128,8 +133,11 @@ def process_video(file_path: str):
                 try:
                     with open(image_path, "wb") as img_file:
                         img_file.write(base64.b64decode(image_base64))
+                    if not os.path.exists(image_path):
+                        raise IOError("이미지가 지정된 경로에 저장되지 않았습니다.")
                 except Exception as e:
                     logger.error(f"이미지 저장 중 오류 발생: {e}")
+                    return "image_save_error"
         else:
             logger.warning(f"세그먼트 {segment_index+1}에서 프레임을 추출할 수 없습니다.")
 
@@ -141,14 +149,21 @@ async def send_feedback_endpoint(video_id: str):
     """
     video_id를 통해 저장된 비디오 파일을 처리하고 피드백 데이터를 반환합니다.
     """
-    # 저장된 비디오 파일 경로 확인
-    video_extensions = ["webm", "mp4", "mov", "avi", "mkv"]
-    video_path = None
-    for ext in video_extensions:
-        potential_path = os.path.join(UPLOAD_DIR, f"{video_id}.{ext}")
-        if os.path.exists(potential_path):
-            video_path = potential_path
-            break
+    # VP9 변환된 비디오 파일 경로 확인
+    converted_video_filename = f"{video_id}_vp9.webm"
+    video_path = os.path.join(UPLOAD_DIR, converted_video_filename)
+
+    # 변환된 VP9 파일이 없을 경우 원본 파일을 찾기 위해 확장자 목록 확인
+    if not os.path.exists(video_path):
+        video_extensions = ["webm", "mp4", "mov", "avi", "mkv"]
+        video_path = None
+        for ext in video_extensions:
+            potential_path = os.path.join(UPLOAD_DIR, f"{video_id}.{ext}")
+            if os.path.exists(potential_path):
+                video_path = potential_path
+                break
+
+    # 비디오 파일을 찾지 못했을 경우 오류 반환
     if not video_path:
         logger.error(f"비디오 파일을 찾을 수 없습니다: video_id={video_id}")
         raise HTTPException(status_code=404, detail="비디오 파일을 찾을 수 없습니다.")
@@ -165,15 +180,34 @@ async def send_feedback_endpoint(video_id: str):
             problem="video_error"
         )
 
-    elif feedback_data == "codec_error": # 비디오 파일은 정상 - 단, 특정 코텍 지원을 못해서 프레임 추출 불가
+    # 비디오 파일은 정상 - 단, 특정 코텍 지원을 못해서 프레임 추출 불가
+    elif feedback_data == "codec_error":
         logger.info(f"코덱 문제로 피드백 데이터를 생성하지 못했습니다: video_id={video_id}")
         return FeedbackResponse(
             feedbacks=[],
             message="코덱 문제로 피드백 데이터를 생성하지 못했습니다.",
             problem="codec_error"
         )
+    
+    # image_save_error: 이미지를 저장할 때 오류가 발생한 경우.
+    elif feedback_data == "image_save_error": 
+        logger.info(f"피드백 이미지 저장 오류로 피드백 데이터를 생성하지 못했습니다: video_id={video_id}")
+        return FeedbackResponse(
+            feedbacks=[],
+            message="이미지 저장 오류로 피드백 데이터를 생성하지 못했습니다.",
+            problem="image_save_error"
+        )
 
-    elif not feedback_data: # 피드백 내용이 none일때 
+    # directory_error: 피드백 이미지를 저장할 디렉터리가 없거나 지정되지 않은 경우.
+    elif feedback_data == "directory_error":
+        logger.info(f"이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다: video_id={video_id}")
+        return FeedbackResponse(
+            feedbacks=[],
+            message="이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다.",
+            problem="directory_error"
+        )
+    # no_feedback: 피드백할 내용이 없는 경우 - 피드백 내용이 none일때.
+    elif not feedback_data: 
         logger.info(f"분석 결과 피드백할 내용이 없습니다: video_id={video_id}")
         return FeedbackResponse(
             feedbacks=[],

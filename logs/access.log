@@ -45,3 +45,11 @@
 2024-11-13 19:13:06,224 - INFO - 127.0.0.1:56292 - "POST /api/video/receive-video/ HTTP/1.1" 200
 2024-11-13 19:13:07,283 - INFO - 127.0.0.1:56292 - "POST /api/video/receive-video/ HTTP/1.1" 200
 2024-11-13 19:13:35,139 - INFO - 127.0.0.1:56298 - "GET /api/video/video-send-feedback/d7675a7ec1304282a891daa2419121be/ HTTP/1.1" 200
+2024-11-13 19:25:32,254 - INFO - 127.0.0.1:56400 - "GET /docs HTTP/1.1" 200
+2024-11-13 19:25:32,432 - INFO - 127.0.0.1:56400 - "GET /openapi.json HTTP/1.1" 200
+2024-11-13 19:25:55,188 - INFO - 127.0.0.1:56404 - "POST /api/video/receive-video/ HTTP/1.1" 500
+2024-11-13 19:27:36,290 - INFO - 127.0.0.1:56418 - "POST /api/video/receive-video/ HTTP/1.1" 200
+2024-11-13 19:27:45,633 - INFO - 127.0.0.1:56422 - "GET /api/video/video-send-feedback/a0e9e5947d1042f28f1d39625d54f54d/ HTTP/1.1" 404
+2024-11-13 19:32:37,777 - INFO - 127.0.0.1:56450 - "POST /api/video/receive-video/ HTTP/1.1" 200
+2024-11-13 19:34:43,971 - INFO - 127.0.0.1:56475 - "GET /api/video/video-send-feedback/c51f7580d84f4acab78ac7bd8b43f1da/ HTTP/1.1" 200
+2024-11-13 19:34:48,571 - INFO - 127.0.0.1:56475 - "GET /api/video/video-send-feedback/c51f7580d84f4acab78ac7bd8b43f1da/ HTTP/1.1" 200

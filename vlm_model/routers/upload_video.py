@@ -5,6 +5,7 @@ import os
 import uuid
 import logging
 import shutil
+import subprocess
 from pathlib import Path
 
 from vlm_model.schemas.feedback import UploadResponse
@@ -36,6 +37,23 @@ if not logger.hasHandlers():
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
+def convert_to_vp9(input_path: str, output_path: str) -> bool:
+    """
+    H.264 코덱 비디오를 VP9 코덱으로 변환합니다.
+    """
+    try:
+        command = [
+            'ffmpeg', '-i', input_path,
+            '-c:v', 'libvpx-vp9', '-b:v', '1M',
+            '-c:a', 'libopus', output_path
+        ]
+        subprocess.run(command, check=True)
+        logger.info(f"비디오 변환 성공: {output_path}")
+        return True
+    except subprocess.CalledProcessError as e:
+        logger.error(f"비디오 변환 실패: {e}")
+        return False
+
 
 @router.post("/receive-video/", response_model=UploadResponse)
 async def receive_video_endpoint(response: Response, file: UploadFile = File(...)):
@@ -62,30 +80,33 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
     video_id = uuid.uuid4().hex
 
     # 비디오 파일 저장 경로 설정
-    video_filename = f"{video_id}.{file_extension}"
-    file_path = os.path.join(UPLOAD_DIR, video_filename)
+    original_filename = f"{video_id}_original.{file_extension}"
+    original_file_path = os.path.join(UPLOAD_DIR, original_filename)
+    converted_filename = f"{video_id}_vp9.webm"
+    converted_file_path = os.path.join(UPLOAD_DIR, converted_filename)
 
     # 비디오 파일 저장
     try:
-        with open(file_path, "wb") as buffer:
+        with open(original_file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
 
         # 파일 존재 여부와 크기 확인
-        if not os.path.exists(file_path):
-            logger.error("파일이 저장되지 않았습니다.")
+        if not os.path.exists(original_file_path):
             raise HTTPException(status_code=500, detail="파일이 저장되지 않았습니다.")
-        
-        try:
-            file_size = os.path.getsize(file_path)
-            logger.info(f"파일이 성공적으로 저장되었습니다. 크기: {file_size} bytes")
-        except Exception as e:
-            logger.warning(f"파일 크기 확인 중 오류 발생: {e}")
-            raise HTTPException(status_code=500, detail="파일 크기 확인 중 오류 발생")
 
-        # 파일의 일부 내용 로그 (선택 사항)
-        with open(file_path, "rb") as f:
-            content = f.read(1024)  # 처음 1KB 읽기
-            logger.info(f"파일 내용 일부: {content[:50]}...")  # 처음 50바이트만 로그
+        file_size = os.path.getsize(original_file_path)
+        logger.info(f"파일이 성공적으로 저장되었습니다. 크기: {file_size} bytes")
+
+        # VP9 변환
+        if convert_to_vp9(original_file_path, converted_file_path):
+            return UploadResponse(
+                video_id=video_id,
+                message=f"비디오 업로드 및 VP9 변환 완료. 피드백 데이터를 받으려면 /send-feedback/{video_id} 엔드포인트를 호출하세요."
+            )
+        else:
+            # 변환 실패 시 원본 파일 삭제
+            os.remove(original_file_path)
+            raise HTTPException(status_code=500, detail="비디오 변환 중 오류 발생")
 
     except IOError as e:
         logger.error(f"파일 저장 중 오류 발생: {e}")
@@ -95,10 +116,17 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
         logger.error(f"알 수 없는 오류 발생: {e}")
         raise HTTPException(status_code=500, detail="파일 처리 중 예기치 않은 오류 발생")
 
-    return UploadResponse(
-        video_id=video_id,
-        message="비디오 업로드 완료. 피드백 데이터를 받으려면 /send-feedback/{video_id} 엔드포인트를 호출하세요."
-    )
+def get_video_codec_info(video_path: str):
+    """
+    FFmpeg로 비디오 파일의 코덱 정보를 확인합니다.
+    """
+    try:
+        command = ['ffmpeg', '-i', video_path]
+        result = subprocess.run(command, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+        output = result.stderr.decode()
+        logger.info(f"코덱 정보: {output}")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"코덱 정보 확인 실패: {e}")
 
 # 테스트 엔드포인트 (파일 쓰기 권한 확인)
 @router.get("/test-write")

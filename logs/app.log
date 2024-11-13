@@ -297,3 +297,70 @@
 2024-11-13 19:16:24,093 - INFO - uvicorn.error - Application shutdown complete.
 2024-11-13 19:16:24,094 - INFO - uvicorn.error - Finished server process [30595]
 2024-11-13 19:16:24,296 - INFO - uvicorn.error - Stopping reloader process [30593]
+2024-11-13 19:25:27,203 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-11-13 19:25:27,203 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-11-13 19:25:27,203 - INFO - uvicorn.error - Started reloader process [33465] using WatchFiles
+2024-11-13 19:25:28,709 - INFO - uvicorn.error - Started server process [33467]
+2024-11-13 19:25:28,709 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-13 19:25:28,710 - INFO - uvicorn.error - Application startup complete.
+2024-11-13 19:25:32,253 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-11-13 19:25:32,254 - INFO - uvicorn - Response status: 200
+2024-11-13 19:25:32,415 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-11-13 19:25:32,431 - INFO - uvicorn - Response status: 200
+2024-11-13 19:25:55,158 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-11-13 19:25:55,188 - INFO - uvicorn - Response status: 500
+2024-11-13 19:27:25,096 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/upload_video.py'. Reloading...
+2024-11-13 19:27:25,140 - INFO - uvicorn.error - Shutting down
+2024-11-13 19:27:25,241 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-13 19:27:25,242 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-13 19:27:25,242 - INFO - uvicorn.error - Finished server process [33467]
+2024-11-13 19:27:27,030 - INFO - uvicorn.error - Started server process [33880]
+2024-11-13 19:27:27,030 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-13 19:27:27,031 - INFO - uvicorn.error - Application startup complete.
+2024-11-13 19:27:28,405 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-11-13 19:27:36,290 - INFO - uvicorn - Response status: 200
+2024-11-13 19:27:45,631 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/a0e9e5947d1042f28f1d39625d54f54d/
+2024-11-13 19:27:45,633 - INFO - uvicorn - Response status: 404
+2024-11-13 19:32:29,611 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-11-13 19:32:37,776 - INFO - uvicorn - Response status: 200
+2024-11-13 19:34:02,025 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-11-13 19:34:02,112 - INFO - uvicorn.error - Shutting down
+2024-11-13 19:34:02,215 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-13 19:34:02,218 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-13 19:34:02,219 - INFO - uvicorn.error - Finished server process [33880]
+2024-11-13 19:34:03,936 - INFO - uvicorn.error - Started server process [35192]
+2024-11-13 19:34:03,936 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-13 19:34:03,936 - INFO - uvicorn.error - Application startup complete.
+2024-11-13 19:34:28,188 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-11-13 19:34:28,281 - INFO - uvicorn.error - Shutting down
+2024-11-13 19:34:28,382 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-13 19:34:28,383 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-13 19:34:28,383 - INFO - uvicorn.error - Finished server process [35192]
+2024-11-13 19:34:29,901 - INFO - uvicorn.error - Started server process [35305]
+2024-11-13 19:34:29,902 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-13 19:34:29,902 - INFO - uvicorn.error - Application startup complete.
+2024-11-13 19:34:40,980 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/c51f7580d84f4acab78ac7bd8b43f1da/
+2024-11-13 19:34:43,971 - INFO - uvicorn - Response status: 200
+2024-11-13 19:34:46,143 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/c51f7580d84f4acab78ac7bd8b43f1da/
+2024-11-13 19:34:48,569 - INFO - uvicorn - Response status: 200
+2024-11-13 19:34:50,511 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-11-13 19:34:50,588 - INFO - uvicorn.error - Shutting down
+2024-11-13 19:34:50,691 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-13 19:34:50,691 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-13 19:34:50,691 - INFO - uvicorn.error - Finished server process [35305]
+2024-11-13 19:34:52,266 - INFO - uvicorn.error - Started server process [35397]
+2024-11-13 19:34:52,266 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-13 19:34:52,267 - INFO - uvicorn.error - Application startup complete.
+2024-11-13 19:36:26,595 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-11-13 19:36:26,610 - INFO - uvicorn.error - Shutting down
+2024-11-13 19:36:26,713 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-13 19:36:26,714 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-13 19:36:26,714 - INFO - uvicorn.error - Finished server process [35397]
+2024-11-13 19:36:28,236 - INFO - uvicorn.error - Started server process [35731]
+2024-11-13 19:36:28,236 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-13 19:36:28,236 - INFO - uvicorn.error - Application startup complete.
+2024-11-13 19:36:30,562 - INFO - uvicorn.error - Shutting down
+2024-11-13 19:36:30,663 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-13 19:36:30,664 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-13 19:36:30,664 - INFO - uvicorn.error - Finished server process [35731]
+2024-11-13 19:36:30,802 - INFO - uvicorn.error - Stopping reloader process [33465]
