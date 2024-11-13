@@ -249,3 +249,51 @@
 2024-11-13 18:31:21,665 - INFO - uvicorn.error - Application shutdown complete.
 2024-11-13 18:31:21,666 - INFO - uvicorn.error - Finished server process [21781]
 2024-11-13 18:31:21,841 - INFO - uvicorn.error - Stopping reloader process [10876]
+2024-11-13 18:49:01,573 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-11-13 18:49:01,574 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-11-13 18:49:01,574 - INFO - uvicorn.error - Started reloader process [25935] using WatchFiles
+2024-11-13 18:49:03,118 - INFO - uvicorn.error - Started server process [25937]
+2024-11-13 18:49:03,118 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-13 18:49:03,119 - INFO - uvicorn.error - Application startup complete.
+2024-11-13 18:49:07,147 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-11-13 18:49:07,147 - INFO - uvicorn - Response status: 200
+2024-11-13 18:49:07,302 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-11-13 18:49:07,310 - INFO - uvicorn - Response status: 200
+2024-11-13 18:49:26,160 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-11-13 18:49:26,174 - INFO - uvicorn - Response status: 200
+2024-11-13 18:49:36,951 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/3c9c53dfa2ce4546be4fb4824fdd1fe6/
+2024-11-13 18:49:40,894 - INFO - uvicorn - Response status: 200
+2024-11-13 18:56:36,230 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-11-13 18:56:36,263 - INFO - uvicorn - Response status: 200
+2024-11-13 18:56:45,722 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/4ca888d50b504a04b49c4c51795cf340/
+2024-11-13 18:57:08,508 - INFO - uvicorn - Response status: 200
+2024-11-13 19:01:53,157 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-11-13 19:01:53,175 - INFO - uvicorn - Response status: 200
+2024-11-13 19:02:12,143 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/2ca62fb621a045f0a5fd962a98989451/
+2024-11-13 19:02:15,014 - INFO - uvicorn - Response status: 200
+2024-11-13 19:02:26,741 - INFO - uvicorn.error - Shutting down
+2024-11-13 19:02:26,844 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-13 19:02:26,845 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-13 19:02:26,846 - INFO - uvicorn.error - Finished server process [25937]
+2024-11-13 19:02:27,045 - INFO - uvicorn.error - Stopping reloader process [25935]
+2024-11-13 19:12:51,740 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-11-13 19:12:51,740 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-11-13 19:12:51,740 - INFO - uvicorn.error - Started reloader process [30593] using WatchFiles
+2024-11-13 19:12:53,154 - INFO - uvicorn.error - Started server process [30595]
+2024-11-13 19:12:53,154 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-13 19:12:53,155 - INFO - uvicorn.error - Application startup complete.
+2024-11-13 19:12:56,811 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-11-13 19:12:56,812 - INFO - uvicorn - Response status: 200
+2024-11-13 19:12:56,949 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-11-13 19:12:56,962 - INFO - uvicorn - Response status: 200
+2024-11-13 19:13:06,209 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-11-13 19:13:06,224 - INFO - uvicorn - Response status: 200
+2024-11-13 19:13:07,268 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-11-13 19:13:07,283 - INFO - uvicorn - Response status: 200
+2024-11-13 19:13:22,434 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/d7675a7ec1304282a891daa2419121be/
+2024-11-13 19:13:35,139 - INFO - uvicorn - Response status: 200
+2024-11-13 19:16:23,985 - INFO - uvicorn.error - Shutting down
+2024-11-13 19:16:24,092 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-13 19:16:24,093 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-13 19:16:24,094 - INFO - uvicorn.error - Finished server process [30595]
+2024-11-13 19:16:24,296 - INFO - uvicorn.error - Stopping reloader process [30593]
