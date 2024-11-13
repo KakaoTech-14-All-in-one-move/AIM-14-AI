@@ -57,15 +57,13 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
     try:
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
-        logger.info(f"비디오 파일 저장 완료: {os.path.abspath(file_path)}")
 
         # 파일 존재 여부와 크기 확인
-        if os.path.exists(file_path):
-            file_size = os.path.getsize(file_path)
-            logger.info(f"파일이 성공적으로 저장되었습니다. 크기: {file_size} bytes")
-        else:
-            logger.error("파일이 저장되지 않았습니다.")
-            raise HTTPException(status_code=500, detail="파일 저장에 실패했습니다.")
+        if not os.path.exists(file_path):
+            raise HTTPException(status_code=500, detail="파일이 저장되지 않았습니다.")
+        
+        file_size = os.path.getsize(file_path)
+        logger.info(f"파일이 성공적으로 저장되었습니다. 크기: {file_size} bytes")
 
         # 파일의 일부 내용 로그 (선택 사항)
         with open(file_path, "rb") as f:

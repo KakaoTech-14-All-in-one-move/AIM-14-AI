@@ -8,3 +8,4 @@ numpy
 fastapi
 uvicorn
 python-multipart
+ffmpeg

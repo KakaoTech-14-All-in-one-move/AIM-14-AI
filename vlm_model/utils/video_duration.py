@@ -1,25 +1,40 @@
 # utils/video_duration.py
 
-import cv2
+import subprocess
+import json
+import logging
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 def get_video_duration(video_path: str) -> Optional[float]:
     """
-    비디오 길이를 초 단위로 반환합니다.
+    ffmpeg를 사용하여 비디오 길이를 초 단위로 반환합니다.
     """
     try:
-        cap = cv2.VideoCapture(video_path)
-        if not cap.isOpened():
-            print(f"비디오 파일을 열 수 없습니다: {video_path}")
-            return None
-        fps = cap.get(cv2.CAP_PROP_FPS)
-        if fps == 0:
-            fps = 30.0  # 기본 FPS 설정
-        total_frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
-        duration = total_frames / fps
-        cap.release()
+        logger.info(f"ffprobe로 비디오 길이를 가져오는 중: {video_path}")
+        result = subprocess.run(
+            [
+                "ffprobe",
+                "-v", "error",
+                "-show_entries", "format=duration",
+                "-of", "json",
+                video_path,
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=True,
+        )
+        data = json.loads(result.stdout)
+        duration = float(data["format"]["duration"])
+        logger.info(f"비디오 길이: {duration}초")
         return duration
+    except subprocess.CalledProcessError as e:
+        logger.error(f"ffprobe 실행 오류: {e.stderr}")
+    except (KeyError, ValueError) as e:
+        logger.error(f"비디오 길이 파싱 오류: {e}")
     except Exception as e:
-        logger.exception(f"Error getting video duration: {e}")
-        print(f"비디오 길이 가져오기 중 오류 발생: {e}")
-        return None
+        logger.exception(f"비디오 길이를 가져오는 중 예기치 못한 오류 발생: {e}")
+    return None
+
