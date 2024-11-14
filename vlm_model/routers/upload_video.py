@@ -13,11 +13,20 @@ from vlm_model.utils.video_duration import get_video_duration
 
 router = APIRouter()
 
+# 로깅 설정
+logger = logging.getLogger(__name__)
+if not logger.hasHandlers():
+    logger.setLevel(logging.INFO)
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
 # Docker 환경 감지 및 경로 설정
 UPLOAD_DIR = Path("storage/input_video")  # 기본 경로
 try:
     if os.path.exists("/proc/1/cgroup") and "docker" in open("/proc/1/cgroup").read():
-        UPLOAD_DIR = Path("/tmp/storage/input_video")
+        UPLOAD_DIR = Path("/app/storage/input_video")
 except FileNotFoundError:
     logger.info("로컬 환경으로 간주합니다. 기본 경로로 설정합니다.")
 
@@ -27,15 +36,6 @@ try:
 except Exception as e:
     logger.error(f"업로드 디렉터리 생성 실패: {e}")
     raise HTTPException(status_code=500, detail="업로드 디렉터리 생성 실패")
-
-# 로깅 설정
-logger = logging.getLogger(__name__)
-if not logger.hasHandlers():
-    logger.setLevel(logging.INFO)
-    handler = logging.StreamHandler()
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
 
 def convert_to_vp9(input_path: str, output_path: str) -> bool:
     """
@@ -50,9 +50,16 @@ def convert_to_vp9(input_path: str, output_path: str) -> bool:
         subprocess.run(command, check=True)
         logger.info(f"비디오 변환 성공: {output_path}")
         return True
+    
+    except FileNotFoundError:
+        logger.error("ffmpeg 명령을 찾을 수 없습니다. Dockerfile에 ffmpeg 설치를 추가했는지 확인하세요.")
+        raise HTTPException(status_code=500, detail="ffmpeg 설치 필요")
     except subprocess.CalledProcessError as e:
         logger.error(f"비디오 변환 실패: {e}")
-        return False
+        raise HTTPException(status_code=500, detail="비디오 변환 중 오류 발생")
+    except Exception as e:
+        logger.error(f"알 수 없는 변환 오류 발생: {e}")
+        raise HTTPException(status_code=500, detail="예기치 않은 변환 오류 발생")
 
 
 @router.post("/receive-video/", response_model=UploadResponse)
