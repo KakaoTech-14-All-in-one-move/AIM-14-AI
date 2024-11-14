@@ -16,13 +16,18 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
 
         fps = cap.get(cv2.CAP_PROP_FPS)
         if fps == 0:
+            print(f"[WARNING] FPS 값을 불러올 수 없어 기본값(30.0)을 사용합니다.")
             fps = 30.0  # 기본 FPS 설정
+        
+        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        print(f"[INFO] 비디오 FPS: {fps}, 총 프레임 수: {total_frames}")
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
         # 추출할 프레임 인덱스 계산
         start_frame = int(start_time * fps)
         end_frame = int((start_time + duration) * fps)
         frame_indices = list(range(start_frame, end_frame, int(frame_interval * fps)))
+        print(f"[INFO] 추출할 프레임 인덱스: {frame_indices}")
 
         frames = []
         frame_counter = 0
@@ -30,10 +35,12 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
         while True:
             ret, frame = cap.read()
             if not ret:
+                print(f"[WARNING] 프레임 {frame_counter} 읽기 실패")
                 break
 
             if frame_counter in frame_indices:
                 frames.append(frame)
+                print(f"[INFO] 프레임 {frame_counter} 추가")
                 if len(frames) == len(frame_indices):
                     break
 
@@ -42,9 +49,10 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
         cap.release()
 
         if not frames:
-            print("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.")
+            print("[ERROR] 지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.")
             return None
 
+        print(f"[INFO] 총 추출된 프레임 수: {len(frames)}")
         return np.array(frames)
 
     except Exception as e:

@@ -28,8 +28,8 @@ router = APIRouter()
 # Docker 여부에 따라 경로 설정
 try:
     if "docker" in open("/proc/1/cgroup").read():
-        UPLOAD_DIR = Path("/tmp/storage/input_video")
-        FEEDBACK_DIR = Path("/tmp/storage/output_feedback_frame")
+        UPLOAD_DIR = Path("/app/storage/input_video")
+        FEEDBACK_DIR = Path("/app/storage/output_feedback_frame")
     else:
         UPLOAD_DIR = Path("storage/input_video")
         FEEDBACK_DIR = Path("storage/output_feedback_frame")
