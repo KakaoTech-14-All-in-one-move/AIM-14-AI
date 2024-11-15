@@ -253,7 +253,7 @@ FEEDBACK_DIR=storage/output_feedback_frame
 FastAPI 서버를 실행합니다. 기본적으로 `main.py` 파일이 FastAPI 애플리케이션의 엔트리 포인트라고 가정합니다.
 
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload --log-config logging_config.json
 ```
 
 - **--host 0.0.0.0**: 로컬 네트워크에서도 접근 가능하도록 설정
