@@ -8,18 +8,29 @@
 ## 목차
 
 - [사전 요구사항](#사전-요구사항)
-- [프로젝트 구조](#프로젝트-구조)
+  - [Swagger UI Test용 요구사항](#swagger-ui-test용-요구사항)
+  - [배포 (CI/CD)용 요구사항](#배포-cicd용-요구사항)
+- [Directory 구조](#Directory-구조)
 - [설치 및 배포](#설치-및-배포)
   - [1. 리포지토리 클론](#1-리포지토리-클론)
   - [2. 환경 변수 설정](#2-환경-변수-설정)
   - [3. Docker 이미지 빌드](#3-docker-이미지-빌드)
   - [4. Docker 컨테이너 실행](#4-docker-컨테이너-실행)
+  - [5. 로컬 테스트](#5-local-test)
+    - [사전 요구사항](#사전-요구사항-1)
+    - [1. 리포지토리 클론](#1-리포지토리-클론-1)
+    - [2. 가상 환경 생성 (선택 사항)](#2-가상-환경-생성-선택-사항)
+    - [3. FFmpeg 설치](#3-ffmpeg-설치)
+    - [4. 의존성 설치](#4-의존성-설치)
+    - [5. 환경 변수 설정](#5-환경-변수-설정)
+    - [6. 서버 실행](#6-서버-실행)
+    - [7. API 테스트](#7-api-테스트)
 - [CORS 설정](#cors-설정)
   - [발생한 이슈](#발생한-이슈)
   - [해결 방법](#해결-방법)
 - [영상 처리](#영상-처리)
   - [1. 비디오 길이 계산](#1-비디오-길이-계산)
-  - [2. 코덱 변환 (H.264 -> VP9)](#2-코덱-변환-h264---vp9)
+  - [2. 코덱 변환 (H.264 → VP9)](#2-코덱-변환-h264--vp9)
 - [영상 처리 오류 처리](#영상-처리-오류-처리)
 - [사용법](#사용법)
   - [영상 업로드](#영상-업로드)
@@ -31,36 +42,71 @@
 
 ## 사전 요구사항
 
-- **AWS EC2 인스턴스**: FastAPI의 경우 8000번 포트 등 필요한 포트가 허용되도록 보안 그룹 설정.
-- **Docker**: EC2 인스턴스에 설치 필요.
+### Swagger UI Test용 요구사항
+
 - **FastAPI**: 백엔드 프레임워크.
 - **Swagger UI**: API 문서화 및 테스트 도구.
-- **프론트엔드 애플리케이션**: 백엔드 서버와 연동하는 클라이언트 애플리케이션.
 - **FFmpeg**: 비디오 코덱 변환 및 정보 추출 도구.
 - **OpenCV**: 비디오 처리 및 분석 라이브러리.
+- **requirements.txt**: 라이브러리 설치 파일.
 
 ---
 
-## 프로젝트 구조
+### 배포 (CI/CD)용 요구사항
+
+- **프론트엔드 애플리케이션**: 백엔드 서버와 연동하는 클라이언트 애플리케이션.
+- **AWS EC2 인스턴스**: FastAPI의 경우 8000번 포트 등 필요한 포트가 허용되도록 보안 그룹 설정.
+- **Docker**: EC2 인스턴스에 설치 필요.
+  
+---
+
+## Directory 구조
 
 ```
-vlm_model/
-├── routers/
-│   ├── upload_video.py
-│   └── send_feedback.py
-├── schemas/
-│   └── feedback.py
-├── utils/
-│   ├── video_duration.py
-│   ├── download_video.py
-│   ├── analysis.py
-│   ├── encoding_image.py
-│   └── convert_codec.py
-├── config.py
+├── LICENSE
+├── README.md
+├── Research
+├── __pycache__
+├── logging_config.json
+├── logs
+│   ├── access.log
+│   └── app.log
 ├── main.py
-├── Dockerfile
+├── prompt.txt
 ├── requirements.txt
-└── README.md
+├── storage
+│   ├── input_video
+│   └── output_feedback_frame
+└── vlm_model
+    ├── README.md
+    ├── __init__.py
+    ├── __pycache__
+    ├── config.py
+    ├── constants
+    │   ├── __init__.py
+    │   ├── __pycache__
+    │   └── behaviors.py
+    ├── routers
+    │   ├── __init__.py
+    │   ├── __pycache__
+    │   ├── send_feedback.py
+    │   └── upload_video.py
+    ├── schemas
+    │   ├── __init__.py
+    │   ├── __pycache__
+    │   └── feedback.py
+    ├── utils
+    │   ├── __init__.py
+    │   ├── __pycache__
+    │   ├── analysis.py
+    │   ├── download_video.py
+    │   ├── encoding_image.py
+    │   ├── read_video.py
+    │   ├── user_prompt.py
+    │   ├── video_duration.py
+    │   └── visualization.py
+    └── video_processor(test_local).py
+
 ```
 
 ---
@@ -132,6 +178,101 @@ docker run -d -p 8000:8000 --name vlm-container vlm-video-processing
 ```
 
 포트가 올바르게 매핑되고 EC2 보안 그룹에서 포트 `8000`으로의 인바운드 트래픽이 허용되어 있는지 확인하세요.
+
+### 5. Local Test 
+
+#### 사전 요구사항
+
+- Python 3.9 이상
+- FFmpeg 설치 (코덱 변환 기능 사용 시 필요)
+- OpenCV 설치
+
+
+#### 1. 리포지토리 클론
+
+먼저 프로젝트를 클론합니다.
+
+```bash
+git clone https://github.com/your-username/vlm_video_processing.git
+cd vlm_video_processing
+```
+
+#### 2. 가상 환경 생성 (선택 사항)
+
+의존성 충돌을 방지하기 위해 가상 환경을 생성하는 것을 권장합니다.
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # MacOS/Linux
+venv\Scripts\activate  # Windows
+```
+
+#### 3. FFmpeg 설치
+
+FFmpeg는 비디오 코덱 변환에 필요합니다. OS에 맞게 FFmpeg를 설치하세요.
+
+- **MacOS** (Homebrew 사용)
+
+  ```bash
+  brew install ffmpeg
+  ```
+
+- **Ubuntu**
+
+  ```bash
+  sudo apt update
+  sudo apt install ffmpeg
+  ```
+
+- **Windows**
+
+  1. [FFmpeg 공식 웹사이트](https://ffmpeg.org/download.html)에서 Windows용 바이너리를 다운로드합니다.
+  2. 시스템 경로에 FFmpeg 폴더를 추가합니다.
+
+#### 4. 의존성 설치
+
+프로젝트의 **requirements.txt** 파일을 사용해 의존성을 설치합니다.
+
+```bash
+pip install -r requirements.txt
+```
+
+#### 5. 환경 변수 설정
+
+로컬 환경에서 필요한 디렉터리를 설정합니다. `.env` 파일을 만들어 아래와 같이 설정합니다.
+
+```bash
+UPLOAD_DIR=storage/input_video
+FEEDBACK_DIR=storage/output_feedback_frame
+```
+
+디렉터리가 존재하지 않으면 자동으로 생성됩니다.
+
+#### 6. 서버 실행
+
+FastAPI 서버를 실행합니다. 기본적으로 `main.py` 파일이 FastAPI 애플리케이션의 엔트리 포인트라고 가정합니다.
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+- **--host 0.0.0.0**: 로컬 네트워크에서도 접근 가능하도록 설정
+- **--port 8000**: 포트를 8000번으로 설정 (필요 시 다른 포트로 변경 가능)
+- **--reload**: 코드 변경 시 자동으로 서버를 다시 시작하도록 설정 (개발 환경에서 유용)
+
+서버가 성공적으로 실행되면 다음과 같은 메시지가 출력됩니다.
+
+```
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [12345] using watchgod
+INFO:     Started server process [12347]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+```
+
+#### 7. API 테스트
+
+서버가 실행 중이면 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)로 이동하여 Swagger UI에서 API를 테스트할 수 있습니다. 
 
 ---
 
