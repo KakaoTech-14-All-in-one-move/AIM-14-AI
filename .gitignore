@@ -1,3 +1,18 @@
 # 기타 무시할 파일 또는 폴더
 .env
+storage/
 .DS_Store
+
+# Ignore all __pycache__ directories
+__pycache__/
+**/__pycache__/
+
+# Ignore specific __pycache__ directories
+vlm_model/__pycache__/
+vlm_model/constants/__pycache__/
+vlm_model/routers/__pycache__/
+vlm_model/schemas/__pycache__/
+vlm_model/utils/__pycache__/
+
+# Ignore logs directory
+logs/
