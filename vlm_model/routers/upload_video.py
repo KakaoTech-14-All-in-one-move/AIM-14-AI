@@ -54,9 +54,11 @@ def convert_to_vp9(input_path: str, output_path: str) -> bool:
     except FileNotFoundError:
         logger.error("ffmpeg 명령을 찾을 수 없습니다. Dockerfile에 ffmpeg 설치를 추가했는지 확인하세요.")
         raise HTTPException(status_code=500, detail="ffmpeg 설치 필요")
+
     except subprocess.CalledProcessError as e:
         logger.error(f"비디오 변환 실패: {e}")
         raise HTTPException(status_code=500, detail="비디오 변환 중 오류 발생")
+        
     except Exception as e:
         logger.error(f"알 수 없는 변환 오류 발생: {e}")
         raise HTTPException(status_code=500, detail="예기치 않은 변환 오류 발생")

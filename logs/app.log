@@ -364,3 +364,22 @@
 2024-11-13 19:36:30,664 - INFO - uvicorn.error - Application shutdown complete.
 2024-11-13 19:36:30,664 - INFO - uvicorn.error - Finished server process [35731]
 2024-11-13 19:36:30,802 - INFO - uvicorn.error - Stopping reloader process [33465]
+2024-11-15 09:58:28,900 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-11-15 09:58:28,901 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-11-15 09:58:28,902 - INFO - uvicorn.error - Started reloader process [5197] using WatchFiles
+2024-11-15 09:58:30,863 - INFO - uvicorn.error - Started server process [5199]
+2024-11-15 09:58:30,863 - INFO - uvicorn.error - Waiting for application startup.
+2024-11-15 09:58:30,864 - INFO - uvicorn.error - Application startup complete.
+2024-11-15 09:58:37,963 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/
+2024-11-15 09:58:37,968 - INFO - uvicorn - Response status: 200
+2024-11-15 09:58:38,455 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/favicon.ico
+2024-11-15 09:58:38,457 - INFO - uvicorn - Response status: 404
+2024-11-15 09:58:40,992 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-11-15 09:58:40,993 - INFO - uvicorn - Response status: 200
+2024-11-15 09:58:41,228 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-11-15 09:58:41,237 - INFO - uvicorn - Response status: 200
+2024-11-15 09:58:46,833 - INFO - uvicorn.error - Shutting down
+2024-11-15 09:58:46,936 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-11-15 09:58:46,937 - INFO - uvicorn.error - Application shutdown complete.
+2024-11-15 09:58:46,937 - INFO - uvicorn.error - Finished server process [5199]
+2024-11-15 09:58:47,135 - INFO - uvicorn.error - Stopping reloader process [5197]
