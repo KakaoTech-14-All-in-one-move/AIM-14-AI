@@ -1,49 +1,57 @@
 {
-    "version": 1,
-    "disable_existing_loggers": false,
-    "formatters": {
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
       "default": {
-        "format": "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
+          "format": "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
       },
-        "access": {
-        "format": "%(asctime)s - %(levelname)s - %(message)s"
-        }
-    },
-    "handlers": {
+      "access": {
+          "format": "%(asctime)s - %(levelname)s - %(message)s"
+      }
+  },
+  "handlers": {
       "default": {
-        "class": "logging.StreamHandler",
-        "formatter": "default",
-        "stream": "ext://sys.stdout"
+          "class": "logging.StreamHandler",
+          "formatter": "default",
+          "stream": "ext://sys.stdout"
       },
       "file": {
-        "class": "logging.FileHandler",
-        "formatter": "default",
-        "filename": "logs/app.log",
-        "encoding": "utf8"
+          "class": "logging.FileHandler",
+          "formatter": "default",
+          "filename": "logs/app.log",
+          "encoding": "utf8"
       },
       "access_file": {
-        "class": "logging.FileHandler",
-        "formatter": "access",
-        "filename": "logs/access.log",
-        "encoding": "utf8"
+          "class": "logging.FileHandler",
+          "formatter": "access",
+          "filename": "logs/access.log",
+          "encoding": "utf8"
       }
-    },
-    "loggers": {
+  },
+  "loggers": {
       "uvicorn": {
-        "handlers": ["default", "file"],
-        "level": "DEBUG",
-        "propagate": false
+          "handlers": ["default", "file"],
+          "level": "DEBUG",
+          "propagate": false
       },
       "uvicorn.error": {
-        "handlers": ["default", "file"],
-        "level": "DEBUG",
-        "propagate": false
+          "handlers": ["default", "file"],
+          "level": "DEBUG",
+          "propagate": false
       },
       "uvicorn.access": {
-        "handlers": ["access_file"],
-        "level": "DEBUG",
-        "propagate": false
+          "handlers": ["access_file"],
+          "level": "DEBUG",
+          "propagate": false
+      },
+      "main_logger": { 
+          "handlers": ["default", "file"],
+          "level": "DEBUG",
+          "propagate": false
       }
-    }
+  },
+  "root": {
+      "level": "INFO",
+      "handlers": ["default", "file"]
   }
-  
+}

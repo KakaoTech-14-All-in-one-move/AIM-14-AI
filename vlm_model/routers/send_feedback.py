@@ -4,10 +4,7 @@ from fastapi import APIRouter, HTTPException
 import os
 import re
 import uuid
-import logging
 import base64
-import json
-from pathlib import Path
 
 from vlm_model.schemas.feedback import (
     FeedbackSections,
@@ -20,40 +17,18 @@ from vlm_model.utils.download_video import download_and_sample_video_local
 from vlm_model.utils.analysis import analyze_frames, parse_feedback_text
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.utils.video_duration import get_video_duration
-from vlm_model.config import SYSTEM_INSTRUCTION
+from vlm_model.openai_config import SYSTEM_INSTRUCTION
+from vlm_model.config import FEEDBACK_DIR, UPLOAD_DIR
+
+import logging
+import logging.config
+import json
+from pathlib import Path
 
 router = APIRouter()
 
-# 비디오 저장 경로와 피드백 저장 경로 설정
-# Docker 여부에 따라 경로 설정
-try:
-    if "docker" in open("/proc/1/cgroup").read():
-        UPLOAD_DIR = Path("/app/storage/input_video")
-        FEEDBACK_DIR = Path("/app/storage/output_feedback_frame")
-    else:
-        UPLOAD_DIR = Path("storage/input_video")
-        FEEDBACK_DIR = Path("storage/output_feedback_frame")
-except FileNotFoundError:
-    # 로컬 경로로 설정
-    UPLOAD_DIR = Path("storage/input_video")
-    FEEDBACK_DIR = Path("storage/output_feedback_frame")
-
-# 디렉터리가 없으면 생성
-UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-FEEDBACK_DIR.mkdir(parents=True, exist_ok=True)
-
-# 디렉터리가 없으면 생성
-UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-FEEDBACK_DIR.mkdir(parents=True, exist_ok=True)
-
-# 로깅 설정
-logger = logging.getLogger(__name__)
-if not logger.handlers:
-    logger.setLevel(logging.INFO)
-    handler = logging.StreamHandler()
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+# JSON 기반 로깅 설정 적용
+logger = logging.getLogger("main_logger")
 
 def process_video(file_path: str):
     """
@@ -150,8 +125,7 @@ async def send_feedback_endpoint(video_id: str):
     video_id를 통해 저장된 비디오 파일을 처리하고 피드백 데이터를 반환합니다.
     """
     # VP9 변환된 비디오 파일 경로 확인
-    converted_video_filename = f"{video_id}_vp9.webm"
-    video_path = os.path.join(UPLOAD_DIR, converted_video_filename)
+    video_path = UPLOAD_DIR / f"{video_id}_vp9.webm"
 
     # 변환된 VP9 파일이 없을 경우 원본 파일을 찾기 위해 확장자 목록 확인
     if not os.path.exists(video_path):
