@@ -1,6 +1,5 @@
 # vlm_model/routers/send_feedback.py
-
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends, Request
 import os
 import re
 import uuid
@@ -8,6 +7,7 @@ import logging
 import base64
 import json
 from pathlib import Path
+from typing import Tuple
 
 from vlm_model.schemas.feedback import (
     FeedbackSections,
@@ -20,6 +20,7 @@ from vlm_model.utils.download_video import download_and_sample_video_local
 from vlm_model.utils.analysis import analyze_frames, parse_feedback_text
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.utils.video_duration import get_video_duration
+from vlm_model.utils.retrieve_feedback import retrieve_relevant_feedback
 from vlm_model.config import SYSTEM_INSTRUCTION
 
 router = APIRouter()
@@ -55,7 +56,16 @@ if not logger.handlers:
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
-def process_video(file_path: str):
+def get_rag_components(request: Request) -> Tuple:
+    """
+    애플리케이션 상태에서 RAG 컴포넌트를 가져오는 의존성 함수.
+    """
+    if not hasattr(request.app.state, 'model') or not hasattr(request.app.state, 'index') or not hasattr(request.app.state, 'documents'):
+        logger.error("RAG 컴포넌트가 초기화되지 않았습니다.")
+        raise HTTPException(status_code=500, detail="RAG 컴포넌트가 초기화되지 않았습니다.")
+    return request.app.state.model, request.app.state.index, request.app.state.documents
+
+def process_video(file_path: str, model, index, documents):
     """
     비디오 파일을 처리하여 피드백 데이터를 생성합니다.
     """
@@ -90,6 +100,9 @@ def process_video(file_path: str):
             duration=segment_length,
             segment_length=segment_length,
             system_instruction=SYSTEM_INSTRUCTION,
+            model=model,
+            index=index,
+            documents=documents,
             frame_interval=frame_interval
         )
 
@@ -145,10 +158,12 @@ def process_video(file_path: str):
     return feedback_data
 
 @router.get("/video-send-feedback/{video_id}/", response_model=FeedbackResponse)
-async def send_feedback_endpoint(video_id: str):
+async def send_feedback_endpoint(video_id: str, rag_components: Tuple = Depends(get_rag_components)):
     """
     video_id를 통해 저장된 비디오 파일을 처리하고 피드백 데이터를 반환합니다.
     """
+    model, index, documents = rag_components  # RAG 컴포넌트 언팩
+    
     # VP9 변환된 비디오 파일 경로 확인
     converted_video_filename = f"{video_id}_vp9.webm"
     video_path = os.path.join(UPLOAD_DIR, converted_video_filename)
@@ -169,7 +184,7 @@ async def send_feedback_endpoint(video_id: str):
         raise HTTPException(status_code=404, detail="비디오 파일을 찾을 수 없습니다.")
     
     # 비디오 처리하여 피드백 생성
-    feedback_data = process_video(video_path)
+    feedback_data = process_video(video_path, model, index, documents)
 
     # 피드백 데이터 확인 - error_handling
     if feedback_data == "video_error": # 비디오 파일 자체에 문제 - 파일 손상 or 포맷 문제 (함수에서 비디오 길이를 확인할 때 발생)

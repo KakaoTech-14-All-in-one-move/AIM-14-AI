@@ -383,3 +383,2226 @@
 2024-11-15 09:58:46,937 - INFO - uvicorn.error - Application shutdown complete.
 2024-11-15 09:58:46,937 - INFO - uvicorn.error - Finished server process [5199]
 2024-11-15 09:58:47,135 - INFO - uvicorn.error - Stopping reloader process [5197]
+2024-12-03 14:51:44,200 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 14:51:44,201 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 14:51:44,202 - INFO - uvicorn.error - Started reloader process [69606] using WatchFiles
+2024-12-03 14:51:45,531 - INFO - uvicorn.error - Started server process [69608]
+2024-12-03 14:51:45,531 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 14:51:45,532 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 14:51:49,447 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/
+2024-12-03 14:51:49,448 - INFO - uvicorn - Response status: 200
+2024-12-03 14:51:51,827 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 14:51:51,829 - INFO - uvicorn - Response status: 200
+2024-12-03 14:51:52,114 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 14:51:52,120 - INFO - uvicorn - Response status: 200
+2024-12-03 14:52:07,692 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-12-03 14:52:15,658 - INFO - uvicorn - Response status: 200
+2024-12-03 14:52:26,421 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/6a3d244beab947738b8e665f888b023d/
+2024-12-03 14:52:28,851 - ERROR - uvicorn - Error processing request: module 'openai' has no attribute 'error'
+2024-12-03 14:52:28,852 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 172, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 87, in process_video
+    |     problematic_frames, feedbacks = analyze_frames(
+    |                                     ^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 141, in analyze_frames
+    |     except client.error.OpenAIError as e:
+    |            ^^^^^^^^^^^^
+    | AttributeError: module 'openai' has no attribute 'error'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 172, in send_feedback_endpoint
+    feedback_data = process_video(video_path)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 87, in process_video
+    problematic_frames, feedbacks = analyze_frames(
+                                    ^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 141, in analyze_frames
+    except client.error.OpenAIError as e:
+           ^^^^^^^^^^^^
+AttributeError: module 'openai' has no attribute 'error'
+2024-12-03 14:53:37,574 - INFO - uvicorn.error - Shutting down
+2024-12-03 14:53:37,679 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 14:53:37,683 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 14:53:37,684 - INFO - uvicorn.error - Finished server process [69608]
+2024-12-03 14:53:37,987 - INFO - uvicorn.error - Stopping reloader process [69606]
+2024-12-03 14:54:04,264 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 14:54:04,264 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 14:54:04,264 - INFO - uvicorn.error - Started reloader process [70641] using WatchFiles
+2024-12-03 14:54:05,611 - INFO - uvicorn.error - Started server process [70643]
+2024-12-03 14:54:05,611 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 14:54:05,612 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 14:54:10,234 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 14:54:10,236 - INFO - uvicorn - Response status: 200
+2024-12-03 14:54:10,383 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 14:54:10,401 - INFO - uvicorn - Response status: 200
+2024-12-03 14:54:26,906 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-12-03 14:54:33,535 - INFO - uvicorn - Response status: 200
+2024-12-03 14:54:41,224 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/5a013bf508c64b089c3f537c8278b5c3/
+2024-12-03 14:54:43,275 - ERROR - uvicorn - Error processing request: module 'openai' has no attribute 'error'
+2024-12-03 14:54:43,277 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 172, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 87, in process_video
+    |     problematic_frames, feedbacks = analyze_frames(
+    |                                     ^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 141, in analyze_frames
+    |     except client.error.OpenAIError as e:
+    |            ^^^^^^^^^^^^
+    | AttributeError: module 'openai' has no attribute 'error'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 172, in send_feedback_endpoint
+    feedback_data = process_video(video_path)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 87, in process_video
+    problematic_frames, feedbacks = analyze_frames(
+                                    ^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 141, in analyze_frames
+    except client.error.OpenAIError as e:
+           ^^^^^^^^^^^^
+AttributeError: module 'openai' has no attribute 'error'
+2024-12-03 14:57:39,535 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/analysis.py'. Reloading...
+2024-12-03 14:57:39,587 - INFO - uvicorn.error - Shutting down
+2024-12-03 14:57:39,689 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 14:57:39,698 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 14:57:39,699 - INFO - uvicorn.error - Finished server process [70643]
+2024-12-03 14:57:41,234 - INFO - uvicorn.error - Started server process [71962]
+2024-12-03 14:57:41,234 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 14:57:41,235 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 14:57:58,750 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/5a013bf508c64b089c3f537c8278b5c3/
+2024-12-03 14:58:00,738 - ERROR - uvicorn - Error processing request: 'OpenAI' object has no attribute 'error'
+2024-12-03 14:58:00,739 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 172, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 87, in process_video
+    |     problematic_frames, feedbacks = analyze_frames(
+    |                                     ^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 141, in analyze_frames
+    |     except client.error.OpenAIError as e:
+    |            ^^^^^^^^^^^^
+    | AttributeError: 'OpenAI' object has no attribute 'error'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 172, in send_feedback_endpoint
+    feedback_data = process_video(video_path)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 87, in process_video
+    problematic_frames, feedbacks = analyze_frames(
+                                    ^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 141, in analyze_frames
+    except client.error.OpenAIError as e:
+           ^^^^^^^^^^^^
+AttributeError: 'OpenAI' object has no attribute 'error'
+2024-12-03 15:19:45,132 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 15:19:45,132 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 15:19:45,132 - INFO - uvicorn.error - Started reloader process [79949] using WatchFiles
+2024-12-03 15:19:46,785 - INFO - uvicorn.error - Started server process [79951]
+2024-12-03 15:19:46,785 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 15:19:46,785 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 15:19:52,591 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/
+2024-12-03 15:19:52,594 - INFO - uvicorn - Response status: 200
+2024-12-03 15:19:55,272 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 15:19:55,275 - INFO - uvicorn - Response status: 200
+2024-12-03 15:19:55,483 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 15:19:55,497 - INFO - uvicorn - Response status: 200
+2024-12-03 15:20:22,705 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-12-03 15:20:29,474 - INFO - uvicorn - Response status: 200
+2024-12-03 15:20:36,185 - WARNING - uvicorn.error - WatchFiles detected changes in 'main.py'. Reloading...
+2024-12-03 15:20:36,259 - INFO - uvicorn.error - Shutting down
+2024-12-03 15:20:36,361 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 15:20:36,362 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 15:20:36,362 - INFO - uvicorn.error - Finished server process [79951]
+2024-12-03 15:20:37,965 - INFO - uvicorn.error - Started server process [80308]
+2024-12-03 15:20:37,965 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 15:20:37,965 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 15:20:42,688 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/6c014191cd6d4a29a8b819a25f903751/
+2024-12-03 15:20:46,738 - INFO - uvicorn - Response status: 200
+2024-12-03 15:22:23,236 - INFO - uvicorn.error - Shutting down
+2024-12-03 15:22:23,339 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 15:22:23,341 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 15:22:23,341 - INFO - uvicorn.error - Finished server process [80308]
+2024-12-03 15:22:23,629 - INFO - uvicorn.error - Stopping reloader process [79949]
+2024-12-03 15:35:17,534 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 15:35:17,534 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 15:35:17,535 - INFO - uvicorn.error - Started reloader process [85513] using WatchFiles
+2024-12-03 15:35:19,021 - INFO - uvicorn.error - Started server process [85515]
+2024-12-03 15:35:19,021 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 15:35:19,022 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 15:35:22,098 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/
+2024-12-03 15:35:22,105 - INFO - uvicorn - Response status: 200
+2024-12-03 15:35:27,000 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 15:35:27,000 - INFO - uvicorn - Response status: 200
+2024-12-03 15:35:27,212 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 15:35:27,215 - INFO - uvicorn - Response status: 200
+2024-12-03 15:36:03,770 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/upload_video.py'. Reloading...
+2024-12-03 15:36:03,826 - INFO - uvicorn.error - Shutting down
+2024-12-03 15:36:03,928 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 15:36:03,928 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 15:36:03,929 - INFO - uvicorn.error - Finished server process [85515]
+2024-12-03 15:36:05,628 - INFO - uvicorn.error - Started server process [85847]
+2024-12-03 15:36:05,628 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 15:36:05,628 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 15:36:05,632 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 15:36:05,633 - INFO - uvicorn - Response status: 200
+2024-12-03 15:36:05,736 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 15:36:05,740 - INFO - uvicorn - Response status: 200
+2024-12-03 15:36:22,945 - INFO - uvicorn - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-12-03 15:41:17,797 - INFO - uvicorn - Response status: 200
+2024-12-03 15:41:35,603 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 15:43:06,132 - INFO - uvicorn - Response status: 200
+2024-12-03 15:43:49,662 - INFO - uvicorn.error - Shutting down
+2024-12-03 15:43:49,766 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 15:43:49,767 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 15:43:49,767 - INFO - uvicorn.error - Finished server process [85847]
+2024-12-03 15:43:50,029 - INFO - uvicorn.error - Stopping reloader process [85513]
+2024-12-03 16:06:26,180 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 16:06:26,181 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 16:06:26,181 - INFO - uvicorn.error - Started reloader process [96988] using WatchFiles
+2024-12-03 16:06:37,150 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/analysis.py'. Reloading...
+2024-12-03 16:08:20,682 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/__init__.py'. Reloading...
+2024-12-03 16:09:44,409 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/analysis.py'. Reloading...
+2024-12-03 16:09:50,896 - INFO - uvicorn.error - Stopping reloader process [96988]
+2024-12-03 16:10:11,464 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 16:10:11,465 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 16:10:11,465 - INFO - uvicorn.error - Started reloader process [98546] using WatchFiles
+2024-12-03 16:10:20,619 - INFO - uvicorn.error - Started server process [98548]
+2024-12-03 16:10:20,619 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:10:20,620 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:10:21,064 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/
+2024-12-03 16:10:21,066 - INFO - uvicorn - Response status: 200
+2024-12-03 16:10:26,745 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 16:10:26,746 - INFO - uvicorn - Response status: 200
+2024-12-03 16:10:26,942 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 16:10:26,948 - INFO - uvicorn - Response status: 200
+2024-12-03 16:22:57,725 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/
+2024-12-03 16:22:57,780 - INFO - uvicorn - Response status: 200
+2024-12-03 16:23:02,119 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 16:23:02,121 - INFO - uvicorn - Response status: 200
+2024-12-03 16:23:02,367 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 16:23:02,369 - INFO - uvicorn - Response status: 200
+2024-12-03 16:23:37,051 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:23:43,290 - ERROR - uvicorn - Error processing request: analyze_frames() missing 3 required positional arguments: 'model', 'index', and 'documents'
+2024-12-03 16:23:43,294 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 172, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 87, in process_video
+    |     problematic_frames, feedbacks = analyze_frames(
+    |                                     ^^^^^^^^^^^^^^^
+    | TypeError: analyze_frames() missing 3 required positional arguments: 'model', 'index', and 'documents'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 172, in send_feedback_endpoint
+    feedback_data = process_video(video_path)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 87, in process_video
+    problematic_frames, feedbacks = analyze_frames(
+                                    ^^^^^^^^^^^^^^^
+TypeError: analyze_frames() missing 3 required positional arguments: 'model', 'index', and 'documents'
+2024-12-03 16:26:40,748 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:26:40,762 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:26:40,863 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:26:40,875 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:26:40,875 - INFO - uvicorn.error - Finished server process [98548]
+2024-12-03 16:26:46,723 - INFO - uvicorn.error - Started server process [4744]
+2024-12-03 16:26:46,723 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:26:46,723 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:26:46,728 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:26:52,809 - ERROR - uvicorn - Error processing request: name 'model' is not defined
+2024-12-03 16:26:52,809 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 175, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 93, in process_video
+    |     model=model,
+    |           ^^^^^
+    | NameError: name 'model' is not defined
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 175, in send_feedback_endpoint
+    feedback_data = process_video(video_path)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 93, in process_video
+    model=model,
+          ^^^^^
+NameError: name 'model' is not defined
+2024-12-03 16:28:06,108 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:28:06,187 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:28:06,291 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:28:06,294 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:28:06,295 - INFO - uvicorn.error - Finished server process [4744]
+2024-12-03 16:28:11,654 - INFO - uvicorn.error - Started server process [5291]
+2024-12-03 16:28:11,654 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:28:11,654 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:28:11,658 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:28:18,012 - ERROR - uvicorn - Error processing request: name 'model' is not defined
+2024-12-03 16:28:18,015 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 176, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 94, in process_video
+    |     model=model,
+    |           ^^^^^
+    | NameError: name 'model' is not defined
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 176, in send_feedback_endpoint
+    feedback_data = process_video(video_path)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 94, in process_video
+    model=model,
+          ^^^^^
+NameError: name 'model' is not defined
+2024-12-03 16:29:47,908 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/setting_rag.py'. Reloading...
+2024-12-03 16:29:48,010 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:29:48,112 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:29:48,113 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:29:48,113 - INFO - uvicorn.error - Finished server process [5291]
+2024-12-03 16:29:53,808 - INFO - uvicorn.error - Started server process [5907]
+2024-12-03 16:29:53,809 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:29:53,809 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:31:02,371 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:31:02,375 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:31:02,477 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:31:02,478 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:31:02,479 - INFO - uvicorn.error - Finished server process [5907]
+2024-12-03 16:31:09,365 - INFO - uvicorn.error - Started server process [6373]
+2024-12-03 16:31:09,365 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:31:09,366 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:31:09,370 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:31:09,373 - ERROR - uvicorn - Error processing request: name 'model' is not defined
+2024-12-03 16:31:09,375 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 176, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path, model, index, documents)
+    |                                               ^^^^^
+    | NameError: name 'model' is not defined
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 176, in send_feedback_endpoint
+    feedback_data = process_video(video_path, model, index, documents)
+                                              ^^^^^
+NameError: name 'model' is not defined
+2024-12-03 16:35:57,249 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:35:57,279 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:35:57,436 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:35:57,438 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:35:57,438 - INFO - uvicorn.error - Finished server process [6373]
+2024-12-03 16:36:21,354 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:36:41,848 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:37:30,241 - INFO - uvicorn.error - Stopping reloader process [98546]
+2024-12-03 16:37:40,595 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 16:37:40,595 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 16:37:40,596 - INFO - uvicorn.error - Started reloader process [8943] using WatchFiles
+2024-12-03 16:38:20,901 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:38:26,096 - INFO - uvicorn.error - Started server process [9217]
+2024-12-03 16:38:26,096 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:38:26,096 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:38:44,230 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 16:38:44,238 - INFO - uvicorn - Response status: 200
+2024-12-03 16:38:44,414 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 16:38:44,449 - INFO - uvicorn - Response status: 200
+2024-12-03 16:39:01,713 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:39:01,715 - ERROR - uvicorn - Error processing request: name 'model' is not defined
+2024-12-03 16:39:01,716 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 182, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path, model, index, documents)
+    |                                               ^^^^^
+    | NameError: name 'model' is not defined
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 182, in send_feedback_endpoint
+    feedback_data = process_video(video_path, model, index, documents)
+                                              ^^^^^
+NameError: name 'model' is not defined
+2024-12-03 16:41:08,557 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:41:08,577 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:41:08,681 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:41:08,682 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:41:08,682 - INFO - uvicorn.error - Finished server process [9217]
+2024-12-03 16:41:14,444 - INFO - uvicorn.error - Started server process [10265]
+2024-12-03 16:41:14,444 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:41:14,445 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:41:14,449 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:41:14,449 - ERROR - uvicorn - Error processing request: name 'model' is not defined
+2024-12-03 16:41:14,449 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 182, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path, model, index, documents)
+    |                                               ^^^^^
+    | NameError: name 'model' is not defined
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 182, in send_feedback_endpoint
+    feedback_data = process_video(video_path, model, index, documents)
+                                              ^^^^^
+NameError: name 'model' is not defined
+2024-12-03 16:42:28,497 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:42:28,562 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:42:28,663 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:42:28,664 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:42:28,665 - INFO - uvicorn.error - Finished server process [10265]
+2024-12-03 16:42:34,189 - INFO - uvicorn.error - Started server process [10753]
+2024-12-03 16:42:34,189 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:42:34,190 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:42:34,194 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:42:34,195 - ERROR - uvicorn - Error processing request: 'State' object has no attribute 'model'
+2024-12-03 16:42:34,196 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 291, in app
+    |     solved_result = await solve_dependencies(
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/dependencies/utils.py", line 640, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **solved_result.values)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/concurrency.py", line 39, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2441, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 943, in run
+    |     result = context.run(func, *args)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 63, in get_rag_components
+    |     return request.app.state.model, request.app.state.index, request.app.state.documents
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/datastructures.py", line 676, in __getattr__
+    |     raise AttributeError(message.format(self.__class__.__name__, key))
+    | AttributeError: 'State' object has no attribute 'model'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 291, in app
+    solved_result = await solve_dependencies(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/dependencies/utils.py", line 640, in solve_dependencies
+    solved = await run_in_threadpool(call, **solved_result.values)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2441, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 943, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 63, in get_rag_components
+    return request.app.state.model, request.app.state.index, request.app.state.documents
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/datastructures.py", line 676, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'model'
+2024-12-03 16:44:34,127 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/setting_rag.py'. Reloading...
+2024-12-03 16:44:34,228 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:44:34,329 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:44:34,330 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:44:34,331 - INFO - uvicorn.error - Finished server process [10753]
+2024-12-03 16:44:40,433 - INFO - uvicorn.error - Started server process [11493]
+2024-12-03 16:44:40,434 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:44:40,435 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:44:49,184 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:44:49,188 - ERROR - uvicorn - Error processing request: 'State' object has no attribute 'model'
+2024-12-03 16:44:49,188 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 291, in app
+    |     solved_result = await solve_dependencies(
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/dependencies/utils.py", line 640, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **solved_result.values)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/concurrency.py", line 39, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2441, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 943, in run
+    |     result = context.run(func, *args)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 63, in get_rag_components
+    |     return request.app.state.model, request.app.state.index, request.app.state.documents
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/datastructures.py", line 676, in __getattr__
+    |     raise AttributeError(message.format(self.__class__.__name__, key))
+    | AttributeError: 'State' object has no attribute 'model'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 53, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 48, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 291, in app
+    solved_result = await solve_dependencies(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/dependencies/utils.py", line 640, in solve_dependencies
+    solved = await run_in_threadpool(call, **solved_result.values)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2441, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 943, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 63, in get_rag_components
+    return request.app.state.model, request.app.state.index, request.app.state.documents
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/datastructures.py", line 676, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'model'
+2024-12-03 16:46:33,742 - WARNING - uvicorn.error - WatchFiles detected changes in 'main.py'. Reloading...
+2024-12-03 16:46:33,780 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:46:33,886 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:46:33,887 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:46:33,888 - INFO - uvicorn.error - Finished server process [11493]
+2024-12-03 16:46:39,355 - INFO - uvicorn.error - Started server process [12239]
+2024-12-03 16:46:39,356 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:46:39,356 - ERROR - uvicorn - RAG 컴포넌트 초기화 중 오류 발생: name 'behaviors_data' is not defined
+2024-12-03 16:46:39,357 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:47:50,272 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 16:47:50,370 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:47:50,473 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:47:50,475 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:47:50,475 - INFO - uvicorn.error - Finished server process [12239]
+2024-12-03 16:47:56,257 - INFO - uvicorn.error - Started server process [12726]
+2024-12-03 16:47:56,257 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:47:56,257 - ERROR - uvicorn - RAG 컴포넌트 초기화 중 오류 발생: name 'behaviors_data' is not defined
+2024-12-03 16:47:56,257 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:47:56,262 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:47:56,263 - INFO - uvicorn - Response status: 500
+2024-12-03 16:48:56,488 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:48:56,501 - INFO - uvicorn - Response status: 500
+2024-12-03 16:49:50,634 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/setting_rag.py'. Reloading...
+2024-12-03 16:49:50,709 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:49:50,811 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:49:50,812 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:49:50,812 - INFO - uvicorn.error - Finished server process [12726]
+2024-12-03 16:49:57,166 - INFO - uvicorn.error - Started server process [13456]
+2024-12-03 16:49:57,167 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:49:57,167 - ERROR - uvicorn - RAG 컴포넌트 초기화 중 오류 발생: name 'logger' is not defined
+2024-12-03 16:49:57,167 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:49:57,171 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:49:57,172 - INFO - uvicorn - Response status: 500
+2024-12-03 16:50:14,542 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/setting_rag.py'. Reloading...
+2024-12-03 16:50:14,615 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:50:14,717 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:50:14,719 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:50:14,719 - INFO - uvicorn.error - Finished server process [13456]
+2024-12-03 16:50:19,979 - INFO - uvicorn.error - Started server process [13605]
+2024-12-03 16:50:19,980 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:50:30,592 - ERROR - uvicorn - RAG 컴포넌트 초기화 중 오류 발생: name 'logger' is not defined
+2024-12-03 16:50:30,592 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:50:30,600 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:50:30,601 - INFO - uvicorn - Response status: 500
+2024-12-03 16:51:01,825 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/setting_rag.py'. Reloading...
+2024-12-03 16:51:01,830 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:51:01,934 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:51:01,936 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:51:01,937 - INFO - uvicorn.error - Finished server process [13605]
+2024-12-03 16:51:15,176 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/setting_rag.py'. Reloading...
+2024-12-03 16:51:20,134 - INFO - uvicorn.error - Started server process [13992]
+2024-12-03 16:51:20,135 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:51:23,711 - INFO - uvicorn - RAG 컴포넌트가 성공적으로 초기화되었습니다.
+2024-12-03 16:51:23,712 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:51:23,722 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:56:58,936 - INFO - uvicorn.error - Shutting down
+2024-12-03 16:56:58,937 - INFO - uvicorn - Response status: 200
+2024-12-03 16:56:59,038 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 16:56:59,038 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 16:56:59,038 - INFO - uvicorn.error - Finished server process [13992]
+2024-12-03 16:57:00,042 - INFO - uvicorn.error - Stopping reloader process [8943]
+2024-12-03 16:57:30,526 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 16:57:30,527 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 16:57:30,527 - INFO - uvicorn.error - Started reloader process [16401] using WatchFiles
+2024-12-03 16:57:35,450 - INFO - uvicorn.error - Started server process [16403]
+2024-12-03 16:57:35,450 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 16:57:39,190 - INFO - uvicorn - RAG 컴포넌트가 성공적으로 초기화되었습니다.
+2024-12-03 16:57:39,190 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 16:57:39,236 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/
+2024-12-03 16:57:39,238 - INFO - uvicorn - Response status: 200
+2024-12-03 16:57:43,063 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 16:57:43,067 - INFO - uvicorn - Response status: 200
+2024-12-03 16:57:43,303 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 16:57:43,327 - INFO - uvicorn - Response status: 200
+2024-12-03 16:57:56,329 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/ee5cfb7e32474d6299d129a0f247b412/
+2024-12-03 16:58:27,466 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/retrieve_feedback.py'. Reloading...
+2024-12-03 17:02:13,715 - ERROR - uvicorn - Error processing request: 'OpenAI' object has no attribute 'error'
+2024-12-03 17:02:13,717 - INFO - uvicorn.error - Shutting down
+2024-12-03 17:02:13,720 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 56, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 51, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 187, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path, model, index, documents)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 97, in process_video
+    |     problematic_frames, feedbacks = analyze_frames(
+    |                                     ^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 171, in analyze_frames
+    |     except client.error.OpenAIError as e:
+    |            ^^^^^^^^^^^^
+    | AttributeError: 'OpenAI' object has no attribute 'error'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 56, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 51, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 187, in send_feedback_endpoint
+    feedback_data = process_video(video_path, model, index, documents)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 97, in process_video
+    problematic_frames, feedbacks = analyze_frames(
+                                    ^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 171, in analyze_frames
+    except client.error.OpenAIError as e:
+           ^^^^^^^^^^^^
+AttributeError: 'OpenAI' object has no attribute 'error'
+2024-12-03 17:02:13,820 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 17:02:13,821 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 17:02:13,822 - INFO - uvicorn.error - Finished server process [16403]
+2024-12-03 17:02:19,437 - INFO - uvicorn.error - Started server process [18216]
+2024-12-03 17:02:19,437 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 17:02:22,917 - INFO - uvicorn - RAG 컴포넌트가 성공적으로 초기화되었습니다.
+2024-12-03 17:02:22,917 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 17:07:13,050 - INFO - uvicorn.error - Shutting down
+2024-12-03 17:07:13,155 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 17:07:13,158 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 17:07:13,158 - INFO - uvicorn.error - Finished server process [18216]
+2024-12-03 17:07:14,398 - INFO - uvicorn.error - Stopping reloader process [16401]

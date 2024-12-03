@@ -136,14 +136,3 @@ def get_video_codec_info(video_path: str):
         logger.info(f"코덱 정보: {output}")
     except subprocess.CalledProcessError as e:
         logger.error(f"코덱 정보 확인 실패: {e}")
-
-# 테스트 엔드포인트 (파일 쓰기 권한 확인)
-@router.get("/test-write")
-async def test_write():
-    test_file_path = os.path.join(UPLOAD_DIR, "test.txt")
-    try:
-        with open(test_file_path, "w") as f:
-            f.write("Test")
-        return {"message": "파일 쓰기 성공"}
-    except Exception as e:
-        return {"error": str(e)}

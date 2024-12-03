@@ -8,3 +8,5 @@ numpy
 fastapi
 uvicorn
 python-multipart
+sentence-transformers
+faiss-cpu
