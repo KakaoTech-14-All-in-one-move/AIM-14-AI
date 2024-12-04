@@ -9,6 +9,10 @@ from vlm_model.constants.behaviors import PROBLEMATIC_BEHAVIORS
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.schemas.feedback import FeedbackSections, FeedbackDetails
 from pathlib import Path
+import logging
+
+# 모듈별 로거 생성
+logger = logging.getLogger(__name__) 
 
 # OpenAI 모듈을 client로 정의
 client = OpenAI() # openai

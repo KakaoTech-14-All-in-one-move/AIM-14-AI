@@ -22,7 +22,7 @@ with open(logging_config_path, "r") as f:
     logging_config = json.load(f)
 
 logging.config.dictConfig(logging_config)
-logger = logging.getLogger("main_logger")
+logger = logging.getLogger("vlm_model")
 
 app = FastAPI()
 
@@ -45,7 +45,6 @@ app.mount("/static", StaticFiles(directory="storage/output_feedback_frame"), nam
 # 루트 엔드포인트 (선택 사항)
 @app.get("/")
 def read_root():
-    logger = logging.getLogger(__name__)
     logger.info("Root endpoint accessed")
     return {"message": "Hello, Toby!"}
 

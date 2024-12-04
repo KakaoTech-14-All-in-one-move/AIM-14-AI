@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 from typing import List, Tuple
+import logging
+
+# 모듈별 로거 생성
+logger = logging.getLogger(__name__) 
 
 def plot_problematic_frames(frames: List[Tuple[np.ndarray, int, int, str]], feedbacks: List[str]) -> None:
     if not frames:

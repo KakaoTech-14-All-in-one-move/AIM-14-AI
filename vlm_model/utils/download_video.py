@@ -3,6 +3,10 @@
 import cv2
 import numpy as np
 from typing import Optional
+import logging
+
+# 모듈별 로거 생성
+logger = logging.getLogger(__name__) 
 
 def download_and_sample_video_local(video_path: str, start_time: int = 0, duration: int = 60, frame_interval: int = 3) -> Optional[np.ndarray]:
     """

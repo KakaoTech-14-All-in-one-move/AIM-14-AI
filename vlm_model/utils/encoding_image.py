@@ -4,6 +4,10 @@ import cv2
 import base64
 import numpy as np
 from typing import Optional
+import logging
+
+# 모듈별 로거 생성
+logger = logging.getLogger(__name__) 
 
 def encode_image(image: np.ndarray, max_size: tuple = (256, 256), quality: int = 70) -> Optional[str]:
     """

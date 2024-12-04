@@ -3,6 +3,10 @@
 from typing import List, Optional
 import cv2
 import numpy as np
+import logging
+
+# 모듈별 로거 생성
+logger = logging.getLogger(__name__) 
 
 def read_video_opencv(video_path: str, frame_indices: List[int]) -> Optional[List[np.ndarray]]:
     """

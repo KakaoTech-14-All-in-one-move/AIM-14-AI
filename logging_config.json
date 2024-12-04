@@ -10,7 +10,7 @@
         }
     },
     "handlers": {
-        "default": {
+        "console": {
             "class": "logging.StreamHandler",
             "formatter": "default",
             "stream": "ext://sys.stdout"
@@ -30,12 +30,12 @@
     },
     "loggers": {
         "uvicorn": {
-            "handlers": ["default", "file"],
+            "handlers": ["console", "file"],
             "level": "DEBUG",
             "propagate": false
         },
         "uvicorn.error": {
-            "handlers": ["default", "file"],
+            "handlers": ["console", "file"],
             "level": "DEBUG",
             "propagate": false
         },
@@ -44,25 +44,27 @@
             "level": "DEBUG",
             "propagate": false
         },
-        "vlm_main_logger": { 
-            "handlers": ["default", "file"],
+        "vlm_model": { 
+            "handlers": ["console", "file"],
             "level": "DEBUG",
             "propagate": false
         },
-        "vlm_upload_video": { 
-            "handlers": ["default", "file"],
+        "vlm_model.routers": {
             "level": "DEBUG",
-            "propagate": false
+            "propagate": true
         },
-        "vlm_send_feedback": { 
-            "handlers": ["default", "file"],
+        "vlm_model.utils": {
             "level": "DEBUG",
-            "propagate": false
+            "propagate": true
+        },
+        "vlm_model.config": { 
+            "level": "DEBUG",
+            "propagate": true
         }
     },
     "root": {
         "level": "INFO",
-        "handlers": ["default", "file"]
+        "handlers": ["console", "file"]
     }
   }
   

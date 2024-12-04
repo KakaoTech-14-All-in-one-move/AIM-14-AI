@@ -14,9 +14,10 @@ from vlm_model.config import UPLOAD_DIR
 
 router = APIRouter()
 
-# 로깅 설정
+logger = logging.getLogger(__name__)  # 'vlm_model.routers.upload_video' 로거 사용
 
-logger = logging.getLogger("main_logger")
+# 로깅 설정
+logger = logging.getLogger("vlm_upload_video")
 
 def convert_to_vp9(input_path: str, output_path: str) -> bool:
     """

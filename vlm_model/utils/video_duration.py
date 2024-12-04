@@ -4,7 +4,8 @@ import cv2
 from typing import Optional
 import logging
 
-logger = logging.getLogger(__name__)
+# 모듈별 로거 생성
+logger = logging.getLogger(__name__) 
 
 def get_video_duration(video_path: str) -> Optional[float]:
     """

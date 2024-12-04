@@ -27,8 +27,7 @@ from pathlib import Path
 
 router = APIRouter()
 
-# JSON 기반 로깅 설정 적용
-logger = logging.getLogger("main_logger")
+logger = logging.getLogger(__name__)  # 'vlm_model.routers.send_feedback' 로거 사용
 
 def process_video(file_path: str):
     """
