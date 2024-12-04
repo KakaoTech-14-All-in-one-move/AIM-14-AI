@@ -24,6 +24,7 @@ import logging
 import logging.config
 import json
 from pathlib import Path
+from exceptions import VideoProcessingError, ImageEncodingError
 
 router = APIRouter()
 
@@ -33,10 +34,11 @@ def process_video(file_path: str):
     """
     비디오 파일을 처리하여 피드백 데이터를 생성합니다.
     """
-    video_duration = get_video_duration(file_path)
-    if video_duration is None:
-        logger.error(f"비디오 파일을 가져올 수 없습니다: {file_path}")
-        return "video_error" # 비디오 파일 문제를 나타냄
+    try:
+        video_duration = get_video_duration(file_path)
+    except VideoProcessingError as vpe:
+        logger.error(f"비디오 파일을 가져올 수 없습니다: {file_path} - {vpe.message}")
+        return "video_error"  # 비디오 파일 문제를 나타냄
 
     # 세그먼트 길이와 프레임 간격 설정
     segment_length = 60  # 초
@@ -52,20 +54,28 @@ def process_video(file_path: str):
     # 각 세그먼트별로 프레임 추출 및 피드백 분석
     for start_time in range(0, int(video_duration), segment_length):
         segment_index = start_time // segment_length
-        frames = download_and_sample_video_local(file_path, start_time, segment_length, frame_interval)
-
-        if frames is None or len(frames) == 0:
-            logger.warning(f"프레임을 추출할 수 없습니다. 비디오 파일에 문제가 있을 수 있습니다: {file_path}")
+        try:
+            frames = download_and_sample_video_local(file_path, start_time, segment_length, frame_interval)
+        except VideoProcessingError as vpe:
+            logger.error(f"프레임 추출 실패: {vpe.message}")
             return "codec_error"  # 코덱 문제로 인한 프레임 추출 실패를 명확히 나타냄
 
-        problematic_frames, feedbacks = analyze_frames(
-            frames=frames,
-            segment_idx=segment_index,
-            duration=segment_length,
-            segment_length=segment_length,
-            system_instruction=SYSTEM_INSTRUCTION,
-            frame_interval=frame_interval
-        )
+        if frames is None or len(frames) == 0:
+            logger.error(f"프레임을 추출할 수 없습니다. 비디오 파일에 문제가 있을 수 있습니다: {file_path}")
+            return "codec_error"  # 코덱 문제로 인한 프레임 추출 실패를 명확히 나타냄
+
+        try:
+            problematic_frames, feedbacks = analyze_frames(
+                frames=frames,
+                segment_idx=segment_index,
+                duration=segment_length,
+                segment_length=segment_length,
+                system_instruction=SYSTEM_INSTRUCTION,
+                frame_interval=frame_interval
+            )
+        except Exception as e:
+            logger.error(f"프레임 분석 중 오류 발생: {e}", exc_info=True)
+            return "analysis_error"
 
         logger.debug(f"프레임 수: {len(problematic_frames)}, 피드백 수: {len(feedbacks)}")
 
@@ -73,17 +83,21 @@ def process_video(file_path: str):
             frame, segment_number, frame_number, timestamp = frame_info
 
             # 이미지 인코딩 (Base64)
-            image_base64 = encode_image(frame)
-            if not image_base64:
-                logger.warning(f"프레임 {frame_number}의 이미지 인코딩 실패")
+            try:
+                image_base64 = encode_image(frame)
+                if not image_base64:
+                    logger.warning(f"프레임 {frame_number}의 이미지 인코딩 실패")
+                    continue
+            except ImageEncodingError as iee:
+                logger.error(f"이미지 인코딩 실패: {iee.message}")
                 continue
 
             # feedback_text를 FeedbackSections 구조로 변환
             try:
                 feedback_sections = parse_feedback_text(feedback_text)
                 logger.debug(f"변환된 피드백 섹션: {feedback_sections}")
-            except HTTPException as e:
-                logger.error(f"피드백 텍스트 파싱 오류: {str(e.detail)}")
+            except VideoProcessingError as vpe:
+                logger.error(f"피드백 텍스트 파싱 오류: {vpe.message}")
                 continue
             except Exception as e:
                 logger.error(f"피드백 텍스트 파싱 중 예상치 못한 오류 발생: {str(e)}")
@@ -109,11 +123,14 @@ def process_video(file_path: str):
                         img_file.write(base64.b64decode(image_base64))
                     if not os.path.exists(image_path):
                         raise IOError("이미지가 지정된 경로에 저장되지 않았습니다.")
+                except IOError as ioe:
+                    logger.error(f"이미지 저장 중 오류 발생: {ioe}")
+                    return "image_save_error"
                 except Exception as e:
-                    logger.error(f"이미지 저장 중 오류 발생: {e}")
+                    logger.error(f"이미지 저장 중 예상치 못한 오류 발생: {e}")
                     return "image_save_error"
         else:
-            logger.warning(f"세그먼트 {segment_index+1}에서 프레임을 추출할 수 없습니다.")
+            logger.error(f"세그먼트 {segment_index+1}에서 프레임을 추출할 수 없습니다.")
 
     # 피드백 데이터 반환 (비어 있을 수 있음)        
     return feedback_data
@@ -142,11 +159,26 @@ async def send_feedback_endpoint(video_id: str):
         raise HTTPException(status_code=404, detail="비디오 파일을 찾을 수 없습니다.")
     
     # 비디오 처리하여 피드백 생성
-    feedback_data = process_video(video_path)
+    try:
+        feedback_data = process_video(video_path)
+    except VideoProcessingError as vpe:
+        logger.error(f"비디오 처리 중 오류 발생: {vpe.message}")
+        return FeedbackResponse(
+            feedbacks=[],
+            message=vpe.message,
+            problem="video_error"
+        )
+    except Exception as e:
+        logger.error(f"비디오 처리 중 예상치 못한 오류 발생: {e}", exc_info=True)
+        return FeedbackResponse(
+            feedbacks=[],
+            message="비디오 처리 중 예상치 못한 오류가 발생했습니다.",
+            problem="unknown_error"
+        )
 
     # 피드백 데이터 확인 - error_handling
     if feedback_data == "video_error": # 비디오 파일 자체에 문제 - 파일 손상 or 포맷 문제 (함수에서 비디오 길이를 확인할 때 발생)
-        logger.info(f"비디오 길이 문제로 피드백 데이터를 생성하지 못했습니다: video_id={video_id}")
+        logger.error(f"비디오 길이 문제로 피드백 데이터를 생성하지 못했습니다: video_id={video_id}")
         return FeedbackResponse(
             feedbacks=[],
             message="비디오 길이 문제로 피드백 데이터를 생성하지 못했습니다.",
@@ -155,7 +187,7 @@ async def send_feedback_endpoint(video_id: str):
 
     # 비디오 파일은 정상 - 단, 특정 코텍 지원을 못해서 프레임 추출 불가
     elif feedback_data == "codec_error":
-        logger.info(f"코덱 문제로 피드백 데이터를 생성하지 못했습니다: video_id={video_id}")
+        logger.error(f"코덱 문제로 피드백 데이터를 생성하지 못했습니다: video_id={video_id}")
         return FeedbackResponse(
             feedbacks=[],
             message="코덱 문제로 피드백 데이터를 생성하지 못했습니다.",
@@ -164,7 +196,7 @@ async def send_feedback_endpoint(video_id: str):
     
     # image_save_error: 이미지를 저장할 때 오류가 발생한 경우.
     elif feedback_data == "image_save_error": 
-        logger.info(f"피드백 이미지 저장 오류로 피드백 데이터를 생성하지 못했습니다: video_id={video_id}")
+        logger.error(f"피드백 이미지 저장 오류로 피드백 데이터를 생성하지 못했습니다: video_id={video_id}")
         return FeedbackResponse(
             feedbacks=[],
             message="이미지 저장 오류로 피드백 데이터를 생성하지 못했습니다.",
@@ -173,7 +205,7 @@ async def send_feedback_endpoint(video_id: str):
 
     # directory_error: 피드백 이미지를 저장할 디렉터리가 없거나 지정되지 않은 경우.
     elif feedback_data == "directory_error":
-        logger.info(f"이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다: video_id={video_id}")
+        logger.error(f"이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다: video_id={video_id}")
         return FeedbackResponse(
             feedbacks=[],
             message="이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다.",
@@ -181,7 +213,7 @@ async def send_feedback_endpoint(video_id: str):
         )
     # no_feedback: 피드백할 내용이 없는 경우 - 피드백 내용이 none일때.
     elif not feedback_data: 
-        logger.info(f"분석 결과 피드백할 내용이 없습니다: video_id={video_id}")
+        logger.warning(f"분석 결과 피드백할 내용이 없습니다: video_id={video_id}")
         return FeedbackResponse(
             feedbacks=[],
             message="분석 결과 피드백할 내용이 없습니다.",

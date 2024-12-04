@@ -5,6 +5,7 @@ import base64
 import numpy as np
 from typing import Optional
 import logging
+from vlm_model.exceptions import ImageEncodingError
 
 # 모듈별 로거 생성
 logger = logging.getLogger(__name__) 
@@ -28,12 +29,14 @@ def encode_image(image: np.ndarray, max_size: tuple = (256, 256), quality: int =
         encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality]
         result, encimg = cv2.imencode('.jpg', resized_image, encode_param)
         if not result:
-            print("이미지 인코딩에 실패했습니다.")
-            return None
+            logger.error("이미지 인코딩에 실패했습니다.")
+            raise ImageEncodingError("이미지 인코딩에 실패했습니다.")
 
         # Base64 인코딩
         img_b64_str = base64.b64encode(encimg.tobytes()).decode('utf-8')
         return img_b64_str
+    except ImageEncodingError:
+        raise
     except Exception as e:
-        print(f"이미지 인코딩 중 오류 발생: {e}")
-        return None
+        logger.error(f"이미지 인코딩 중 예기치 않은 오류 발생: {e}", exc_info=True)
+        raise ImageEncodingError("이미지 인코딩 중 서버 오류가 발생했습니다.")

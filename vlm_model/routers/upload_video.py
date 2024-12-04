@@ -11,6 +11,7 @@ from pathlib import Path
 from vlm_model.schemas.feedback import UploadResponse
 from vlm_model.utils.video_duration import get_video_duration
 from vlm_model.config import UPLOAD_DIR
+from exceptions import VideoProcessingError, ImageEncodingError
 
 router = APIRouter()
 
@@ -31,16 +32,16 @@ def convert_to_vp9(input_path: str, output_path: str) -> bool:
         return True
     
     except FileNotFoundError:
-        logger.error("ffmpeg 명령을 찾을 수 없습니다. Dockerfile에 ffmpeg 설치를 추가했는지 확인하세요.")
-        raise HTTPException(status_code=500, detail="ffmpeg 설치 필요")
-
+        logger.error("ffmpeg 명령을 찾을 수 없습니다. Dockerfile에 ffmpeg 설치를 추가했는지 확인하세요.", exc_info=True)
+        raise VideoProcessingError("ffmpeg 설치가 필요합니다.")
+    
     except subprocess.CalledProcessError as e:
-        logger.error(f"비디오 변환 실패: {e}")
-        raise HTTPException(status_code=500, detail="비디오 변환 중 오류 발생")
+        logger.error(f"비디오 변환 실패: {e.stderr.decode().strip()}", exc_info=True)
+        raise VideoProcessingError("비디오 변환 중 오류가 발생했습니다.")
         
     except Exception as e:
-        logger.error(f"알 수 없는 변환 오류 발생: {e}")
-        raise HTTPException(status_code=500, detail="예기치 않은 변환 오류 발생")
+        logger.error(f"알 수 없는 변환 오류 발생: {e}", exc_info=True)
+        raise VideoProcessingError("예기치 않은 변환 오류가 발생했습니다.")
 
 
 @router.post("/receive-video/", response_model=UploadResponse)
@@ -54,14 +55,14 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
     response.headers["Access-Control-Allow-Credentials"] = "False"
 
     # 요청 수신 로그
-    logger.info("receive_video_endpoint called")
-    logger.info(f"Received file: {file.filename}")
+    logger.info("receive_video_endpoint 호출됨")
+    logger.info(f"받은 파일: {file.filename}")
 
     # 지원하는 파일 형식 확인
     ALLOWED_EXTENSIONS = {"webm", "mp4", "mov", "avi", "mkv"}
     file_extension = file.filename.split(".")[-1].lower()
     if file_extension not in ALLOWED_EXTENSIONS:
-        logger.warning(f"지원하지 않는 파일 형식: {file_extension}")
+        logger.error(f"지원하지 않는 파일 형식: {file_extension}")
         raise HTTPException(status_code=400, detail="지원하지 않는 파일 형식입니다.")
 
     # 고유한 video_id 생성
@@ -78,7 +79,8 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
 
         # 파일 존재 여부와 크기 확인
         if not os.path.exists(original_file_path):
-            raise HTTPException(status_code=500, detail="파일이 저장되지 않았습니다.")
+            logger.error("파일이 저장되지 않았습니다.")
+            raise VideoProcessingError("파일이 저장되지 않았습니다.")
 
         file_size = os.path.getsize(original_file_path)
         logger.info(f"파일이 성공적으로 저장되었습니다. 크기: {file_size} bytes")
@@ -92,15 +94,19 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
         else:
             # 변환 실패 시 원본 파일 삭제
             os.remove(original_file_path)
-            raise HTTPException(status_code=500, detail="비디오 변환 중 오류 발생")
+            raise VideoProcessingError("비디오 변환 중 오류가 발생했습니다.")
+
+    except VideoProcessingError as vpe:
+        # 전역 예외 핸들러가 이를 처리
+        raise vpe
 
     except IOError as e:
-        logger.error(f"파일 저장 중 오류 발생: {e}")
-        raise HTTPException(status_code=500, detail="파일 저장 중 오류 발생")
+        logger.error(f"파일 저장 중 오류 발생: {e}", exc_info=True)
+        raise VideoProcessingError("파일 저장 중 오류가 발생했습니다.")
         
     except Exception as e:
-        logger.error(f"알 수 없는 오류 발생: {e}")
-        raise HTTPException(status_code=500, detail="파일 처리 중 예기치 않은 오류 발생")
+        logger.error(f"알 수 없는 오류 발생: {e}", exc_info=True)
+        raise VideoProcessingError("파일 처리 중 예기치 않은 오류가 발생했습니다.")
 
 def get_video_codec_info(video_path: str):
     """
@@ -110,6 +116,8 @@ def get_video_codec_info(video_path: str):
         command = ['ffmpeg', '-i', video_path]
         result = subprocess.run(command, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         output = result.stderr.decode()
-        logger.info(f"코덱 정보: {output}")
+        logger.debug(f"코덱 정보: {output}")
     except subprocess.CalledProcessError as e:
-        logger.error(f"코덱 정보 확인 실패: {e}")
+        logger.error(f"코덱 정보 확인 실패: {e.stderr.decode().strip()}", exc_info=True)
+    except Exception as e:
+        logger.error(f"코덱 정보 확인 중 오류 발생: {e}", exc_info=True)
