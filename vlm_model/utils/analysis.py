@@ -2,16 +2,16 @@
 
 import json
 from typing import List, Tuple
-import openai
+from openai import OpenAI # import openai
 import numpy as np
-from vlm_model.config import SYSTEM_INSTRUCTION
+from vlm_model.openai_config import SYSTEM_INSTRUCTION
 from vlm_model.constants.behaviors import PROBLEMATIC_BEHAVIORS
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.schemas.feedback import FeedbackSections, FeedbackDetails
 from pathlib import Path
 
 # OpenAI 모듈을 client로 정의
-client = openai
+client = OpenAI() # openai
 
 def load_user_prompt() -> str:
     """
@@ -69,6 +69,21 @@ def parse_feedback_text(feedback_text: str) -> FeedbackSections:
         raise Exception(f"FeedbackSections 생성 실패: {str(e)}")
 
 def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, segment_length: int, system_instruction: str, frame_interval: int = 3) -> Tuple[List[Tuple[np.ndarray, int, int, str]], List[str]]:
+    """
+    주어진 프레임들을 분석하여 문제 행동을 감지하고 피드백을 생성합니다.
+
+    Parameters:
+    - frames: 분석할 프레임들의 NumPy 배열
+    - segment_idx: 현재 세그먼트의 인덱스
+    - duration: 세그먼트의 지속 시간 (초 단위)
+    - segment_length: 세그먼트의 길이 (초 단위)
+    - system_instruction: 시스템 지침 문자열
+    - frame_interval: 프레임 추출 간격 (초 단위)
+
+    Returns:
+    - problematic_frames: 문제 행동이 감지된 프레임 정보 리스트
+    - feedbacks: 생성된 피드백 리스트
+    """
     problematic_frames = []
     feedbacks = []
 
@@ -99,7 +114,7 @@ def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, se
 
         try:
             response = client.chat.completions.create(
-                model="gpt-4o-mini",  # 올바른 모델 이름으로 수정
+                model="gpt-4o-mini",
                 messages=[
                     {
                         "role": "system",

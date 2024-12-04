@@ -383,3 +383,657 @@
 2024-11-15 09:58:46,937 - INFO - uvicorn.error - Application shutdown complete.
 2024-11-15 09:58:46,937 - INFO - uvicorn.error - Finished server process [5199]
 2024-11-15 09:58:47,135 - INFO - uvicorn.error - Stopping reloader process [5197]
+2024-12-03 17:22:57,102 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 17:22:57,102 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 17:22:57,102 - INFO - uvicorn.error - Started reloader process [26348] using WatchFiles
+2024-12-03 17:22:58,548 - INFO - uvicorn.error - Started server process [26350]
+2024-12-03 17:22:58,548 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 17:22:58,548 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 17:23:00,826 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/
+2024-12-03 17:23:00,830 - INFO - uvicorn - Response status: 200
+2024-12-03 17:23:04,031 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 17:23:04,032 - INFO - uvicorn - Response status: 200
+2024-12-03 17:23:04,241 - INFO - uvicorn - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 17:23:04,248 - INFO - uvicorn - Response status: 200
+2024-12-03 17:42:07,678 - INFO - uvicorn.error - Shutting down
+2024-12-03 17:42:07,780 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 17:42:07,781 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 17:42:07,781 - INFO - uvicorn.error - Finished server process [26350]
+2024-12-03 17:42:08,047 - INFO - uvicorn.error - Stopping reloader process [26348]
+2024-12-03 19:00:55,400 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 19:00:55,400 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 19:00:55,400 - INFO - uvicorn.error - Started reloader process [62145] using WatchFiles
+2024-12-03 19:00:55,993 - INFO - watchfiles.main - 3 changes detected
+2024-12-03 19:00:56,425 - INFO - root - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-03 19:00:56,425 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-03 19:00:56,425 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-03 19:00:56,520 - INFO - watchfiles.main - 4 changes detected
+2024-12-03 19:01:58,234 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:01:58,236 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 19:01:59,464 - INFO - root - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-03 19:01:59,464 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-03 19:01:59,464 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-03 19:01:59,536 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:02:09,496 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:02:09,500 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/analysis.py'. Reloading...
+2024-12-03 19:02:10,506 - INFO - watchfiles.main - 3 changes detected
+2024-12-03 19:02:10,871 - INFO - watchfiles.main - 3 changes detected
+2024-12-03 19:02:24,777 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:02:24,779 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/analysis.py'. Reloading...
+2024-12-03 19:02:25,636 - INFO - watchfiles.main - 3 changes detected
+2024-12-03 19:02:26,161 - INFO - root - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-03 19:02:26,161 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-03 19:02:26,161 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-03 19:02:26,170 - INFO - uvicorn.error - Started server process [62763]
+2024-12-03 19:02:26,171 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 19:02:26,171 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 19:02:26,270 - INFO - watchfiles.main - 4 changes detected
+2024-12-03 19:02:38,207 - INFO - uvicorn.error - Shutting down
+2024-12-03 19:02:38,311 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 19:02:38,314 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 19:02:38,314 - INFO - uvicorn.error - Finished server process [62763]
+2024-12-03 19:02:38,526 - INFO - uvicorn.error - Stopping reloader process [62145]
+2024-12-03 19:02:47,072 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-03 19:02:47,072 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-03 19:02:47,072 - INFO - uvicorn.error - Started reloader process [62950] using WatchFiles
+2024-12-03 19:02:48,139 - INFO - root - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-03 19:02:48,139 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-03 19:02:48,140 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-03 19:02:48,146 - INFO - uvicorn.error - Started server process [62952]
+2024-12-03 19:02:48,146 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 19:02:48,146 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 19:02:48,247 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:02:51,718 - INFO - main_logger - Request: GET http://0.0.0.0:8000/
+2024-12-03 19:02:51,725 - INFO - main - Root endpoint accessed
+2024-12-03 19:02:51,729 - INFO - main_logger - Response status: 200
+2024-12-03 19:02:54,343 - INFO - main_logger - Request: GET http://0.0.0.0:8000/docs
+2024-12-03 19:02:54,344 - INFO - main_logger - Response status: 200
+2024-12-03 19:02:54,481 - INFO - main_logger - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-03 19:02:54,488 - INFO - main_logger - Response status: 200
+2024-12-03 19:03:50,681 - INFO - main_logger - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-12-03 19:03:51,186 - INFO - main_logger - receive_video_endpoint called
+2024-12-03 19:03:51,186 - INFO - main_logger - Received file: test_video.webm
+2024-12-03 19:03:51,234 - INFO - main_logger - 파일이 성공적으로 저장되었습니다. 크기: 65659113 bytes
+2024-12-03 19:03:51,261 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:03:51,622 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:08:47,002 - INFO - main_logger - 비디오 변환 성공: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video/b17cb3603d114510b1f4df7dd4e8f488_vp9.webm
+2024-12-03 19:08:47,007 - INFO - main_logger - Response status: 200
+2024-12-03 19:08:47,080 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:09:02,569 - INFO - main_logger - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/b17cb3603d114510b1f4df7dd4e8f488/
+2024-12-03 19:09:02,580 - ERROR - main_logger - Error processing request: name 'UPLOAD_DIR' is not defined
+2024-12-03 19:09:02,582 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 62, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 57, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 129, in send_feedback_endpoint
+    |     video_path = os.path.join(UPLOAD_DIR, converted_video_filename)
+    |                               ^^^^^^^^^^
+    | NameError: name 'UPLOAD_DIR' is not defined
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 62, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 57, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 129, in send_feedback_endpoint
+    video_path = os.path.join(UPLOAD_DIR, converted_video_filename)
+                              ^^^^^^^^^^
+NameError: name 'UPLOAD_DIR' is not defined
+2024-12-03 19:10:34,944 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:10:34,948 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-03 19:10:35,030 - INFO - uvicorn.error - Shutting down
+2024-12-03 19:10:35,135 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 19:10:35,136 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 19:10:35,136 - INFO - uvicorn.error - Finished server process [62952]
+2024-12-03 19:10:35,820 - INFO - watchfiles.main - 2 changes detected
+2024-12-03 19:10:37,038 - INFO - root - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-03 19:10:37,038 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-03 19:10:37,038 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-03 19:10:37,047 - INFO - uvicorn.error - Started server process [66174]
+2024-12-03 19:10:37,047 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 19:10:37,047 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 19:10:37,153 - INFO - watchfiles.main - 4 changes detected
+2024-12-03 19:10:38,904 - INFO - main_logger - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/b17cb3603d114510b1f4df7dd4e8f488/
+2024-12-03 19:10:44,822 - ERROR - main_logger - Error processing request: analyze_frames() missing 3 required positional arguments: 'model', 'index', and 'documents'
+2024-12-03 19:10:44,823 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 62, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 57, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 146, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 62, in process_video
+    |     problematic_frames, feedbacks = analyze_frames(
+    |                                     ^^^^^^^^^^^^^^^
+    | TypeError: analyze_frames() missing 3 required positional arguments: 'model', 'index', and 'documents'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 62, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 57, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 146, in send_feedback_endpoint
+    feedback_data = process_video(video_path)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 62, in process_video
+    problematic_frames, feedbacks = analyze_frames(
+                                    ^^^^^^^^^^^^^^^
+TypeError: analyze_frames() missing 3 required positional arguments: 'model', 'index', and 'documents'
+2024-12-03 19:12:10,382 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:12:10,386 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/analysis.py'. Reloading...
+2024-12-03 19:12:10,424 - INFO - uvicorn.error - Shutting down
+2024-12-03 19:12:10,527 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 19:12:10,529 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 19:12:10,529 - INFO - uvicorn.error - Finished server process [66174]
+2024-12-03 19:12:11,120 - INFO - watchfiles.main - 2 changes detected
+2024-12-03 19:12:11,592 - INFO - watchfiles.main - 3 changes detected
+2024-12-03 19:12:12,063 - INFO - root - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-03 19:12:12,063 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-03 19:12:12,063 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-03 19:12:12,071 - INFO - uvicorn.error - Started server process [66776]
+2024-12-03 19:12:12,071 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 19:12:12,071 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 19:12:12,161 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:12:15,162 - INFO - main_logger - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/b17cb3603d114510b1f4df7dd4e8f488/
+2024-12-03 19:12:20,959 - ERROR - main_logger - Error processing request: name 'retrieve_relevant_feedback' is not defined
+2024-12-03 19:12:20,960 - ERROR - uvicorn.error - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 186, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 763, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    |     with collapse_excgroups():
+    |          ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 62, in log_requests
+    |     raise e
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 57, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 146, in send_feedback_endpoint
+    |     feedback_data = process_video(video_path)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 62, in process_video
+    |     problematic_frames, feedbacks = analyze_frames(
+    |                                     ^^^^^^^^^^^^^^^
+    |   File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 116, in analyze_frames
+    |     retrieved_context = retrieve_relevant_feedback(user_message, model, index, documents, top_k=3)
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | NameError: name 'retrieve_relevant_feedback' is not defined
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 185, in __call__
+    with collapse_excgroups():
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 62, in log_requests
+    raise e
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py", line 57, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 163, in call_next
+    raise app_exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 146, in send_feedback_endpoint
+    feedback_data = process_video(video_path)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/routers/send_feedback.py", line 62, in process_video
+    problematic_frames, feedbacks = analyze_frames(
+                                    ^^^^^^^^^^^^^^^
+  File "/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/vlm_model/utils/analysis.py", line 116, in analyze_frames
+    retrieved_context = retrieve_relevant_feedback(user_message, model, index, documents, top_k=3)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'retrieve_relevant_feedback' is not defined
+2024-12-03 19:13:36,472 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:13:36,474 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/analysis.py'. Reloading...
+2024-12-03 19:13:36,518 - INFO - uvicorn.error - Shutting down
+2024-12-03 19:13:36,619 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 19:13:36,622 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 19:13:36,622 - INFO - uvicorn.error - Finished server process [66776]
+2024-12-03 19:13:37,243 - INFO - watchfiles.main - 2 changes detected
+2024-12-03 19:13:37,720 - INFO - watchfiles.main - 3 changes detected
+2024-12-03 19:13:38,157 - INFO - root - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-03 19:13:38,158 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-03 19:13:38,158 - INFO - root - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-03 19:13:38,164 - INFO - uvicorn.error - Started server process [67300]
+2024-12-03 19:13:38,165 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-03 19:13:38,165 - INFO - uvicorn.error - Application startup complete.
+2024-12-03 19:13:38,250 - INFO - watchfiles.main - 1 change detected
+2024-12-03 19:13:40,043 - INFO - main_logger - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/b17cb3603d114510b1f4df7dd4e8f488/
+2024-12-03 19:13:47,613 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:13:53,885 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:13:54,774 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:13:55,732 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:13:56,590 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:13:57,407 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:13:58,330 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:13:59,158 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:00,024 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:01,778 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:02,702 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:14,081 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:15,086 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:16,085 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:16,983 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:17,856 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:18,661 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:24,121 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:25,244 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:26,108 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:26,110 - DEBUG - main_logger - 프레임 수: 3, 피드백 수: 3
+2024-12-03 19:14:26,129 - DEBUG - main_logger - 변환된 피드백 섹션: gaze_processing=FeedbackDetails(improvement='발표자가 중요한 내용을 설명할 때 자주 시선을 화면 밖으로 돌리는 모습이 관찰되었습니다. 이는 청중과의 시선 연결을 방해합니다.', recommendations='카메라를 향해 시선을 고정하고, 중요한 포인트에서 잠시 멈추어 시선을 두는 연습을 해보세요.') facial_expression=FeedbackDetails(improvement='발표 내내 무표정하게 보여 청중의 관심을 끌기 어려웠습니다.', recommendations='주요 메시지를 전달할 때 다양한 표정과 감정 표현을 추가하면 발표가 더 생동감 있게 전달될 것입니다.') gestures=FeedbackDetails(improvement='발표 중간에 손동작이 자주 시각적으로 산만하게 보여 집중을 방해했습니다.', recommendations='핵심 포인트에서만 손동작을 사용하여 청중의 주목도를 높이도록 해보세요.') posture_body=FeedbackDetails(improvement='발표자가 구부정한 자세로 보여 청중의 집중을 방해했습니다.', recommendations='상체를 곧게 펴고 안정된 자세를 유지하기 위해 의자에 바르게 앉거나 서 있는 연습을 해보세요.') movement=FeedbackDetails(improvement='발표 중간에 과도하게 몸을 좌우로 흔들리는 움직임이 관찰되었습니다. 이는 발표의 흐름을 방해합니다.', recommendations='안정된 자세를 유지하고, 발표 중에는 최소한의 움직임만을 활용해 발표에 집중할 수 있도록 하세요.')
+2024-12-03 19:14:26,147 - DEBUG - main_logger - 변환된 피드백 섹션: gaze_processing=FeedbackDetails(improvement='발표 중간에 시선이 자주 다른 곳으로 이동하는 모습이 관찰되었습니다. 이는 카메라와의 시선 연결을 방해하여 청중의 집중력을 떨어뜨립니다.', recommendations='발표 시 카메라를 바라보며 일정한 시선을 유지하도록 연습해보세요.') facial_expression=FeedbackDetails(improvement='얼굴 표정이 거의 변화하지 않아서 발표 내내 무표정하게 느껴졌습니다.', recommendations='중요한 포인트에서 감정을 표현하는 다양한 표정 변화를 추가해 보세요.') gestures=FeedbackDetails(improvement='제스처가 지나치게 많아 시각적으로 산만하게 보였습니다. 이로 인해 청중의 주의가 분산되었습니다.', recommendations='핵심 내용에 집중하여 관련된 제스처만 사용하고 불필요한 손동작은 줄이세요.') posture_body=FeedbackDetails(improvement='발표자가 구부정한 자세로 앉아 있어서 전문성이 떨어져 보였습니다.', recommendations='어깨를 펴고 허리를 곧게 펴는 안정된 자세를 유지하도록 연습해보세요.') movement=FeedbackDetails(improvement='발표 중 과도하게 몸을 흔드는 움직임이 보였습니다. 이는 발표의 흐름을 방해합니다.', recommendations='발표하는 동안 최소한의 움직임만을 유지하고 자리를 움직이지 않도록 하세요.')
+2024-12-03 19:14:26,161 - DEBUG - main_logger - 변환된 피드백 섹션: gaze_processing=FeedbackDetails(improvement='발표 중 자주 시선이 화면 밖으로 이동하는 모습이 보였습니다. 이는 청중과의 시선 연결을 방해합니다.', recommendations='중요한 포인트에서 카메라를 바라보는 연습을 통해 청중과의 교감을 강화하세요.') facial_expression=FeedbackDetails(improvement='발표 내내 무표정하게 보여 청중의 관심을 끌기 어려웠습니다.', recommendations='주요 메시지를 강조할 때 다양한 표정 변화를 시도하여 발표의 생동감을 높여보세요.') gestures=FeedbackDetails(improvement='발표 도중 손동작이 불필요하게 많아 보이고 시각적으로 산만하게 만들었습니다.', recommendations='핵심 포인트에만 적절한 손동작을 활용하여 청중의 주목도를 높이는 것이 좋습니다.') posture_body=FeedbackDetails(improvement='발표자가 구부정한 자세로 표시되어 청중의 집중을 방해하는 경향이 있었습니다.', recommendations='상체를 곧게 펴고 안정된 자세를 유지하는 연습을 통해 발표의 전문성을 높이세요.') movement=FeedbackDetails(improvement='발표 중 과도하게 몸을 흔드는 모습이 확인되었습니다. 이는 발표의 흐름을 방해합니다.', recommendations='발표 시 최소한의 움직임만으로 집중도를 유지하도록 노력해보세요.')
+2024-12-03 19:14:26,162 - WARNING - main_logger - 세그먼트 1에서 프레임을 추출할 수 없습니다.
+2024-12-03 19:14:26,270 - INFO - watchfiles.main - 3 changes detected
+2024-12-03 19:14:39,071 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:46,026 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:46,834 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:47,803 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:48,677 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:49,595 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:50,475 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:52,256 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:53,143 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:54,004 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:54,828 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:14:55,560 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:01,298 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:02,190 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:03,011 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:03,894 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:10,180 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:10,979 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:11,923 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:12,840 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:12,841 - DEBUG - main_logger - 프레임 수: 3, 피드백 수: 3
+2024-12-03 19:15:12,874 - DEBUG - main_logger - 변환된 피드백 섹션: gaze_processing=FeedbackDetails(improvement='발표 중간에 자주 화면 밖을 바라보는 모습이 관찰되었습니다. 이는 청중과의 시선 연결을 방해합니다.', recommendations='카메라를 향해 시선을 고정하고, 중요한 포인트에서 잠시 멈추어 시선을 두는 연습을 해보세요.') facial_expression=FeedbackDetails(improvement='발표 내내 무표정하게 보여 청중의 관심을 끌기 어려웠습니다.', recommendations='주요 메시지를 전달할 때 다양한 표정과 감정 표현을 추가하면 발표가 더 생동감 있게 전달될 것입니다.') gestures=FeedbackDetails(improvement='발표 중간에 손동작이 자주 시각적으로 산만하게 보여 집중을 방해했습니다.', recommendations='핵심 포인트에서만 손동작을 사용하여 청중의 주목도를 높이도록 해보세요.') posture_body=FeedbackDetails(improvement='발표자가 과도한 움직임으로 보였고 구부정한 자세도 관찰되었습니다. 이는 청중의 집중을 방해했습니다.', recommendations='상체를 곧게 펴고 안정된 자세를 유지하기 위해 의자에 바르게 앉거나 서 있는 연습을 해보세요.') movement=FeedbackDetails(improvement='발표 도중 과도하게 몸을 흔드는 움직임이 발견되어 발표의 흐름을 방해했습니다.', recommendations='안정된 자세를 유지하고, 발표 중에는 최소한의 움직임만을 활용해 발표에 집중할 수 있도록 하세요.')
+2024-12-03 19:15:12,890 - DEBUG - main_logger - 변환된 피드백 섹션: gaze_processing=FeedbackDetails(improvement='발표 중에 자주 시선이 화면 밖으로 돌려지는 모습이 관찰되었습니다. 이는 청중과의 시선 연결을 방해합니다.', recommendations='카메라를 향해 시선을 고정하고, 중요한 포인트에서 잠시 멈추어 시선을 두는 연습을 해보세요.') facial_expression=FeedbackDetails(improvement='발표 내내 표정 변화가 적어 청중의 관심을 끌기 어려웠습니다.', recommendations='중요한 메시지를 전달할 때 다양한 표정과 감정 표현을 추가하여 발표를 더욱 생동감 있게 만들어 보세요.') gestures=FeedbackDetails(improvement='발표 중 손동작이 과도하여 청중의 집중을 방해했습니다. 이는 주요 내용과 무관한 손짓으로 이어졌습니다.', recommendations='핵심 포인트에서만 손동작을 사용하여 청중의 주목도를 높여보세요.') posture_body=FeedbackDetails(improvement='발표 중 구부정한 자세로 모습이 관찰되었습니다. 이는 전문성을 낮추고 청중의 집중을 방해할 수 있습니다.', recommendations='상체를 곧게 펴고 안정된 자세를 유지하기 위해 의자에 바르게 앉거나 서 있는 연습을 해보세요.') movement=FeedbackDetails(improvement='발표 도중 과도하게 몸을 좌우로 움직여 발표의 흐름을 방해하는 모습이 보였습니다.', recommendations='안정된 자세를 유지하고, 발표 중에는 최소한의 움직임만을 활용해 발표에 집중할 수 있도록 하세요.')
+2024-12-03 19:15:12,905 - DEBUG - main_logger - 변환된 피드백 섹션: gaze_processing=FeedbackDetails(improvement='발표 중간에 시선을 자주 아래나 왼쪽으로 돌리시는 모습이 관찰되었습니다. 이는 청중과의 유대감을 저하시킵니다.', recommendations='카메라를 향해 시선을 유지하고, 청중을 직접 바라보는 연습을 통해 소통을 강화하세요.') facial_expression=FeedbackDetails(improvement='발표 동안 표정 변화가 거의 없어 청중의 관심을 끌기 어려웠습니다.', recommendations='중요한 메시지를 전달할 때 자연스러운 표정을 추가하여 감정 표현을 풍부하게 해보세요.') gestures=FeedbackDetails(improvement='손동작이 발표 내용과 관련 없이 자주 보였으며, 이는 청중의 집중을 산만하게 만들었습니다.', recommendations='핵심 포인트에서만 적절한 손동작을 사용하여 발표의 주목도를 높이도록 해보세요.') posture_body=FeedbackDetails(improvement='발표자가 구부정한 자세로 앉아 있어 청중의 집중을 방해하였습니다.', recommendations='상체를 곧게 펴고 안정된 자세를 유지하는 연습을 통해 전문적인 인상을 줄 수 있도록 하세요.') movement=FeedbackDetails(improvement='발표 중 과도하게 몸을 움직여 발표의 흐름이 방해되는 모습이 관찰되었습니다.', recommendations='발표하는 동안 안정된 자세를 유지하고 최소한의 움직임만 사용하여 청중의 집중력을 높이도록 하세요.')
+2024-12-03 19:15:12,906 - WARNING - main_logger - 세그먼트 2에서 프레임을 추출할 수 없습니다.
+2024-12-03 19:15:13,001 - INFO - watchfiles.main - 3 changes detected
+2024-12-03 19:15:26,682 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:27,538 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-03 19:15:27,540 - DEBUG - main_logger - 프레임 수: 0, 피드백 수: 0
+2024-12-03 19:15:27,540 - WARNING - main_logger - 세그먼트 3에서 프레임을 추출할 수 없습니다.
+2024-12-03 19:15:27,549 - INFO - main_logger - Response status: 200
+2024-12-03 19:15:38,171 - INFO - uvicorn.error - Shutting down
+2024-12-03 19:15:38,274 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-03 19:15:38,276 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-03 19:15:38,276 - INFO - uvicorn.error - Finished server process [67300]
+2024-12-03 19:15:38,472 - INFO - uvicorn.error - Stopping reloader process [62950]

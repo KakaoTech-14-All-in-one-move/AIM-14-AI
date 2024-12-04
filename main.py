@@ -9,11 +9,20 @@ from fastapi import Response
 from vlm_model.routers.upload_video import router as upload_video_router
 from vlm_model.routers.send_feedback import router as send_feedback_router
 
+from pathlib import Path
+import json
 import uvicorn
 import logging
+import logging.config
 
 # 로깅 설정
-logger = logging.getLogger("uvicorn")
+# JSON 기반 로깅 설정 적용
+logging_config_path = Path(__file__).resolve().parent / "logging_config.json"  # 프로젝트 루트에 위치한 파일 경로
+with open(logging_config_path, "r") as f:
+    logging_config = json.load(f)
+
+logging.config.dictConfig(logging_config)
+logger = logging.getLogger("main_logger")
 
 app = FastAPI()
 
@@ -38,7 +47,7 @@ app.mount("/static", StaticFiles(directory="storage/output_feedback_frame"), nam
 def read_root():
     logger = logging.getLogger(__name__)
     logger.info("Root endpoint accessed")
-    return {"message": "Hello, World!"}
+    return {"message": "Hello, Toby!"}
 
 # 요청 로깅 미들웨어
 @app.middleware("http")
@@ -64,3 +73,6 @@ if __name__ == "__main__":
         reload=True,
         log_config="logging_config.json"  # 로깅 설정 파일 지정
     )
+
+# 실행 명령어 (터미널에서 실행 시):
+# uvicorn main:app --host 0.0.0.0 --port 8000 --reload --log-config logging_config.json
