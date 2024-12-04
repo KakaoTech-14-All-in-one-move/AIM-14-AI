@@ -20,14 +20,17 @@ try:
         # Docker 환경
         BASE_DIR = Path("/app")
         logger.info("Docker 환경으로 감지되었습니다.")
+        logger.debug(f"BASE_DIR 설정: {BASE_DIR}")
     else:
         # 로컬 환경
         BASE_DIR = Path(__file__).resolve().parent.parent
         logger.info("로컬 환경으로 감지되었습니다.")
+        logger.debug(f"BASE_DIR 설정: {BASE_DIR}")
 except FileNotFoundError:
     # 로컬 환경
     BASE_DIR = Path(__file__).resolve().parent.parent
     logger.info("로컬 환경으로 간주합니다. 기본 경로로 설정합니다.")
+    logger.debug(f"BASE_DIR 설정: {BASE_DIR}")
 except Exception as e:
     logger.error(f"환경 감지 중 오류 발생: {e}")
     raise HTTPException(status_code=500, detail="환경 감지 중 오류 발생")
@@ -41,6 +44,7 @@ try:
     for directory in [UPLOAD_DIR, FEEDBACK_DIR]:
         directory.mkdir(parents=True, exist_ok=True)
         logger.info(f"디렉토리가 준비되었습니다: {directory}")
+        logger.debug(f"생성된 디렉토리 경로: {directory}")
 except Exception as e:
     logger.error(f"디렉토리 생성 실패: {e}")
     raise HTTPException(status_code=500, detail="디렉토리 생성 실패")

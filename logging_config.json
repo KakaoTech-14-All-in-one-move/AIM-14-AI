@@ -21,6 +21,12 @@
             "filename": "logs/app.log",
             "encoding": "utf8"
         },
+        "error_file": {
+            "class": "logging.FileHandler",
+            "formatter": "default",
+            "filename": "logs/error.log",
+            "encoding": "utf8"
+        },
         "access_file": {
             "class": "logging.FileHandler",
             "formatter": "access",
@@ -45,7 +51,7 @@
             "propagate": false
         },
         "vlm_model": { 
-            "handlers": ["console", "file"],
+            "handlers": ["console", "file", "error_file"],
             "level": "DEBUG",
             "propagate": false
         },

@@ -49,7 +49,7 @@ def process_video(file_path: str):
     # 디렉터리 경로가 지정되었는지 확인
     if FEEDBACK_DIR is None or not FEEDBACK_DIR.exists():
         logger.error(f"피드백 이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다: {FEEDBACK_DIR}")
-        return "directory_error"
+        raise VideoProcessingError("피드백 이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다.")
 
     # 각 세그먼트별로 프레임 추출 및 피드백 분석
     for start_time in range(0, int(video_duration), segment_length):
@@ -159,22 +159,22 @@ async def send_feedback_endpoint(video_id: str):
         raise HTTPException(status_code=404, detail="비디오 파일을 찾을 수 없습니다.")
     
     # 비디오 처리하여 피드백 생성
-    try:
-        feedback_data = process_video(video_path)
-    except VideoProcessingError as vpe:
-        logger.error(f"비디오 처리 중 오류 발생: {vpe.message}")
+    feedback_data = process_video(video_path)
+
+    # 피드백 데이터 확인 - error_handling (전역 예외 핸들러에서 처리됨)
+    if not feedback_data: 
+        logger.warning(f"분석 결과 피드백할 내용이 없습니다: video_id={video_id}")
         return FeedbackResponse(
             feedbacks=[],
-            message=vpe.message,
-            problem="video_error"
+            message="분석 결과 피드백할 내용이 없습니다.",
+            problem="no_feedback"
         )
-    except Exception as e:
-        logger.error(f"비디오 처리 중 예상치 못한 오류 발생: {e}", exc_info=True)
-        return FeedbackResponse(
-            feedbacks=[],
-            message="비디오 처리 중 예상치 못한 오류가 발생했습니다.",
-            problem="unknown_error"
-        )
+
+    return FeedbackResponse(
+        feedbacks=feedback_data,
+        message="피드백 데이터 생성 완료",
+        problem=None
+    )
 
     # 피드백 데이터 확인 - error_handling
     if feedback_data == "video_error": # 비디오 파일 자체에 문제 - 파일 손상 or 포맷 문제 (함수에서 비디오 길이를 확인할 때 발생)

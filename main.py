@@ -6,6 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi import Response
 
+from exceptions import VideoProcessingError, ImageEncodingError
+
 from vlm_model.routers.upload_video import router as upload_video_router
 from vlm_model.routers.send_feedback import router as send_feedback_router
 
@@ -59,6 +61,28 @@ async def log_requests(request: Request, call_next):
     except Exception as e:
         logger.error(f"Error processing request: {e}")
         raise e
+
+@app.exception_handler(VideoProcessingError)
+async def video_processing_exception_handler(request: Request, exc: VideoProcessingError):
+    return JSONResponse(
+        status_code=400,  # 필요에 따라 조정
+        content={"detail": exc.message},
+    )
+
+@app.exception_handler(ImageEncodingError)
+async def image_encoding_exception_handler(request: Request, exc: ImageEncodingError):
+    return JSONResponse(
+        status_code=500,  # 필요에 따라 조정
+        content={"detail": exc.message},
+    )
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception):
+    logging.error(f"Unhandled error: {exc}", exc_info=True)
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "서버 내부 오류가 발생했습니다."},
+    )
 
 # 서버 실행 (uvicorn.run()에서 log_config 지정)
 if __name__ == "__main__":
