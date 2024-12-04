@@ -3,7 +3,6 @@
 from dotenv import load_dotenv
 from pathlib import Path
 import os
-import logging
 from fastapi import HTTPException
 import logging
 

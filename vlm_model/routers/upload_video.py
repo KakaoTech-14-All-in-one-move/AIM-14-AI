@@ -16,9 +16,6 @@ router = APIRouter()
 
 logger = logging.getLogger(__name__)  # 'vlm_model.routers.upload_video' 로거 사용
 
-# 로깅 설정
-logger = logging.getLogger("vlm_upload_video")
-
 def convert_to_vp9(input_path: str, output_path: str) -> bool:
     """
     H.264 코덱 비디오를 VP9 코덱으로 변환합니다.
