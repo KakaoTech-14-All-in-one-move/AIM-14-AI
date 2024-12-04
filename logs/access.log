@@ -68,3 +68,9 @@
 2024-12-03 19:10:44,823 - INFO - 127.0.0.1:61461 - "GET /api/video/video-send-feedback/b17cb3603d114510b1f4df7dd4e8f488/ HTTP/1.1" 500
 2024-12-03 19:12:20,960 - INFO - 127.0.0.1:61512 - "GET /api/video/video-send-feedback/b17cb3603d114510b1f4df7dd4e8f488/ HTTP/1.1" 500
 2024-12-03 19:15:27,549 - INFO - 127.0.0.1:61567 - "GET /api/video/video-send-feedback/b17cb3603d114510b1f4df7dd4e8f488/ HTTP/1.1" 200
+2024-12-04 17:44:05,670 - INFO - 127.0.0.1:58484 - "GET / HTTP/1.1" 200
+2024-12-04 17:44:06,120 - INFO - 127.0.0.1:58484 - "GET /favicon.ico HTTP/1.1" 404
+2024-12-04 17:44:08,459 - INFO - 127.0.0.1:58488 - "GET /docs HTTP/1.1" 200
+2024-12-04 17:44:08,688 - INFO - 127.0.0.1:58488 - "GET /openapi.json HTTP/1.1" 200
+2024-12-04 17:44:29,501 - INFO - 127.0.0.1:58492 - "POST /api/video/receive-video/ HTTP/1.1" 200
+2024-12-04 17:44:44,866 - INFO - 127.0.0.1:58497 - "GET /api/video/video-send-feedback/7aecc4139b8d402f8b33546cb5fc8e20/ HTTP/1.1" 200

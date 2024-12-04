@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi import Response
 
-from exceptions import VideoProcessingError, ImageEncodingError
+from vlm_model.exceptions import VideoProcessingError, ImageEncodingError
 
 from vlm_model.routers.upload_video import router as upload_video_router
 from vlm_model.routers.send_feedback import router as send_feedback_router

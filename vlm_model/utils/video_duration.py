@@ -3,7 +3,7 @@
 import cv2
 from typing import Optional
 import logging
-from exceptions import VideoProcessingError
+from vlm_model.exceptions import VideoProcessingError
 
 # 모듈별 로거 생성
 logger = logging.getLogger(__name__) 

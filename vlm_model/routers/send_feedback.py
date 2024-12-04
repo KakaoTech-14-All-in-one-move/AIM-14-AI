@@ -17,6 +17,7 @@ from vlm_model.utils.download_video import download_and_sample_video_local
 from vlm_model.utils.analysis import analyze_frames, parse_feedback_text
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.utils.video_duration import get_video_duration
+from vlm_model.exceptions import VideoProcessingError, ImageEncodingError
 from vlm_model.openai_config import SYSTEM_INSTRUCTION
 from vlm_model.config import FEEDBACK_DIR, UPLOAD_DIR
 
@@ -24,7 +25,6 @@ import logging
 import logging.config
 import json
 from pathlib import Path
-from exceptions import VideoProcessingError, ImageEncodingError
 
 router = APIRouter()
 

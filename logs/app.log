@@ -1037,3 +1037,118 @@ NameError: name 'retrieve_relevant_feedback' is not defined
 2024-12-03 19:15:38,276 - INFO - uvicorn.error - Application shutdown complete.
 2024-12-03 19:15:38,276 - INFO - uvicorn.error - Finished server process [67300]
 2024-12-03 19:15:38,472 - INFO - uvicorn.error - Stopping reloader process [62950]
+2024-12-04 17:41:52,950 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-04 17:41:52,950 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-04 17:41:52,951 - INFO - uvicorn.error - Started reloader process [47101] using WatchFiles
+2024-12-04 17:42:18,460 - INFO - watchfiles.main - 1 change detected
+2024-12-04 17:42:18,462 - WARNING - uvicorn.error - WatchFiles detected changes in 'main.py'. Reloading...
+2024-12-04 17:42:18,821 - INFO - watchfiles.main - 3 changes detected
+2024-12-04 17:42:19,193 - INFO - watchfiles.main - 18 changes detected
+2024-12-04 17:42:19,881 - INFO - watchfiles.main - 3 changes detected
+2024-12-04 17:42:49,115 - INFO - watchfiles.main - 1 change detected
+2024-12-04 17:42:49,117 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/video_duration.py'. Reloading...
+2024-12-04 17:42:50,086 - INFO - watchfiles.main - 3 changes detected
+2024-12-04 17:43:10,917 - INFO - watchfiles.main - 1 change detected
+2024-12-04 17:43:10,919 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/utils/download_video.py'. Reloading...
+2024-12-04 17:43:11,834 - INFO - watchfiles.main - 6 changes detected
+2024-12-04 17:43:12,199 - INFO - watchfiles.main - 9 changes detected
+2024-12-04 17:43:12,504 - INFO - vlm_model.config - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-04 17:43:12,504 - DEBUG - vlm_model.config - BASE_DIR 설정: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM
+2024-12-04 17:43:12,504 - INFO - vlm_model.config - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-04 17:43:12,504 - DEBUG - vlm_model.config - 생성된 디렉토리 경로: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-04 17:43:12,504 - INFO - vlm_model.config - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-04 17:43:12,505 - DEBUG - vlm_model.config - 생성된 디렉토리 경로: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-04 17:43:12,616 - INFO - watchfiles.main - 8 changes detected
+2024-12-04 17:43:26,495 - INFO - watchfiles.main - 1 change detected
+2024-12-04 17:43:26,496 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/upload_video.py'. Reloading...
+2024-12-04 17:43:27,190 - INFO - watchfiles.main - 3 changes detected
+2024-12-04 17:43:27,968 - INFO - vlm_model.config - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-04 17:43:27,968 - DEBUG - vlm_model.config - BASE_DIR 설정: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM
+2024-12-04 17:43:27,968 - INFO - vlm_model.config - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-04 17:43:27,968 - DEBUG - vlm_model.config - 생성된 디렉토리 경로: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-04 17:43:27,968 - INFO - vlm_model.config - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-04 17:43:27,968 - DEBUG - vlm_model.config - 생성된 디렉토리 경로: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-04 17:43:28,042 - INFO - watchfiles.main - 5 changes detected
+2024-12-04 17:43:43,888 - INFO - watchfiles.main - 1 change detected
+2024-12-04 17:43:43,889 - WARNING - uvicorn.error - WatchFiles detected changes in 'vlm_model/routers/send_feedback.py'. Reloading...
+2024-12-04 17:43:45,343 - INFO - vlm_model.config - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-04 17:43:45,343 - DEBUG - vlm_model.config - BASE_DIR 설정: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM
+2024-12-04 17:43:45,343 - INFO - vlm_model.config - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-04 17:43:45,343 - DEBUG - vlm_model.config - 생성된 디렉토리 경로: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-04 17:43:45,343 - INFO - vlm_model.config - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-04 17:43:45,343 - DEBUG - vlm_model.config - 생성된 디렉토리 경로: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-04 17:43:45,353 - INFO - uvicorn.error - Started server process [47865]
+2024-12-04 17:43:45,353 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-04 17:43:45,353 - INFO - uvicorn.error - Application startup complete.
+2024-12-04 17:43:45,428 - INFO - watchfiles.main - 5 changes detected
+2024-12-04 17:43:53,853 - INFO - uvicorn.error - Shutting down
+2024-12-04 17:43:53,954 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-04 17:43:53,955 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-04 17:43:53,955 - INFO - uvicorn.error - Finished server process [47865]
+2024-12-04 17:43:54,141 - INFO - uvicorn.error - Stopping reloader process [47101]
+2024-12-04 17:43:59,823 - INFO - uvicorn.error - Will watch for changes in these directories: ['/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM']
+2024-12-04 17:43:59,824 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2024-12-04 17:43:59,824 - INFO - uvicorn.error - Started reloader process [48019] using WatchFiles
+2024-12-04 17:44:01,000 - INFO - vlm_model.config - 로컬 환경으로 간주합니다. 기본 경로로 설정합니다.
+2024-12-04 17:44:01,000 - DEBUG - vlm_model.config - BASE_DIR 설정: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM
+2024-12-04 17:44:01,000 - INFO - vlm_model.config - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-04 17:44:01,000 - DEBUG - vlm_model.config - 생성된 디렉토리 경로: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video
+2024-12-04 17:44:01,000 - INFO - vlm_model.config - 디렉토리가 준비되었습니다: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-04 17:44:01,000 - DEBUG - vlm_model.config - 생성된 디렉토리 경로: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/output_feedback_frame
+2024-12-04 17:44:01,007 - INFO - uvicorn.error - Started server process [48021]
+2024-12-04 17:44:01,007 - INFO - uvicorn.error - Waiting for application startup.
+2024-12-04 17:44:01,007 - INFO - uvicorn.error - Application startup complete.
+2024-12-04 17:44:01,105 - INFO - watchfiles.main - 2 changes detected
+2024-12-04 17:44:05,661 - INFO - vlm_model - Request: GET http://0.0.0.0:8000/
+2024-12-04 17:44:05,666 - INFO - vlm_model - Root endpoint accessed
+2024-12-04 17:44:05,669 - INFO - vlm_model - Response status: 200
+2024-12-04 17:44:06,118 - INFO - vlm_model - Request: GET http://0.0.0.0:8000/favicon.ico
+2024-12-04 17:44:06,120 - INFO - vlm_model - Response status: 404
+2024-12-04 17:44:08,458 - INFO - vlm_model - Request: GET http://0.0.0.0:8000/docs
+2024-12-04 17:44:08,459 - INFO - vlm_model - Response status: 200
+2024-12-04 17:44:08,676 - INFO - vlm_model - Request: GET http://0.0.0.0:8000/openapi.json
+2024-12-04 17:44:08,687 - INFO - vlm_model - Response status: 200
+2024-12-04 17:44:22,054 - INFO - vlm_model - Request: POST http://0.0.0.0:8000/api/video/receive-video/
+2024-12-04 17:44:22,079 - INFO - vlm_model.routers.upload_video - receive_video_endpoint 호출됨
+2024-12-04 17:44:22,079 - INFO - vlm_model.routers.upload_video - 받은 파일: convert_output_video.webm
+2024-12-04 17:44:22,083 - INFO - vlm_model.routers.upload_video - 파일이 성공적으로 저장되었습니다. 크기: 1094845 bytes
+2024-12-04 17:44:22,158 - INFO - watchfiles.main - 1 change detected
+2024-12-04 17:44:22,898 - INFO - watchfiles.main - 1 change detected
+2024-12-04 17:44:29,498 - INFO - vlm_model.routers.upload_video - 비디오 변환 성공: /Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/storage/input_video/7aecc4139b8d402f8b33546cb5fc8e20_vp9.webm
+2024-12-04 17:44:29,501 - INFO - vlm_model - Response status: 200
+2024-12-04 17:44:29,586 - INFO - watchfiles.main - 1 change detected
+2024-12-04 17:44:38,947 - INFO - vlm_model - Request: GET http://0.0.0.0:8000/api/video/video-send-feedback/7aecc4139b8d402f8b33546cb5fc8e20/
+2024-12-04 17:44:38,992 - INFO - vlm_model.utils.download_video - Frame 추출을 시작합니다.
+2024-12-04 17:44:38,995 - DEBUG - vlm_model.utils.download_video - 비디오 FPS: 23.083333333333332, 총 프레임 수: 218
+2024-12-04 17:44:38,995 - DEBUG - vlm_model.utils.download_video - 추출할 프레임 인덱스: [0, 69, 138, 207, 276, 345, 414, 483, 552, 621, 690, 759, 828, 897, 966, 1035, 1104, 1173, 1242, 1311, 1380]
+2024-12-04 17:44:39,003 - DEBUG - vlm_model.utils.download_video - 프레임 0 추가
+2024-12-04 17:44:39,042 - DEBUG - vlm_model.utils.download_video - 프레임 69 추가
+2024-12-04 17:44:39,084 - DEBUG - vlm_model.utils.download_video - 프레임 138 추가
+2024-12-04 17:44:39,122 - DEBUG - vlm_model.utils.download_video - 프레임 207 추가
+2024-12-04 17:44:39,128 - WARNING - vlm_model.utils.download_video - 프레임 218 읽기 실패
+2024-12-04 17:44:39,129 - DEBUG - vlm_model.utils.download_video - 총 추출된 프레임 수: 4
+2024-12-04 17:44:42,198 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-04 17:44:42,209 - DEBUG - vlm_model.utils.analysis - 프레임 1 응답 텍스트: { "problem": "none" }
+2024-12-04 17:44:42,210 - DEBUG - vlm_model.utils.analysis - 감지된 문제 행동: []
+2024-12-04 17:44:42,210 - DEBUG - vlm_model.utils.analysis - PROBLEMATIC_BEHAVIORS 리스트: ['과도한 시선 이동', '불규칙한 시선 분산', '무표정', '과도한 표정 변화', '과도한 손동작', '불필요한 손동작', '구부정한 자세', '과도한 움직임', '예상치 못한 행동', '발표 흐름 방해']
+2024-12-04 17:44:43,241 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-04 17:44:43,244 - DEBUG - vlm_model.utils.analysis - 프레임 2 응답 텍스트: { "problem": "none" }
+2024-12-04 17:44:43,245 - DEBUG - vlm_model.utils.analysis - 감지된 문제 행동: []
+2024-12-04 17:44:43,246 - DEBUG - vlm_model.utils.analysis - PROBLEMATIC_BEHAVIORS 리스트: ['과도한 시선 이동', '불규칙한 시선 분산', '무표정', '과도한 표정 변화', '과도한 손동작', '불필요한 손동작', '구부정한 자세', '과도한 움직임', '예상치 못한 행동', '발표 흐름 방해']
+2024-12-04 17:44:44,088 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-04 17:44:44,090 - DEBUG - vlm_model.utils.analysis - 프레임 3 응답 텍스트: { "problem": "none" }
+2024-12-04 17:44:44,090 - DEBUG - vlm_model.utils.analysis - 감지된 문제 행동: []
+2024-12-04 17:44:44,090 - DEBUG - vlm_model.utils.analysis - PROBLEMATIC_BEHAVIORS 리스트: ['과도한 시선 이동', '불규칙한 시선 분산', '무표정', '과도한 표정 변화', '과도한 손동작', '불필요한 손동작', '구부정한 자세', '과도한 움직임', '예상치 못한 행동', '발표 흐름 방해']
+2024-12-04 17:44:44,861 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-12-04 17:44:44,864 - DEBUG - vlm_model.utils.analysis - 프레임 4 응답 텍스트: { "problem": "none" }
+2024-12-04 17:44:44,864 - DEBUG - vlm_model.utils.analysis - 감지된 문제 행동: []
+2024-12-04 17:44:44,864 - DEBUG - vlm_model.utils.analysis - PROBLEMATIC_BEHAVIORS 리스트: ['과도한 시선 이동', '불규칙한 시선 분산', '무표정', '과도한 표정 변화', '과도한 손동작', '불필요한 손동작', '구부정한 자세', '과도한 움직임', '예상치 못한 행동', '발표 흐름 방해']
+2024-12-04 17:44:44,864 - DEBUG - vlm_model.routers.send_feedback - 프레임 수: 0, 피드백 수: 0
+2024-12-04 17:44:44,864 - ERROR - vlm_model.routers.send_feedback - 세그먼트 1에서 프레임을 추출할 수 없습니다.
+2024-12-04 17:44:44,865 - WARNING - vlm_model.routers.send_feedback - 분석 결과 피드백할 내용이 없습니다: video_id=7aecc4139b8d402f8b33546cb5fc8e20
+2024-12-04 17:44:44,865 - INFO - vlm_model - Response status: 200
+2024-12-04 17:44:53,048 - INFO - uvicorn.error - Shutting down
+2024-12-04 17:44:53,150 - INFO - uvicorn.error - Waiting for application shutdown.
+2024-12-04 17:44:53,151 - INFO - uvicorn.error - Application shutdown complete.
+2024-12-04 17:44:53,151 - INFO - uvicorn.error - Finished server process [48021]
+2024-12-04 17:44:53,362 - INFO - uvicorn.error - Stopping reloader process [48019]

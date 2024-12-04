@@ -11,7 +11,7 @@ from pathlib import Path
 from vlm_model.schemas.feedback import UploadResponse
 from vlm_model.utils.video_duration import get_video_duration
 from vlm_model.config import UPLOAD_DIR
-from exceptions import VideoProcessingError, ImageEncodingError
+from vlm_model.exceptions import VideoProcessingError, ImageEncodingError
 
 router = APIRouter()
 

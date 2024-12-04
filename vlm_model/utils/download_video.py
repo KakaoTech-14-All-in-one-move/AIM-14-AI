@@ -68,7 +68,7 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
         cap.release()
 
         if not frames:
-            logger.error("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.")\
+            logger.error("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.")
             raise VideoProcessingError("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.")
 
         logger.debug(f"총 추출된 프레임 수: {len(frames)}")
