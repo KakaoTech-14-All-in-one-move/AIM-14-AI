@@ -32,21 +32,6 @@ from starlette.types import ASGIApp, Receive, Scope, Send
 
 app = FastAPI()
 
-# Middleware to assign request_id and capture client IP
-class RequestIDMiddleware:
-    def __init__(self, app: ASGIApp):
-        self.app = app
-
-    async def __call__(self, scope: Scope, receive: Receive, send: Send):
-        if scope["type"] == "http":
-            request = Request(scope, receive=receive)
-            request_id = str(uuid.uuid4())
-            client_ip = request.client.host if request.client else "unknown"
-            request_id_ctx_var.set(request_id)
-            client_ip_ctx_var.set(client_ip)
-        await self.app(scope, receive, send)
-
-
 # JSON 기반 로깅 설정 적용
 logging_config_path = Path(__file__).resolve().parent / "logging_config.json"  # 프로젝트 루트에 위치한 파일 경로
 with open(logging_config_path, "r") as f:
@@ -65,6 +50,20 @@ app.add_middleware(
     allow_credentials=False,  # credentials를 반드시 False로 설정
 )
 
+# Request ID 미들웨어: 각 요청에 고유한 ID와 클라이언트 IP를 설정
+class RequestIDMiddleware:
+    def __init__(self, app: ASGIApp):
+        self.app = app
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send):
+        if scope["type"] == "http":
+            request = Request(scope, receive=receive)
+            request_id = str(uuid.uuid4())
+            client_ip = request.client.host if request.client else "unknown"
+            request_id_ctx_var.set(request_id)
+            client_ip_ctx_var.set(client_ip)
+        await self.app(scope, receive, send)
+
 # Request ID 미들웨어 추가
 app.add_middleware(RequestIDMiddleware)
 
@@ -81,7 +80,7 @@ def read_root():
     logger.info("Root endpoint accessed")
     return {"message": "Hello, Toby!"}
 
-# 요청 로깅 미들웨어
+# 요청 로깅 미들웨어: 모든 요청과 응답을 로깅
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     logger.debug("Request received")
@@ -112,9 +111,12 @@ async def log_requests(request: Request, call_next):
         raise e
 
 
-# 예외 처리 핸들러
+# 예외 처리 핸들러: VideoImportingError 발생 시
 @app.exception_handler(VideoImportingError)
 async def video_importing_exception_handler(request: Request, exc: VideoImportingError):
+    """
+    VideoImportingError 발생 시 400 Bad Request 응답을 반환합니다.
+    """
     logger.error("Video importing error", extra={
         "errorType": "VideoImportingError",
         "error_message": exc.detail
@@ -124,8 +126,12 @@ async def video_importing_exception_handler(request: Request, exc: VideoImportin
         content={"detail": exc.detail},
     )
 
+# 예외 처리 핸들러: PromptImportingError 발생 시
 @app.exception_handler(PromptImportingError)
 async def prompt_importing_exception_handler(request: Request, exc: PromptImportingError):
+    """
+    PromptImportingError 발생 시 400 Bad Request 응답을 반환합니다.
+    """
     logger.error("PromptImportingError", extra={
         "errorType": "PromptImportingError",
         "error_message": exc.detail
@@ -135,19 +141,27 @@ async def prompt_importing_exception_handler(request: Request, exc: PromptImport
         content={"detail": exc.detail},
     )
 
+# 예외 처리 핸들러: VideoProcessingError 발생 시
 @app.exception_handler(VideoProcessingError)
 async def video_processing_exception_handler(request: Request, exc: VideoProcessingError):
+    """
+    VideoProcessingError 발생 시 500 Internal Server Error 응답을 반환합니다.
+    """
     logger.error("Video processing error", extra={
         "errorType": "VideoProcessingError",
         "error_message": exc.detail
     }, exc_info=True)
     return JSONResponse(
-        status_code=400,  # 서버 내부에서 비디오를 처리하는 중 예상치 못한 오류가 발생했을 때 사용
+        status_code=500,  # 서버 내부에서 비디오를 처리하는 중 예상치 못한 오류가 발생했을 때 사용
         content={"detail": exc.detail},
     )
 
+# 예외 처리 핸들러: ImageEncodingError 발생 시
 @app.exception_handler(ImageEncodingError)
 async def image_encoding_exception_handler(request: Request, exc: ImageEncodingError):
+    """
+    ImageEncodingError 발생 시 500 Internal Server Error 응답을 반환합니다.
+    """
     logger.error("Image encoding error", extra={
         "errorType": "ImageEncodingError",
         "error_message": exc.detail
@@ -157,8 +171,12 @@ async def image_encoding_exception_handler(request: Request, exc: ImageEncodingE
         content={"detail": exc.detail},
     )
 
+# 예외 처리 핸들러: 일반 예외 발생 시
 @app.exception_handler(Exception)
 async def general_exception_handler(request: Request, exc: Exception):
+    """
+    예상치 못한 예외 발생 시 500 Internal Server Error 응답을 반환합니다.
+    """
     logger.error("Unhandled exception", extra={
         "errorType": type(exc).__name__,
         "error_message": str(exc)
