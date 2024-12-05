@@ -41,7 +41,7 @@ def process_video(file_path: str):
             "errorType": "VideoProcessingError",
             "error_message": f"비디오 파일을 가져올 수 없습니다: {file_path} - {vpe.message}"
         }, exc_info=True)
-        raise VideoProcessingError("비디오 파일을 가져올 수 없습니다.")
+        raise VideoProcessingError("비디오 파일을 가져올 수 없습니다.") from vpe
 
     # 세그먼트 길이와 프레임 간격 설정
     segment_length = 60  # 초
@@ -67,7 +67,7 @@ def process_video(file_path: str):
                 "errorType": "VideoProcessingError",
                 "error_message": f"프레임 추출 실패: {vpe.message}"
             }, exc_info=True)
-            raise VideoProcessingError("프레임을 추출할 수 없습니다.")
+            raise VideoProcessingError("프레임을 추출할 수 없습니다.") from vpe
 
         if frames is None or len(frames) == 0:
             logger.error(f"프레임을 추출할 수 없습니다. 비디오 파일에 문제가 있을 수 있습니다: {file_path}", extra={
@@ -90,7 +90,7 @@ def process_video(file_path: str):
                 "errorType": type(e).__name__,
                 "error_message": str(e)
             }, exc_info=True)
-            raise HTTPException(status_code=422, detail="프레임 분석 중 오류가 발생했습니다.")
+            raise HTTPException(status_code=422, detail="프레임 분석 중 오류가 발생했습니다.") from e
 
         logger.debug(f"프레임 수: {len(problematic_frames)}, 피드백 수: {len(feedbacks)}")
 
@@ -111,7 +111,7 @@ def process_video(file_path: str):
                     "errorType": "ImageEncodingError",
                     "error_message": f"이미지 인코딩 실패: {iee.message}"
                 }, exc_info=True)
-                raise ImageEncodingError("이미지 인코딩 중 오류가 발생했습니다.")
+                raise ImageEncodingError("이미지 인코딩 중 오류가 발생했습니다.") from iee
 
             # feedback_text를 FeedbackSections 구조로 변환
             try:
@@ -122,13 +122,13 @@ def process_video(file_path: str):
                     "errorType": "VideoProcessingError",
                     "error_message": f"피드백 텍스트 파싱 오류: {vpe.message}"
                 }, exc_info=True)
-                raise VideoProcessingError("피드백 텍스트를 생성하는 중 오류가 발생했습니다.")
+                raise VideoProcessingError("피드백 텍스트를 생성하는 중 오류가 발생했습니다.") from vpe
             except Exception as e:
                 logger.error(f"피드백 텍스트 파싱 중 예상치 못한 오류 발생: {str(e)}", extra={
                     "errorType": type(e).__name__,
                     "error_message": str(e)
                 }, exc_info=True)
-                raise VideoProcessingError("피드백 텍스트를 생성하는 중 오류가 발생했습니다.")
+                raise VideoProcessingError("피드백 텍스트를 생성하는 중 오류가 발생했습니다.") from e
 
             # 피드백 데이터 추가
             feedback_frame = FeedbackFrame(
@@ -156,14 +156,14 @@ def process_video(file_path: str):
                         "errorType": "ImageSaveError",
                         "error_message": f"이미지 저장 중 오류 발생: {ioe}"
                     }, exc_info=True)
-                    raise HTTPException(status_code=500, detail="이미지 저장 중 오류가 발생했습니다.")
+                    raise HTTPException(status_code=500, detail="이미지 저장 중 오류가 발생했습니다.") from ioe
 
                 except Exception as e:
                     logger.error(f"이미지 저장 중 예상치 못한 오류 발생: {e}", extra={
                         "errorType": "ImageSaveError",
                         "error_message": f"이미지 저장 중 오류 발생: {e}"
                     }, exc_info=True)
-                    raise HTTPException(status_code=500, detail="이미지 저장 중 오류가 발생했습니다.")
+                    raise HTTPException(status_code=500, detail="이미지 저장 중 오류가 발생했습니다.") from e
 
     # 피드백 데이터 반환 (비어 있을 수 있음)        
     return feedback_data
@@ -202,13 +202,13 @@ async def send_feedback_endpoint(video_id: str):
             "errorType": "VideoProcessingError",
             "error_message": vpe.message
         }, exc_info=True)
-        raise HTTPException(status_code=500, detail="비디오 처리 중 오류가 발생했습니다.")
+        raise HTTPException(status_code=500, detail="비디오 처리 중 오류가 발생했습니다.") from vpe
     except ImageEncodingError as iee:
         logger.error(f"이미지 인코딩 중 오류 발생: {iee.message}", extra={
             "errorType": "ImageEncodingError",
             "error_message": iee.message
         }, exc_info=True)
-        raise HTTPException(status_code=500, detail="이미지 인코딩 중 오류가 발생했습니다.")
+        raise HTTPException(status_code=500, detail="이미지 인코딩 중 오류가 발생했습니다.") from iee
     except HTTPException as he:
         # 이미 HTTPException이 발생했으므로 다시 던짐
         raise he
@@ -217,7 +217,7 @@ async def send_feedback_endpoint(video_id: str):
             "errorType": type(e).__name__,
             "error_message": str(e)
         }, exc_info=True)
-        raise HTTPException(status_code=500, detail="비디오 처리 중 예상치 못한 오류가 발생했습니다.")
+        raise HTTPException(status_code=500, detail="비디오 처리 중 예상치 못한 오류가 발생했습니다.") from e
 
     # 피드백 데이터 확인 - 정상 처리
     if not feedback_data:

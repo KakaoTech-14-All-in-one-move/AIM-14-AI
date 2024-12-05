@@ -66,10 +66,10 @@ def read_video_opencv(video_path: str, frame_indices: List[int]) -> Optional[Lis
             "errorType": "VideoProcessingError",
             "error_message": e.message
         }, exc_info=True)
-        raise
+        raise VideoProcessingError("비디오에 처리중 오류가 발생했습니다.") from e
     except Exception as e:
         logger.error(f"비디오에서 프레임 추출 중 오류 발생: {e}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
         }, exc_info=True)
-        raise VideoProcessingError("비디오에서 프레임 추출 중 서버 오류가 발생했습니다.")
+        raise VideoProcessingError("비디오에서 프레임 추출 중 서버 오류가 발생했습니다.") from e
