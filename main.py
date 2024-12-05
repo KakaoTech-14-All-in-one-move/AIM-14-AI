@@ -25,19 +25,26 @@ import uuid
 import traceback
 
 # Context variables import
-from vlm_model.context import request_id_ctx_var, client_ip_ctx_var
+from vlm_model.context_var import request_id_ctx_var, client_ip_ctx_var
+
+# ASGI types import
+from starlette.types import ASGIApp, Receive, Scope, Send
 
 app = FastAPI()
 
 # Middleware to assign request_id and capture client IP
 class RequestIDMiddleware:
-    async def __call__(self, request: Request, call_next):
-        request_id = str(uuid.uuid4())
-        client_ip = request.client.host if request.client else "unknown"
-        request_id_ctx_var.set(request_id)
-        client_ip_ctx_var.set(client_ip)
-        response = await call_next(request)
-        return response
+    def __init__(self, app: ASGIApp):
+        self.app = app
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send):
+        if scope["type"] == "http":
+            request = Request(scope, receive=receive)
+            request_id = str(uuid.uuid4())
+            client_ip = request.client.host if request.client else "unknown"
+            request_id_ctx_var.set(request_id)
+            client_ip_ctx_var.set(client_ip)
+        await self.app(scope, receive, send)
 
 
 # JSON 기반 로깅 설정 적용
@@ -110,44 +117,44 @@ async def log_requests(request: Request, call_next):
 async def video_importing_exception_handler(request: Request, exc: VideoImportingError):
     logger.error("Video importing error", extra={
         "errorType": "VideoImportingError",
-        "error_message": exc.message
+        "error_message": exc.detail
     }, exc_info=True)
     return JSONResponse(
         status_code=400,  #  비디오 파일이 유효하지 않을 때 사용됩니다. 예를 들어, 잘못된 비디오 형식이나 손상된 파일을 업로드한 경우
-        content={"detail": exc.message},
+        content={"detail": exc.detail},
     )
 
 @app.exception_handler(PromptImportingError)
 async def prompt_importing_exception_handler(request: Request, exc: PromptImportingError):
     logger.error("PromptImportingError", extra={
         "errorType": "PromptImportingError",
-        "error_message": exc.message
+        "error_message": exc.detail
     }, exc_info=True)
     return JSONResponse(
         status_code=400,  # 프롬프트 파일의 형식이 잘못되었거나, 필수 데이터가 누락된 경우
-        content={"detail": exc.message},
+        content={"detail": exc.detail},
     )
 
 @app.exception_handler(VideoProcessingError)
 async def video_processing_exception_handler(request: Request, exc: VideoProcessingError):
     logger.error("Video processing error", extra={
         "errorType": "VideoProcessingError",
-        "error_message": exc.message
+        "error_message": exc.detail
     }, exc_info=True)
     return JSONResponse(
         status_code=400,  # 서버 내부에서 비디오를 처리하는 중 예상치 못한 오류가 발생했을 때 사용
-        content={"detail": exc.message},
+        content={"detail": exc.detail},
     )
 
 @app.exception_handler(ImageEncodingError)
 async def image_encoding_exception_handler(request: Request, exc: ImageEncodingError):
     logger.error("Image encoding error", extra={
         "errorType": "ImageEncodingError",
-        "error_message": exc.message
+        "error_message": exc.detail
     }, exc_info=True)
     return JSONResponse(
         status_code=500,  # 이미지 인코딩 과정에서 서버 내부적인 문제가 발생했을 때 사용
-        content={"detail": exc.message},
+        content={"detail": exc.detail},
     )
 
 @app.exception_handler(Exception)
@@ -160,6 +167,15 @@ async def general_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={"detail": "서버 내부 오류가 발생했습니다."},
     )
+
+# 테스트 엔드포인트 추가
+@app.get("/test-logging")
+def test_logging():
+    logger.debug("디버그 레벨 로그 테스트")
+    logger.info("정보 레벨 로그 테스트")
+    logger.warning("경고 레벨 로그 테스트")
+    logger.error("오류 레벨 로그 테스트")
+    return {"message": "로깅 테스트 완료"}
 
 # 서버 실행 (uvicorn.run()에서 log_config 지정)
 if __name__ == "__main__":

@@ -52,7 +52,7 @@ def read_video_opencv(video_path: str, frame_indices: List[int]) -> Optional[Lis
 
         cap.release()
 
-       if not frames:
+        if not frames:
             logger.error("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.", extra={
                 "errorType": "VideoProcessingError",
                 "error_message": "지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없음."

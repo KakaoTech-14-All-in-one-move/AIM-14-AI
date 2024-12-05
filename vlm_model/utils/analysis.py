@@ -168,7 +168,6 @@ def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, se
             ]
             logger.debug(f"프레임 {i+1} 응답 텍스트: {generated_text}")
             logger.debug(f"감지된 문제 행동: {detected_behaviors}")
-            logger.debug(f"PROBLEMATIC_BEHAVIORS 리스트: {PROBLEMATIC_BEHAVIORS}")
 
             if problem_detected:
                 # 프레임과 세그먼트 정보를 저장

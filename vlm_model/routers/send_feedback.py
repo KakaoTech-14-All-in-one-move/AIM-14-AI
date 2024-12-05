@@ -45,7 +45,7 @@ def process_video(file_path: str):
 
     # 세그먼트 길이와 프레임 간격 설정
     segment_length = 60  # 초
-    frame_interval = 1    # 초
+    frame_interval = 2    # 초
 
     feedback_data = []
 

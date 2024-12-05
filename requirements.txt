@@ -9,3 +9,4 @@ fastapi
 uvicorn
 python-multipart
 python-json-logger
+colorlog
