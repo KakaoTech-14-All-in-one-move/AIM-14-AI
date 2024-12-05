@@ -3,8 +3,6 @@
 from dotenv import load_dotenv
 from pathlib import Path
 import os
-import logging
-
 
 # .env 파일의 경로 설정 (프로젝트 최상위 디렉토리 기준)
 dotenv_path = Path(__file__).resolve().parent.parent / '.env'

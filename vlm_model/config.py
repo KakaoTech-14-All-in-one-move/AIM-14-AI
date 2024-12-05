@@ -3,17 +3,14 @@
 from dotenv import load_dotenv
 from pathlib import Path
 import os
-import logging
 from fastapi import HTTPException
+import logging
+
+# 모듈별 로거 생성
+logger = logging.getLogger(__name__)  # 'vlm_model.config' 로거 사용
 
 # .env 파일에서 환경 변수 로드
 load_dotenv()
-
-# 로깅 설정
-logging.basicConfig(
-    level=logging.INFO,  # 필요에 따라 DEBUG로 변경 가능
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
 
 # Docker 환경 감지 및 경로 설정
 try:
@@ -22,28 +19,38 @@ try:
     if 'docker' in cgroup_content:
         # Docker 환경
         BASE_DIR = Path("/app")
-        logging.info("Docker 환경으로 감지되었습니다.")
+        logger.info("Docker 환경으로 감지되었습니다.")
+        logger.debug(f"BASE_DIR 설정: {BASE_DIR}")
     else:
         # 로컬 환경
         BASE_DIR = Path(__file__).resolve().parent.parent
-        logging.info("로컬 환경으로 감지되었습니다.")
+        logger.info("로컬 환경으로 감지되었습니다.")
+        logger.debug(f"BASE_DIR 설정: {BASE_DIR}")
 except FileNotFoundError:
     # 로컬 환경
     BASE_DIR = Path(__file__).resolve().parent.parent
-    logging.info("로컬 환경으로 간주합니다. 기본 경로로 설정합니다.")
+    logger.info("로컬 환경으로 간주합니다. 기본 경로로 설정합니다.")
+    logger.debug(f"BASE_DIR 설정: {BASE_DIR}")
 except Exception as e:
-    logging.error(f"환경 감지 중 오류 발생: {e}")
+    logger.error(f"환경 감지 중 오류 발생: {e}", extra={
+        "errorType": "EnvironmentDetectionError",
+        "error_message": str(e)
+    }, exc_info=True)
     raise HTTPException(status_code=500, detail="환경 감지 중 오류 발생")
 
 # 저장 디렉토리 설정
 UPLOAD_DIR = BASE_DIR / os.getenv("UPLOAD_DIR", "storage/input_video")
 FEEDBACK_DIR = BASE_DIR / os.getenv("FEEDBACK_DIR", "storage/output_feedback_frame")
 
-# 디렉토리 존재 여부 확인 및 생성c
+# 디렉토리 존재 여부 확인 및 생성
 try:
     for directory in [UPLOAD_DIR, FEEDBACK_DIR]:
         directory.mkdir(parents=True, exist_ok=True)
-        logging.info(f"디렉토리가 준비되었습니다: {directory}")
+        logger.info(f"디렉토리가 준비되었습니다: {directory}")
+        logger.debug(f"생성된 디렉토리 경로: {directory}")
 except Exception as e:
-    logging.error(f"디렉토리 생성 실패: {e}")
+    logger.error(f"디렉토리 생성 실패: {e}", extra={
+        "errorType": "DirectoryCreationError",
+        "error_message": str(e)
+    }, exc_info=True)
     raise HTTPException(status_code=500, detail="디렉토리 생성 실패")
