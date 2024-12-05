@@ -28,7 +28,10 @@ def read_video_opencv(video_path: str, frame_indices: List[int]) -> Optional[Lis
     try:
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
-            logger.error(f"비디오 파일을 열 수 없습니다: {video_path}")
+            logger.error(f"비디오 파일을 열 수 없습니다: {video_path}", extra={
+                "errorType": "VideoProcessingError",
+                "error_message": f"비디오 파일을 열 수 없습니다: {video_path}"
+            })
             raise VideoProcessingError(f"비디오 파일을 열 수 없습니다: {video_path}")
 
         frames = []
@@ -49,14 +52,24 @@ def read_video_opencv(video_path: str, frame_indices: List[int]) -> Optional[Lis
 
         cap.release()
 
-        if not frames:
-            logger.error("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.")
+       if not frames:
+            logger.error("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.", extra={
+                "errorType": "VideoProcessingError",
+                "error_message": "지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없음."
+            })
             raise VideoProcessingError("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없음.")
 
         return frames
 
-    except VideoProcessingError:
+    except VideoProcessingError as e:
+        logger.error("비디오 처리 중 오류 발생", extra={
+            "errorType": "VideoProcessingError",
+            "error_message": e.message
+        }, exc_info=True)
         raise
     except Exception as e:
-        logger.error(f"비디오에서 프레임 추출 중 오류 발생: {e}", exc_info=True)
+        logger.error(f"비디오에서 프레임 추출 중 오류 발생: {e}", extra={
+            "errorType": type(e).__name__,
+            "error_message": str(e)
+        }, exc_info=True)
         raise VideoProcessingError("비디오에서 프레임 추출 중 서버 오류가 발생했습니다.")

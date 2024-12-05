@@ -32,7 +32,10 @@ except FileNotFoundError:
     logger.info("로컬 환경으로 간주합니다. 기본 경로로 설정합니다.")
     logger.debug(f"BASE_DIR 설정: {BASE_DIR}")
 except Exception as e:
-    logger.error(f"환경 감지 중 오류 발생: {e}")
+    logger.error(f"환경 감지 중 오류 발생: {e}", extra={
+        "errorType": "EnvironmentDetectionError",
+        "error_message": str(e)
+    }, exc_info=True)
     raise HTTPException(status_code=500, detail="환경 감지 중 오류 발생")
 
 # 저장 디렉토리 설정
@@ -46,5 +49,8 @@ try:
         logger.info(f"디렉토리가 준비되었습니다: {directory}")
         logger.debug(f"생성된 디렉토리 경로: {directory}")
 except Exception as e:
-    logger.error(f"디렉토리 생성 실패: {e}")
+    logger.error(f"디렉토리 생성 실패: {e}", extra={
+        "errorType": "DirectoryCreationError",
+        "error_message": str(e)
+    }, exc_info=True)
     raise HTTPException(status_code=500, detail="디렉토리 생성 실패")

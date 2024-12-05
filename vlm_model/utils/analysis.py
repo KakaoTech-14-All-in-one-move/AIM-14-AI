@@ -8,6 +8,7 @@ from vlm_model.openai_config import SYSTEM_INSTRUCTION
 from vlm_model.constants.behaviors import PROBLEMATIC_BEHAVIORS
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.schemas.feedback import FeedbackSections, FeedbackDetails
+from vlm_model.exceptions import PromptImportingError
 from pathlib import Path
 import logging
 from fastapi import HTTPException
@@ -30,11 +31,17 @@ def load_user_prompt() -> str:
         with prompt_path.open('r', encoding='utf-8') as file:
             return file.read()
     except FileNotFoundError:
-        logger.error(f"프롬프트 파일을 찾을 수 없음: {prompt_path}")
-        raise HTTPException(status_code=404, detail="프롬프트 파일을 찾을 수 없습니다")
+        logger.error(f"프롬프트 파일을 찾을 수 없음: {prompt_path}", extra={
+            "errorType": "FileNotFoundError",
+            "error_message": f"프롬프트 파일을 찾을 수 없음: {prompt_path}"
+        }, exc_info=True)
+        raise PromptImportingError("프롬프트 파일을 찾을 수 없습니다")
     except Exception as e:
-        logger.error(f"프롬프트 파일을 로드할 수 없음: {e}")
-        raise HTTPException(status_code=500, detail="프롬프트 파일을 로드하는 중 오류가 발생했습니다")
+        logger.error(f"프롬프트 파일을 로드할 수 없음: {e}", extra={
+            "errorType": type(e).__name__,
+            "error_message": str(e)
+        }, exc_info=True)
+        raise PromptImportingError("프롬프트 파일을 로드하는 중 오류가 발생했습니다")
 
 def parse_feedback_text(feedback_text: str) -> FeedbackSections:
     """
@@ -71,10 +78,16 @@ def parse_feedback_text(feedback_text: str) -> FeedbackSections:
         return FeedbackSections(**feedback_data)
     
     except json.JSONDecodeError as e:
-        logger.error(f"JSON 디코딩 오류: {str(e)}")
+        logger.error(f"JSON 디코딩 오류: {str(e)}", extra={
+            "errorType": "JSONDecodeError",
+            "error_message": str(e)
+        }, exc_info=True)
         raise HTTPException(status_code=400, detail="JSON 디코딩 오류")
     except Exception as e:
-        logger.error(f"FeedbackSections 생성 실패: {str(e)}")
+        logger.error(f"FeedbackSections 생성 실패: {str(e)}", extra={
+            "errorType": type(e).__name__,
+            "error_message": str(e)
+        }, exc_info=True)
         raise HTTPException(status_code=500, detail="FeedbackSections 생성 실패")
 
 def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, segment_length: int, system_instruction: str, frame_interval: int = 3) -> Tuple[List[Tuple[np.ndarray, int, int, str]], List[str]]:
@@ -163,13 +176,22 @@ def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, se
                 feedbacks.append(generated_text)
 
         except client.error.OpenAIError as e:
-            logger.error(f"프레임 {i+1} 처리 중 OpenAI 오류 발생: {e}")
+            logger.error(f"프레임 {i+1} 처리 중 OpenAI 오류 발생: {e}", extra={
+                "errorType": "OpenAIError",
+                "error_message": str(e)
+            }, exc_info=True)
             raise HTTPException(status_code=502, detail="OpenAI API 통신 오류.")
         except ValueError as ve:
-            logger.error(f"프레임 {i+1} 피드백 파싱 중 오류 발생: {ve}")
+            logger.error(f"프레임 {i+1} 피드백 파싱 중 오류 발생: {ve}", extra={
+                "errorType": "ValueError",
+                "error_message": str(ve)
+            }, exc_info=True)
             raise HTTPException(status_code=400, detail="피드백 파싱 과정중 오류.")
         except Exception as e:
-            logger.error(f"프레임 {i+1} 처리 중 오류 발생: {e}")
+            logger.error(f"프레임 {i+1} 처리 중 오류 발생: {e}", extra={
+                "errorType": type(e).__name__,
+                "error_message": str(e)
+            }, exc_info=True)
             raise HTTPException(status_code=500, detail="프레임 처리 중 오류가 발생.")
 
     return problematic_frames, feedbacks
