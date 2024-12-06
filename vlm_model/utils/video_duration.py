@@ -53,10 +53,10 @@ def get_video_duration(video_path: str) -> Optional[float]:
             "errorType": "VideoImportingError",
             "error_message": e.message
         }, exc_info=True)
-        raise VideoImportingError("비디오를 처리하는 중에 오류가 발생했습니다.")
+        raise VideoImportingError("비디오를 처리하는 중에 오류가 발생했습니다.") from e
     except Exception as e:
         logger.error(f"비디오 길이를 가져오는 중 오류 발생: {e}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
         }, exc_info=True)
-        raise VideoImportingError("비디오 길이를 가져오는 중 서버 오류가 발생했습니다.")
+        raise VideoImportingError("비디오 길이를 가져오는 중 서버 오류가 발생했습니다.") from e

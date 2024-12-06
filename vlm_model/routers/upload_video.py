@@ -36,21 +36,21 @@ def convert_to_vp9(input_path: str, output_path: str) -> bool:
             "errorType": "FileNotFoundError",
             "error_message": str(f)
         }, exc_info=True)
-        raise VideoImportingError("ffmpeg 설치가 필요합니다.")
+        raise HTTPException(status_code=404, detail="ffmpeg 패키지 파일을 찾을수 없습니다. 설치가 필요합니다.") from f
         
     except subprocess.CalledProcessError as e:
         logger.error(f"비디오 변환 실패: {e.stderr.decode().strip()}", extra={
             "errorType": "CalledProcessError",
             "error_message": str(e)
         }, exc_info=True)
-        raise VideoImportingError("비디오 변환 중 오류가 발생했습니다.")
+        raise VideoImportingError("비디오 변환 중 오류가 발생했습니다.") from e
 
     except Exception as e:
         logger.error(f"알 수 없는 변환 오류 발생: {e}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
         }, exc_info=True)
-        raise VideoImportingError("예기치 않은 변환 오류가 발생했습니다.")
+        raise VideoImportingError("예기치 않은 변환 오류가 발생했습니다.") from e
 
 
 @router.post("/receive-video/", response_model=UploadResponse)
@@ -124,14 +124,14 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
             "errorType": type(e).__name__,
             "error_message": str(e)
         }, exc_info=True)
-        raise VideoImportingError("파일 저장 중 오류가 발생했습니다.")
+        raise HTTPException(status_code=500, detail="파일 저장 중 오류가 발생했습니다.") from e
 
     except Exception as e:
         logger.error(f"알 수 없는 오류 발생: {str(e)}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
         }, exc_info=True)
-        raise VideoImportingError("파일 처리 중 예기치 않은 오류가 발생했습니다.")
+        raise HTTPException(status_code=500, detail="파일 처리 중 예기치 않은 오류가 발생했습니다.")
 
 def get_video_codec_info(video_path: str):
     """
@@ -148,11 +148,11 @@ def get_video_codec_info(video_path: str):
             "errorType": "CalledProcessError",
             "error_message": str(e)
         }, exc_info=True)
-        raise VideoImportingError("코덱 정보 확인 실패")
+        raise VideoImportingError("코덱 정보 확인 실패") from e
 
     except Exception as e:
         logger.error(f"코덱 정보 확인 중 오류 발생: {str(e)}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
         }, exc_info=True)
-        raise VideoImportingError("코덱 정보 확인 중 오류 발생")
+        raise VideoImportingError("코덱 정보 확인 중 오류 발생") from e

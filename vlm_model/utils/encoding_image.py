@@ -45,4 +45,4 @@ def encode_image(image: np.ndarray, max_size: tuple = (256, 256), quality: int =
             "errorType": type(e).__name__,
             "error_message": str(e)
         }, exc_info=True)
-        raise ImageEncodingError("이미지 인코딩 중 서버 오류가 발생했습니다.")
+        raise ImageEncodingError("이미지 인코딩 중 서버 오류가 발생했습니다.") from e
