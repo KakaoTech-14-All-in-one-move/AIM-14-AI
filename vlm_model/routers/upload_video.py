@@ -35,21 +35,21 @@ def convert_to_vp9(input_path: str, output_path: str) -> bool:
         logger.error(f"ffmpeg 패키지 파일을 찾을 수 없습니다. Dockerfile에 ffmpeg 설치를 추가했는지 확인하세요.", extra={
             "errorType": "FileNotFoundError",
             "error_message": str(f)
-        }, exc_info=True)
+        })
         raise HTTPException(status_code=404, detail="ffmpeg 패키지 파일을 찾을수 없습니다. 설치가 필요합니다.") from f
         
     except subprocess.CalledProcessError as e:
         logger.error(f"비디오 변환 실패: {e.stderr.decode().strip()}", extra={
             "errorType": "CalledProcessError",
             "error_message": str(e)
-        }, exc_info=True)
+        })
         raise VideoImportingError("비디오 변환 중 오류가 발생했습니다.") from e
 
     except Exception as e:
         logger.error(f"알 수 없는 변환 오류 발생: {e}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
-        }, exc_info=True)
+        })
         raise VideoImportingError("예기치 않은 변환 오류가 발생했습니다.") from e
 
 
@@ -74,7 +74,7 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
         logger.error(f"지원하지 않는 파일 형식: {file_extension}", extra={
             "errorType": "UnsupportedMediaType",
             "error_message": f"지원하지 않는 파일 형식 입니다.: {file_extension}"
-        }, exc_info=True)
+        })
         raise HTTPException(status_code=400, detail="지원하지 않는 파일 형식입니다.")
 
     # 고유한 video_id 생성
@@ -94,7 +94,7 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
             logger.error("파일이 저장되지 않았습니다.", extra={
                 "errorType": "VideoImportingError",
                 "error_message": "파일이 저장되지 않았습니다."
-            }, exc_info=True)
+            })
             raise VideoImportingError("파일이 저장되지 않았습니다.")
 
         file_size = os.path.getsize(original_file_path)
@@ -112,7 +112,7 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
             logger.error("비디오 코덱 변환이 실패했습니다.", extra={
                 "errorType": "VideoImportingError",
                 "error_message": "비디오 코덱 변환이 실패했습니다."
-            }, exc_info=True)
+            })
             raise VideoImportingError("비디오 코덱 변환이 실패했습니다.")
 
     except VideoImportingError as vie:
@@ -123,14 +123,14 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
         logger.error(f"파일 저장 중 오류 발생: {str(e)}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
-        }, exc_info=True)
+        })
         raise HTTPException(status_code=500, detail="파일 저장 중 오류가 발생했습니다.") from e
 
     except Exception as e:
         logger.error(f"알 수 없는 오류 발생: {str(e)}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
-        }, exc_info=True)
+        })
         raise HTTPException(status_code=500, detail="파일 처리 중 예기치 않은 오류가 발생했습니다.")
 
 def get_video_codec_info(video_path: str):
@@ -147,12 +147,12 @@ def get_video_codec_info(video_path: str):
         logger.error(f"코덱 정보 확인 실패: {str(e)}", extra={
             "errorType": "CalledProcessError",
             "error_message": str(e)
-        }, exc_info=True)
+        })
         raise VideoImportingError("코덱 정보 확인 실패") from e
 
     except Exception as e:
         logger.error(f"코덱 정보 확인 중 오류 발생: {str(e)}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
-        }, exc_info=True)
+        })
         raise VideoImportingError("코덱 정보 확인 중 오류 발생") from e
