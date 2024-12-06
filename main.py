@@ -25,7 +25,7 @@ import uuid
 import traceback
 
 # Context variables import
-from vlm_model.context_var import request_id_ctx_var, client_ip_ctx_var
+from vlm_model.context_var import request_id_ctx_var
 
 # ASGI types import
 from starlette.types import ASGIApp, Receive, Scope, Send
@@ -61,7 +61,6 @@ class RequestIDMiddleware:
             request_id = str(uuid.uuid4())
             client_ip = request.client.host if request.client else "unknown"
             request_id_ctx_var.set(request_id)
-            client_ip_ctx_var.set(client_ip)
         await self.app(scope, receive, send)
 
 # Request ID 미들웨어 추가
@@ -191,7 +190,6 @@ async def general_exception_handler(request: Request, exc: Exception):
 def test_logging():
     logger.debug("디버그 레벨 로그 테스트")
     logger.info("정보 레벨 로그 테스트")
-    logger.warning("경고 레벨 로그 테스트")
     logger.error("오류 레벨 로그 테스트")
     return {"message": "로깅 테스트 완료"}
 

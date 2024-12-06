@@ -9,7 +9,7 @@
     "formatters": {
       "json": {
         "()": "pythonjsonlogger.jsonlogger.JsonFormatter",
-        "format": "%(asctime)s %(levelname)s %(service)s %(request_id)s %(class_name)s %(method_name)s %(client_ip)s %(errorType)s %(error_message)s",
+        "format": "%(asctime)s %(levelname)s %(service)s %(request_id)s %(class_name)s %(method_name)s %(errorType)s %(error_message)s",
         "json_indent": 4
       },
       "colored": {
@@ -19,8 +19,7 @@
             "DEBUG": "cyan",
             "INFO": "green",
             "WARNING": "yellow",
-            "ERROR": "red",
-            "CRITICAL": "bold_red"
+            "ERROR": "bold_red"
         }
       }
     },

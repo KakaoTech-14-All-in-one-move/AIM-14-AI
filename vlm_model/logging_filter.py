@@ -15,7 +15,6 @@ class ContextFilter(logging.Filter):
 
         # ContextVar에서 request_id와 client_ip 가져오기
         record.request_id = request_id_ctx_var.get() or "unknown"
-        record.client_ip = client_ip_ctx_var.get() or "unknown"  # user_id를 client_ip로 대체
 
         # 로거 이름을 기반으로 class_name 설정
         logger_name = record.name
