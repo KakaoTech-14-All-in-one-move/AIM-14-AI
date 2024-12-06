@@ -65,7 +65,7 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
 
     # 요청 수신 로그
     logger.info("receive_video_endpoint 호출됨")
-    logger.info(f"받은 파일: {file.filename}")
+    logger.debug(f"받은 파일: {file.filename}")
 
     # 지원하는 파일 형식 확인
     ALLOWED_EXTENSIONS = {"webm", "mp4", "mov", "avi", "mkv"}

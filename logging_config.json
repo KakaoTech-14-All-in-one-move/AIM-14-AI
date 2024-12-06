@@ -8,8 +8,8 @@
   },
   "formatters": {
     "json": {
-      "()": "pythonjsonlogger.jsonlogger.JsonFormatter",
-      "format": "%(asctime)s %(levelname)s %(service)s %(request_id)s %(class_name)s %(method_name)s %(client_ip)s %(errorType)s %(error_message)s",
+      "()": "vlm_model.logging_filter.CustomJsonFormatter",
+      "format": "%(asctime)s %(levelname)s %(service)s %(request_id)s %(class_name)s %(method_name)s %(error_type)s %(error_message)s",
       "json_indent": 4
     },
     "colored": {

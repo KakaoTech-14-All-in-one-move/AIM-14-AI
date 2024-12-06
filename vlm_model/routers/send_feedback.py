@@ -231,6 +231,7 @@ async def send_feedback_endpoint(video_id: str):
             problem="no_feedback"
         )
 
+    logger.info(f"비디오 ID {video_id}에 대한 분석이 성공적으로 완료되었습니다.")
     return FeedbackResponse(
         feedbacks=feedback_data,
         message="피드백 데이터 생성 완료",
