@@ -101,11 +101,11 @@ def process_video(file_path: str):
             try:
                 image_base64 = encode_image(frame)
                 if not image_base64:
-                    logger.warning(f"프레임 {frame_number}의 이미지 인코딩 실패", extra={
+                    logger.error(f"프레임 {frame_number}의 이미지 인코딩 실패", extra={
                         "errorType": "ImageEncodingError",
                         "error_message": f"이미지 인코딩 실패. 프레임 {frame_number}"
                     }, exc_info=True)
-                    continue
+                    raise ImageEncodingError("이미지 인코딩이 실패했습니다.") from iee
             except ImageEncodingError as iee:
                 logger.error(f"이미지 인코딩 실패: {iee.message}", extra={
                     "errorType": "ImageEncodingError",
@@ -221,7 +221,7 @@ async def send_feedback_endpoint(video_id: str):
 
     # 피드백 데이터 확인 - 정상 처리
     if not feedback_data:
-        logger.warning(f"분석 결과 피드백할 내용이 없습니다: video_id={video_id}", extra={
+        logger.info(f"분석 결과 피드백할 내용이 없습니다: video_id={video_id}", extra={
             "errorType": "NoFeedback",
             "error_message": "분석 결과 피드백할 내용이 없습니다."
         })

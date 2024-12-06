@@ -58,8 +58,7 @@ class RequestIDMiddleware:
     async def __call__(self, scope: Scope, receive: Receive, send: Send):
         if scope["type"] == "http":
             request = Request(scope, receive=receive)
-            request_id = str(uuid.uuid4())
-            client_ip = request.client.host if request.client else "unknown"
+            request_id = request.headers.get("X-User-ID", "unknown")
             request_id_ctx_var.set(request_id)
         await self.app(scope, receive, send)
 

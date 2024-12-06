@@ -1,0 +1,77 @@
+{
+    "asctime": "2024-12-06 17:10:07,267",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.access",
+    "method_name": "send",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-3"
+}
+{
+    "asctime": "2024-12-06 17:10:07,769",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.access",
+    "method_name": "send",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-6"
+}
+{
+    "asctime": "2024-12-06 17:10:41,738",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.access",
+    "method_name": "send",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-3"
+}
+{
+    "asctime": "2024-12-06 17:10:41,863",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.access",
+    "method_name": "send",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-6"
+}
+{
+    "asctime": "2024-12-06 17:10:44,078",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.access",
+    "method_name": "send",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-9"
+}
+{
+    "asctime": "2024-12-06 17:10:44,291",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.access",
+    "method_name": "send",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-12"
+}
+{
+    "asctime": "2024-12-06 17:10:52,668",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.access",
+    "method_name": "send",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-15"
+}

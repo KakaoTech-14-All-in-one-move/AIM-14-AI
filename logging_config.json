@@ -18,7 +18,6 @@
         "log_colors": {
             "DEBUG": "cyan",
             "INFO": "green",
-            "WARNING": "yellow",
             "ERROR": "bold_red"
         }
       }

@@ -1,0 +1,1150 @@
+{
+    "asctime": "2024-12-06 17:10:02,490",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "__init__",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:10:02,490",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "bind_socket",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null,
+    "color_message": "Uvicorn running on \u001b[1m%s://%s:%d\u001b[0m (Press CTRL+C to quit)"
+}
+{
+    "asctime": "2024-12-06 17:10:02,490",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null,
+    "color_message": "Started reloader process [\u001b[36m\u001b[1m21954\u001b[0m] using \u001b[36m\u001b[1mWatchFiles\u001b[0m"
+}
+{
+    "asctime": "2024-12-06 17:10:03,918",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:03,918",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:03,918",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:03,926",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Started server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:10:03,926",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:03,926",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:03,997",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:10:07,216",
+    "levelname": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "log_requests",
+    "errorType": "NameError",
+    "error_message": "name 'request_id' is not defined",
+    "exc_info": "Traceback (most recent call last):\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 157, in call_next\n    message = await recv_stream.receive()\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/streams/memory.py\", line 111, in receive\n    return self.receive_nowait()\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/streams/memory.py\", line 104, in receive_nowait\n    raise EndOfStream\nanyio.EndOfStream\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    raise app_exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    request_id_ctx_var.set(request_id)\n                           ^^^^^^^^^^\nNameError: name 'request_id' is not defined. Did you mean: 'request'?",
+    "taskName": "Task-3",
+    "error_type": "N/A"
+}
+{
+    "asctime": "2024-12-06 17:10:07,237",
+    "levelname": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "general_exception_handler",
+    "errorType": "NameError",
+    "error_message": "name 'request_id' is not defined",
+    "exc_info": "  + Exception Group Traceback (most recent call last):\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 76, in collapse_excgroups\n  |     yield\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 186, in __call__\n  |     async with anyio.create_task_group() as task_group:\n  |                ^^^^^^^^^^^^^^^^^^^^^^^^^\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py\", line 763, in __aexit__\n  |     raise BaseExceptionGroup(\n  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 165, in __call__\n    |     await self.app(scope, receive, _send)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 185, in __call__\n    |     with collapse_excgroups():\n    |          ^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py\", line 158, in __exit__\n    |     self.gen.throw(value)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 82, in collapse_excgroups\n    |     raise exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 187, in __call__\n    |     response = await self.dispatch_func(request, call_next)\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 109, in log_requests\n    |     raise e\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    |     response = await call_next(request)\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    |     raise app_exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    |     await self.app(scope, receive_or_disconnect, send_no_error)\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    |     request_id_ctx_var.set(request_id)\n    |                            ^^^^^^^^^^\n    | NameError: name 'request_id' is not defined. Did you mean: 'request'?\n    +------------------------------------\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 165, in __call__\n    await self.app(scope, receive, _send)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 185, in __call__\n    with collapse_excgroups():\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py\", line 158, in __exit__\n    self.gen.throw(value)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 82, in collapse_excgroups\n    raise exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 187, in __call__\n    response = await self.dispatch_func(request, call_next)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 109, in log_requests\n    raise e\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    raise app_exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    request_id_ctx_var.set(request_id)\n                           ^^^^^^^^^^\nNameError: name 'request_id' is not defined. Did you mean: 'request'?",
+    "taskName": "Task-3",
+    "error_type": "N/A"
+}
+{
+    "asctime": "2024-12-06 17:10:07,268",
+    "levelname": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "run_asgi",
+    "errorType": null,
+    "error_message": null,
+    "exc_info": "  + Exception Group Traceback (most recent call last):\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 76, in collapse_excgroups\n  |     yield\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 186, in __call__\n  |     async with anyio.create_task_group() as task_group:\n  |                ^^^^^^^^^^^^^^^^^^^^^^^^^\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py\", line 763, in __aexit__\n  |     raise BaseExceptionGroup(\n  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py\", line 426, in run_asgi\n    |     result = await app(  # type: ignore[func-returns-value]\n    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py\", line 84, in __call__\n    |     return await self.app(scope, receive, send)\n    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py\", line 1054, in __call__\n    |     await super().__call__(scope, receive, send)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py\", line 113, in __call__\n    |     await self.middleware_stack(scope, receive, send)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 187, in __call__\n    |     raise exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 165, in __call__\n    |     await self.app(scope, receive, _send)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 185, in __call__\n    |     with collapse_excgroups():\n    |          ^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py\", line 158, in __exit__\n    |     self.gen.throw(value)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 82, in collapse_excgroups\n    |     raise exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 187, in __call__\n    |     response = await self.dispatch_func(request, call_next)\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 109, in log_requests\n    |     raise e\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    |     response = await call_next(request)\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    |     raise app_exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    |     await self.app(scope, receive_or_disconnect, send_no_error)\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    |     request_id_ctx_var.set(request_id)\n    |                            ^^^^^^^^^^\n    | NameError: name 'request_id' is not defined. Did you mean: 'request'?\n    +------------------------------------\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py\", line 426, in run_asgi\n    result = await app(  # type: ignore[func-returns-value]\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py\", line 84, in __call__\n    return await self.app(scope, receive, send)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py\", line 1054, in __call__\n    await super().__call__(scope, receive, send)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py\", line 113, in __call__\n    await self.middleware_stack(scope, receive, send)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 187, in __call__\n    raise exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 165, in __call__\n    await self.app(scope, receive, _send)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 185, in __call__\n    with collapse_excgroups():\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py\", line 158, in __exit__\n    self.gen.throw(value)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 82, in collapse_excgroups\n    raise exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 187, in __call__\n    response = await self.dispatch_func(request, call_next)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 109, in log_requests\n    raise e\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    raise app_exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    request_id_ctx_var.set(request_id)\n                           ^^^^^^^^^^\nNameError: name 'request_id' is not defined. Did you mean: 'request'?",
+    "taskName": "Task-3",
+    "error_type": "N/A"
+}
+{
+    "asctime": "2024-12-06 17:10:07,753",
+    "levelname": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "log_requests",
+    "errorType": "NameError",
+    "error_message": "name 'request_id' is not defined",
+    "exc_info": "Traceback (most recent call last):\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 157, in call_next\n    message = await recv_stream.receive()\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/streams/memory.py\", line 111, in receive\n    return self.receive_nowait()\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/streams/memory.py\", line 104, in receive_nowait\n    raise EndOfStream\nanyio.EndOfStream\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    raise app_exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    request_id_ctx_var.set(request_id)\n                           ^^^^^^^^^^\nNameError: name 'request_id' is not defined. Did you mean: 'request'?",
+    "taskName": "Task-6",
+    "error_type": "N/A"
+}
+{
+    "asctime": "2024-12-06 17:10:07,757",
+    "levelname": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "general_exception_handler",
+    "errorType": "NameError",
+    "error_message": "name 'request_id' is not defined",
+    "exc_info": "  + Exception Group Traceback (most recent call last):\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 76, in collapse_excgroups\n  |     yield\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 186, in __call__\n  |     async with anyio.create_task_group() as task_group:\n  |                ^^^^^^^^^^^^^^^^^^^^^^^^^\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py\", line 763, in __aexit__\n  |     raise BaseExceptionGroup(\n  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 165, in __call__\n    |     await self.app(scope, receive, _send)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 185, in __call__\n    |     with collapse_excgroups():\n    |          ^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py\", line 158, in __exit__\n    |     self.gen.throw(value)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 82, in collapse_excgroups\n    |     raise exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 187, in __call__\n    |     response = await self.dispatch_func(request, call_next)\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 109, in log_requests\n    |     raise e\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    |     response = await call_next(request)\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    |     raise app_exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    |     await self.app(scope, receive_or_disconnect, send_no_error)\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    |     request_id_ctx_var.set(request_id)\n    |                            ^^^^^^^^^^\n    | NameError: name 'request_id' is not defined. Did you mean: 'request'?\n    +------------------------------------\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 165, in __call__\n    await self.app(scope, receive, _send)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 185, in __call__\n    with collapse_excgroups():\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py\", line 158, in __exit__\n    self.gen.throw(value)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 82, in collapse_excgroups\n    raise exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 187, in __call__\n    response = await self.dispatch_func(request, call_next)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 109, in log_requests\n    raise e\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    raise app_exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    request_id_ctx_var.set(request_id)\n                           ^^^^^^^^^^\nNameError: name 'request_id' is not defined. Did you mean: 'request'?",
+    "taskName": "Task-6",
+    "error_type": "N/A"
+}
+{
+    "asctime": "2024-12-06 17:10:07,769",
+    "levelname": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "run_asgi",
+    "errorType": null,
+    "error_message": null,
+    "exc_info": "  + Exception Group Traceback (most recent call last):\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 76, in collapse_excgroups\n  |     yield\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 186, in __call__\n  |     async with anyio.create_task_group() as task_group:\n  |                ^^^^^^^^^^^^^^^^^^^^^^^^^\n  |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py\", line 763, in __aexit__\n  |     raise BaseExceptionGroup(\n  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py\", line 426, in run_asgi\n    |     result = await app(  # type: ignore[func-returns-value]\n    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py\", line 84, in __call__\n    |     return await self.app(scope, receive, send)\n    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py\", line 1054, in __call__\n    |     await super().__call__(scope, receive, send)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py\", line 113, in __call__\n    |     await self.middleware_stack(scope, receive, send)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 187, in __call__\n    |     raise exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 165, in __call__\n    |     await self.app(scope, receive, _send)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 185, in __call__\n    |     with collapse_excgroups():\n    |          ^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py\", line 158, in __exit__\n    |     self.gen.throw(value)\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 82, in collapse_excgroups\n    |     raise exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 187, in __call__\n    |     response = await self.dispatch_func(request, call_next)\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 109, in log_requests\n    |     raise e\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    |     response = await call_next(request)\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    |     raise app_exc\n    |   File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    |     await self.app(scope, receive_or_disconnect, send_no_error)\n    |   File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    |     request_id_ctx_var.set(request_id)\n    |                            ^^^^^^^^^^\n    | NameError: name 'request_id' is not defined. Did you mean: 'request'?\n    +------------------------------------\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py\", line 426, in run_asgi\n    result = await app(  # type: ignore[func-returns-value]\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py\", line 84, in __call__\n    return await self.app(scope, receive, send)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/fastapi/applications.py\", line 1054, in __call__\n    await super().__call__(scope, receive, send)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/applications.py\", line 113, in __call__\n    await self.middleware_stack(scope, receive, send)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 187, in __call__\n    raise exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/errors.py\", line 165, in __call__\n    await self.app(scope, receive, _send)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 185, in __call__\n    with collapse_excgroups():\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/contextlib.py\", line 158, in __exit__\n    self.gen.throw(value)\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/_utils.py\", line 82, in collapse_excgroups\n    raise exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 187, in __call__\n    response = await self.dispatch_func(request, call_next)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 109, in log_requests\n    raise e\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 86, in log_requests\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 163, in call_next\n    raise app_exc\n  File \"/Users/daehyunkim_kakao/miniconda3/lib/python3.12/site-packages/starlette/middleware/base.py\", line 149, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"/Users/daehyunkim_kakao/Desktop/Kakao Business (Project)/AIM-14-AI-VLM/main.py\", line 62, in __call__\n    request_id_ctx_var.set(request_id)\n                           ^^^^^^^^^^\nNameError: name 'request_id' is not defined. Did you mean: 'request'?",
+    "taskName": "Task-6",
+    "error_type": "N/A"
+}
+{
+    "asctime": "2024-12-06 17:10:37,509",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:10:37,511",
+    "levelname": "WARNING",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "run",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:10:37,515",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:37,618",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:37,619",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:37,619",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Finished server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:10:38,183",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:10:39,114",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:39,115",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:39,115",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:39,123",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Started server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:10:39,123",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:39,123",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:10:39,200",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:10:41,737",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "read_root",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:10:41,738",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "log_requests",
+    "errorType": "",
+    "error_message": "",
+    "taskName": "Task-3"
+}
+{
+    "asctime": "2024-12-06 17:10:41,863",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "log_requests",
+    "errorType": "",
+    "error_message": "",
+    "taskName": "Task-6"
+}
+{
+    "asctime": "2024-12-06 17:10:44,077",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "log_requests",
+    "errorType": "",
+    "error_message": "",
+    "taskName": "Task-9"
+}
+{
+    "asctime": "2024-12-06 17:10:44,291",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "log_requests",
+    "errorType": "",
+    "error_message": "",
+    "taskName": "Task-12"
+}
+{
+    "asctime": "2024-12-06 17:10:52,666",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "test_logging",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:10:52,666",
+    "levelname": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "test_logging",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null,
+    "error_type": "N/A"
+}
+{
+    "asctime": "2024-12-06 17:10:52,668",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "root",
+    "method_name": "log_requests",
+    "errorType": "",
+    "error_message": "",
+    "taskName": "Task-15"
+}
+{
+    "asctime": "2024-12-06 17:12:18,533",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:18,537",
+    "levelname": "WARNING",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "run",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:18,581",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:18,685",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:18,686",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:18,686",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Finished server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:12:19,355",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:19,932",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:20,430",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:20,430",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:20,430",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:20,438",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Started server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:12:20,438",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:20,439",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:20,503",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:37,233",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:37,236",
+    "levelname": "WARNING",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "run",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:37,330",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:37,432",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:37,433",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:37,433",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Finished server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:12:38,016",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:38,441",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:39,009",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:39,009",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:39,010",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:39,017",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Started server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:12:39,018",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:39,018",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:39,122",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:54,693",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:54,695",
+    "levelname": "WARNING",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "run",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:54,787",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:54,888",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:54,889",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:54,889",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Finished server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:12:55,450",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:12:56,397",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:56,397",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:56,397",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:56,408",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Started server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:12:56,408",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:56,408",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:12:56,510",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:13:25,577",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:13:25,580",
+    "levelname": "WARNING",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "run",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:13:25,620",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:25,723",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:25,723",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:25,724",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Finished server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:13:26,264",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:13:27,365",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:27,366",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:27,366",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "config",
+    "method_name": "<module>",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:27,380",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Started server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:13:27,381",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:27,381",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "startup",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:27,478",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:13:32,631",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "watchfiles.main",
+    "method_name": "_log_changes",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null
+}
+{
+    "asctime": "2024-12-06 17:13:40,423",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:40,538",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:40,539",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1"
+}
+{
+    "asctime": "2024-12-06 17:13:40,540",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "serve",
+    "errorType": null,
+    "error_message": null,
+    "taskName": "Task-1",
+    "color_message": "Finished server process [\u001b[36m%d\u001b[0m]"
+}
+{
+    "asctime": "2024-12-06 17:13:40,753",
+    "levelname": "INFO",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class_name": "uvicorn.error",
+    "method_name": "shutdown",
+    "errorType": null,
+    "error_message": null,
+    "taskName": null,
+    "color_message": "Stopping reloader process [\u001b[36m\u001b[1m21954\u001b[0m]"
+}

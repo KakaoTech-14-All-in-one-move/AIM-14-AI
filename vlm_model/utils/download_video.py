@@ -39,9 +39,7 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
 
         fps = cap.get(cv2.CAP_PROP_FPS)
         if fps == 0:
-            logger.warning(f"FPS 값을 불러올 수 없어 기본값(30.0)을 사용합니다.", extra={
-                    "errorType": "VideoProcessingWarning",
-                    "error_message": "FPS 값을 불러올 수 없어 기본값(30.0)을 사용합니다."})
+            logger.info(f"FPS 값을 불러올 수 없어 기본값(30.0)을 사용합니다.")
             fps = 30.0  # 기본 FPS 설정
         
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -60,8 +58,8 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
         while True:
             ret, frame = cap.read()
             if not ret:
-                logger.warning(f"프레임 {frame_counter} 읽기 실패", extra={
-                    "errorType": "FrameReadWarning",
+                logger.error(f"프레임 {frame_counter} 읽기 실패", extra={
+                    "errorType": "FrameReadError",
                     "error_message": f"프레임 {frame_counter} 읽기 실패 - 비디오가 예상보다 짧을 수 있습니다."})
                 break
 

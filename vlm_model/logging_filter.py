@@ -2,11 +2,11 @@
 
 import logging
 import inspect
-from vlm_model.context_var import request_id_ctx_var, client_ip_ctx_var
+from vlm_model.context_var import request_id_ctx_var
 
 class ContextFilter(logging.Filter):
     """
-    로그 레코드에 service, request_id, client_ip, class, method를 추가하는 커스텀 필터.
+    로그 레코드에 service, request_id, class, method를 추가하는 커스텀 필터.
     """
 
     def filter(self, record: logging.LogRecord) -> bool:
@@ -33,12 +33,15 @@ class ContextFilter(logging.Filter):
         # method_name을 LogRecord의 funcName 속성으로 설정 (실제 함수 이름)
         record.method_name = record.funcName or "unknown"
 
-        # ERROR 및 WARNING 레벨에만 추가 필드 설정
-        if record.levelno >= logging.WARNING:
-            record.errorType = getattr(record, 'errorType', "N/A")
-            record.error_message = getattr(record, 'error_message', "N/A")
+        # ERROR 레벨에만 추가 필드 설정
+        if record.levelno >= logging.ERROR:
+            record.error_type = getattr(record, 'error_type', "N/A")
+            record.message = getattr(record, 'message', "N/A")
         else:
-            record.errorType = ""
-            record.error_message = ""
+            # ERROR 레벨이 아닐 때는 error_type과 message를 삭제
+            if hasattr(record, 'error_type'):
+                del record.error_type
+            if hasattr(record, 'message'):
+                del record.message
 
         return True
