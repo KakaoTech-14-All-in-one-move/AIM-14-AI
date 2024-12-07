@@ -30,7 +30,7 @@ router = APIRouter()
 
 logger = logging.getLogger(__name__)  # 'vlm_model.routers.send_feedback' 로거 사용
 
-def process_video(file_path: str):
+def process_video(file_path: str, video_id: str):
     """
     비디오 파일을 처리하여 피드백 데이터를 생성합니다.
     """
@@ -196,7 +196,7 @@ async def send_feedback_endpoint(video_id: str):
 
     # 비디오 처리하여 피드백 생성
     try:
-        feedback_data = process_video(video_path)
+        feedback_data = process_video(video_path, video_id)
     except VideoProcessingError as vpe:
         logger.error(f"비디오 처리 중 오류 발생: {vpe.message}", extra={
             "errorType": "VideoProcessingError",

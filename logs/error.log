@@ -1,0 +1,50 @@
+{
+    "@timestamp": "2024-12-07 14:08:25,594",
+    "level": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class": "utils.download_video",
+    "method": "download_and_sample_video_local",
+    "error_type": "FrameReadError",
+    "message": "프레임 218 읽기 실패 - 비디오가 예상보다 짧을 수 있습니다."
+}
+{
+    "@timestamp": "2024-12-07 14:08:32,705",
+    "level": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class": "routers.send_feedback",
+    "method": "send_feedback_endpoint",
+    "error_type": "NameError",
+    "message": "name 'video_id' is not defined"
+}
+{
+    "@timestamp": "2024-12-07 14:11:44,515",
+    "level": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class": "routers.send_feedback",
+    "method": "send_feedback_endpoint",
+    "error_type": "TypeError",
+    "message": "process_video() missing 1 required positional argument: 'video_id'"
+}
+{
+    "@timestamp": "2024-12-07 14:13:31,472",
+    "level": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class": "utils.download_video",
+    "method": "download_and_sample_video_local",
+    "error_type": "FrameReadError",
+    "message": "프레임 218 읽기 실패 - 비디오가 예상보다 짧을 수 있습니다."
+}
+{
+    "@timestamp": "2024-12-07 14:20:48,653",
+    "level": "ERROR",
+    "service": "VLM_API",
+    "request_id": "unknown",
+    "class": "utils.download_video",
+    "method": "download_and_sample_video_local",
+    "error_type": "FrameReadError",
+    "message": "프레임 218 읽기 실패 - 비디오가 예상보다 짧을 수 있습니다."
+}

@@ -15,6 +15,7 @@ from vlm_model.exceptions import (
 
 from vlm_model.routers.upload_video import router as upload_video_router
 from vlm_model.routers.send_feedback import router as send_feedback_router
+from vlm_model.routers.delete_files import router as delete_files_router 
 
 from pathlib import Path
 import json
@@ -68,6 +69,7 @@ app.add_middleware(RequestIDMiddleware)
 # 라우터 포함
 app.include_router(upload_video_router, prefix="/api/video", tags=["Video Upload"])
 app.include_router(send_feedback_router, prefix="/api/video", tags=["Feedback Retrieval"])
+app.include_router(delete_files_router, prefix="/api/video", tags=["File Deletion"])
 
 # 정적 파일을 제공할 디렉토리 설정 (선택 사항)
 app.mount("/static", StaticFiles(directory="storage/output_feedback_frame"), name="static")

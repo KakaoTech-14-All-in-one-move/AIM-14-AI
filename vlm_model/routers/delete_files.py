@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import JSONResponse
 from pathlib import Path
 import logging
-
+from vlm_model.schemas.feedback import DeleteResponse
 from vlm_model.config import FEEDBACK_DIR, UPLOAD_DIR
 
 router = APIRouter()
@@ -42,8 +42,11 @@ async def delete_files(video_id: str):
                 })
                 raise HTTPException(status_code=500, detail=f"{file.name} 파일 삭제에 실패했습니다.") from e
 
-        logger.info(f"{video_id}와 관련된 파일 삭제에 성공했습니다.")
-        return {"status": "success", "deleted_files": deleted_files}
+        logger.info(f"{video_id}와 관련된 파일 삭제 성공.")
+        return DeleteResponse(
+            video_id=video_id,
+            message=f"{video_id}와 관련된 파일 삭제에 성공했습니다.",
+        )
 
     except Exception as e:
         logger.error(f"Error in delete_files API: {e}", extra={

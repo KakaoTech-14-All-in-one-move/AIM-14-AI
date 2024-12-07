@@ -28,3 +28,7 @@ class FeedbackResponse(BaseModel):
     feedbacks: List[FeedbackFrame]
     message: str
     problem: Optional[str] = None  # 문제가 없을 때 추가
+
+class DeleteResponse(BaseModel):
+    video_id: str
+    message: str

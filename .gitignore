@@ -15,4 +15,4 @@ vlm_model/schemas/__pycache__/
 vlm_model/utils/__pycache__/
 
 # Ignore logs directory
-logs/
+*.logs
