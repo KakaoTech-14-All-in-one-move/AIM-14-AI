@@ -132,6 +132,7 @@ def process_video(file_path: str, video_id: str):
 
             # 피드백 데이터 추가
             feedback_frame = FeedbackFrame(
+                video_id=video_id,
                 frame_index=frame_number,
                 timestamp=timestamp,
                 feedback_text=feedback_sections,
