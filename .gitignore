@@ -1,7 +1,12 @@
 # 기타 무시할 파일 또는 폴더
 .env
-storage/
 .DS_Store
+
+# 저장소 관련 디렉토리 무시
+storage/
+
+# 파이썬 캐시 파일 무시
+*.pyc
 
 # Ignore all __pycache__ directories
 __pycache__/
@@ -14,12 +19,6 @@ vlm_model/routers/__pycache__/
 vlm_model/schemas/__pycache__/
 vlm_model/utils/__pycache__/
 
-# Ignore all log files
-*.log
-*.log.*
-
-# Ignore logs directory and its contents
-logs/
-/logs/
-**logs/
-logs/**
+# Ignore all log files within logs/ directory
+logs/*.log
+logs/*.log.*

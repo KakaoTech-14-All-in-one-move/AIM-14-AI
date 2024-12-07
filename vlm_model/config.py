@@ -41,10 +41,11 @@ except Exception as e:
 # 저장 디렉토리 설정
 UPLOAD_DIR = BASE_DIR / os.getenv("UPLOAD_DIR", "storage/input_video")
 FEEDBACK_DIR = BASE_DIR / os.getenv("FEEDBACK_DIR", "storage/output_feedback_frame")
+LOGS_DIR = BASE_DIR / os.getenv("LOGS_DIR", "logs") # logs 디렉토리 추가
 
 # 디렉토리 존재 여부 확인 및 생성
 try:
-    for directory in [UPLOAD_DIR, FEEDBACK_DIR]:
+    for directory in [UPLOAD_DIR, FEEDBACK_DIR, LOGS_DIR]:
         directory.mkdir(parents=True, exist_ok=True)
         logger.info(f"디렉토리가 준비되었습니다: {directory}")
         logger.debug(f"생성된 디렉토리 경로: {directory}")
