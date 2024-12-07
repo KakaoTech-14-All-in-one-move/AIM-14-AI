@@ -143,7 +143,7 @@ def process_video(file_path: str):
             if FEEDBACK_DIR:
                 safe_timestamp = re.sub(r'[^\w_]', '', timestamp.replace("m ", "m_").replace(" ", "_").replace("s", "s_").strip("_"))
                 unique_id = uuid.uuid4().hex  # 고유한 식별자 생성
-                image_filename = f"segment_{segment_number}_frame_{frame_number}_{safe_timestamp}_{unique_id}.jpg"
+                image_filename = f"{video_id}_segment_{segment_number}_frame_{frame_number}_{safe_timestamp}_{unique_id}.jpg"  # video_id 포함
                 image_path = os.path.join(FEEDBACK_DIR, image_filename)
                 try:
                     with open(image_path, "wb") as img_file:
