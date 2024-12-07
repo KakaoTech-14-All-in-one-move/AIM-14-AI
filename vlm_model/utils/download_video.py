@@ -34,14 +34,12 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
             logger.error(f"비디오 파일을 열 수 없습니다: {video_path}", extra={
                     "errorType": "VideoProcessingError",
                     "error_message": f"비디오 파일을 열 수 없습니다: {video_path}"
-                }, exc_info=True)
+                })
             raise VideoProcessingError(f"비디오 파일을 열 수 없습니다: {video_path}")
 
         fps = cap.get(cv2.CAP_PROP_FPS)
         if fps == 0:
-            logger.warning(f"FPS 값을 불러올 수 없어 기본값(30.0)을 사용합니다.", extra={
-                    "errorType": "VideoProcessingWarning",
-                    "error_message": "FPS 값을 불러올 수 없어 기본값(30.0)을 사용합니다."})
+            logger.info(f"FPS 값을 불러올 수 없어 기본값(30.0)을 사용합니다.")
             fps = 30.0  # 기본 FPS 설정
         
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -60,8 +58,8 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
         while True:
             ret, frame = cap.read()
             if not ret:
-                logger.warning(f"프레임 {frame_counter} 읽기 실패", extra={
-                    "errorType": "FrameReadWarning",
+                logger.error(f"프레임 {frame_counter} 읽기 실패", extra={
+                    "errorType": "FrameReadError",
                     "error_message": f"프레임 {frame_counter} 읽기 실패 - 비디오가 예상보다 짧을 수 있습니다."})
                 break
 
@@ -79,7 +77,7 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
             logger.error("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.", extra={
                 "errorType": "VideoProcessingError",
                 "error_message": "지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다."
-                },exc_info=True)
+                })
             raise VideoProcessingError("지정된 프레임 인덱스에 해당하는 프레임을 찾을 수 없습니다.")
 
         logger.debug(f"총 추출된 프레임 수: {len(frames)}")
@@ -89,11 +87,11 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
         logger.error("비디오 처리 중 오류 발생", extra={
             "errorType": "VideoProcessingError",
             "error_message": e.message
-        }, exc_info=True)
+        })
         raise VideoProcessingError("비디오에서 처리 중 오류가 발생했습니다.") from e
     except Exception as e:
         logger.error(f"비디오에서 프레임 추출 중 오류 발생: {e}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
-        }, exc_info=True)
+        })
         raise VideoProcessingError("비디오에서 프레임 추출 중 서버 오류가 발생했습니다.") from e

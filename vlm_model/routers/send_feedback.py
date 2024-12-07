@@ -40,7 +40,7 @@ def process_video(file_path: str):
         logger.error(f"비디오 파일을 가져올 수 없습니다: {file_path} - {vpe.message}", extra={
             "errorType": "VideoProcessingError",
             "error_message": f"비디오 파일을 가져올 수 없습니다: {file_path} - {vpe.message}"
-        }, exc_info=True)
+        })
         raise VideoProcessingError("비디오 파일을 가져올 수 없습니다.") from vpe
 
     # 세그먼트 길이와 프레임 간격 설정
@@ -54,7 +54,7 @@ def process_video(file_path: str):
         logger.error("피드백 이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다.", extra={
             "errorType": "VideoProcessingError",
             "error_message": "피드백 이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다."
-        }, exc_info=True)
+        })
         raise VideoProcessingError("피드백 이미지를 저장할 디렉터리가 지정되지 않았거나 존재하지 않습니다.")
 
     # 각 세그먼트별로 프레임 추출 및 피드백 분석
@@ -66,14 +66,14 @@ def process_video(file_path: str):
             logger.error(f"프레임을 추출할 수 없습니다: {vpe.message}", extra={
                 "errorType": "VideoProcessingError",
                 "error_message": f"프레임 추출 실패: {vpe.message}"
-            }, exc_info=True)
+            })
             raise VideoProcessingError("프레임을 추출할 수 없습니다.") from vpe
 
         if frames is None or len(frames) == 0:
             logger.error(f"프레임을 추출할 수 없습니다. 비디오 파일에 문제가 있을 수 있습니다: {file_path}", extra={
                 "errorType": "VideoProcessingError",
                 "error_message": f"비디오 파일에 문제가 있을 수 있습니다. {file_path}"
-            }, exc_info=True)
+            })
             raise VideoProcessingError("비디오 파일에 문제가 있을 수 있습니다.")
 
         try:
@@ -89,7 +89,7 @@ def process_video(file_path: str):
             logger.error(f"프레임 분석 중 오류 발생: {e}",  extra={
                 "errorType": type(e).__name__,
                 "error_message": str(e)
-            }, exc_info=True)
+            })
             raise HTTPException(status_code=422, detail="프레임 분석 중 오류가 발생했습니다.") from e
 
         logger.debug(f"프레임 수: {len(problematic_frames)}, 피드백 수: {len(feedbacks)}")
@@ -101,16 +101,16 @@ def process_video(file_path: str):
             try:
                 image_base64 = encode_image(frame)
                 if not image_base64:
-                    logger.warning(f"프레임 {frame_number}의 이미지 인코딩 실패", extra={
+                    logger.error(f"프레임 {frame_number}의 이미지 인코딩 실패", extra={
                         "errorType": "ImageEncodingError",
                         "error_message": f"이미지 인코딩 실패. 프레임 {frame_number}"
-                    }, exc_info=True)
-                    continue
+                    })
+                    raise ImageEncodingError("이미지 인코딩이 실패했습니다.") from iee
             except ImageEncodingError as iee:
                 logger.error(f"이미지 인코딩 실패: {iee.message}", extra={
                     "errorType": "ImageEncodingError",
                     "error_message": f"이미지 인코딩 실패: {iee.message}"
-                }, exc_info=True)
+                })
                 raise ImageEncodingError("이미지 인코딩 중 오류가 발생했습니다.") from iee
 
             # feedback_text를 FeedbackSections 구조로 변환
@@ -121,13 +121,13 @@ def process_video(file_path: str):
                 logger.error(f"피드백 텍스트 파싱 오류: {vpe.message}", extra={
                     "errorType": "VideoProcessingError",
                     "error_message": f"피드백 텍스트 파싱 오류: {vpe.message}"
-                }, exc_info=True)
+                })
                 raise VideoProcessingError("피드백 텍스트를 생성하는 중 오류가 발생했습니다.") from vpe
             except Exception as e:
                 logger.error(f"피드백 텍스트 파싱 중 예상치 못한 오류 발생: {str(e)}", extra={
                     "errorType": type(e).__name__,
                     "error_message": str(e)
-                }, exc_info=True)
+                })
                 raise VideoProcessingError("피드백 텍스트를 생성하는 중 오류가 발생했습니다.") from e
 
             # 피드백 데이터 추가
@@ -155,14 +155,14 @@ def process_video(file_path: str):
                     logger.error(f"이미지 저장 중 오류 발생: {ioe}", extra={
                         "errorType": "ImageSaveError",
                         "error_message": f"이미지 저장 중 오류 발생: {ioe}"
-                    }, exc_info=True)
+                    })
                     raise HTTPException(status_code=500, detail="이미지 저장 중 오류가 발생했습니다.") from ioe
 
                 except Exception as e:
                     logger.error(f"이미지 저장 중 예상치 못한 오류 발생: {e}", extra={
                         "errorType": "ImageSaveError",
                         "error_message": f"이미지 저장 중 오류 발생: {e}"
-                    }, exc_info=True)
+                    })
                     raise HTTPException(status_code=500, detail="이미지 저장 중 오류가 발생했습니다.") from e
 
     # 피드백 데이터 반환 (비어 있을 수 있음)        
@@ -191,7 +191,7 @@ async def send_feedback_endpoint(video_id: str):
         logger.error(f"비디오 파일을 찾을 수 없습니다: video_id={video_id}", extra={
             "errorType": "FileNotFoundError",
             "error_message": f"video_id={video_id}"
-        }, exc_info=True)
+        })
         raise HTTPException(status_code=404, detail="비디오 파일을 찾을 수 없습니다.")
 
     # 비디오 처리하여 피드백 생성
@@ -201,13 +201,13 @@ async def send_feedback_endpoint(video_id: str):
         logger.error(f"비디오 처리 중 오류 발생: {vpe.message}", extra={
             "errorType": "VideoProcessingError",
             "error_message": vpe.message
-        }, exc_info=True)
+        })
         raise HTTPException(status_code=500, detail="비디오 처리 중 오류가 발생했습니다.") from vpe
     except ImageEncodingError as iee:
         logger.error(f"이미지 인코딩 중 오류 발생: {iee.message}", extra={
             "errorType": "ImageEncodingError",
             "error_message": iee.message
-        }, exc_info=True)
+        })
         raise HTTPException(status_code=500, detail="이미지 인코딩 중 오류가 발생했습니다.") from iee
     except HTTPException as he:
         # 이미 HTTPException이 발생했으므로 다시 던짐
@@ -216,12 +216,12 @@ async def send_feedback_endpoint(video_id: str):
         logger.error(f"비디오 처리 중 예상치 못한 오류 발생: {str(e)}", extra={
             "errorType": type(e).__name__,
             "error_message": str(e)
-        }, exc_info=True)
+        })
         raise HTTPException(status_code=500, detail="비디오 처리 중 예상치 못한 오류가 발생했습니다.") from e
 
     # 피드백 데이터 확인 - 정상 처리
     if not feedback_data:
-        logger.warning(f"분석 결과 피드백할 내용이 없습니다: video_id={video_id}", extra={
+        logger.info(f"분석 결과 피드백할 내용이 없습니다: video_id={video_id}", extra={
             "errorType": "NoFeedback",
             "error_message": "분석 결과 피드백할 내용이 없습니다."
         })
@@ -231,6 +231,7 @@ async def send_feedback_endpoint(video_id: str):
             problem="no_feedback"
         )
 
+    logger.info(f"비디오 ID {video_id}에 대한 분석이 성공적으로 완료되었습니다.")
     return FeedbackResponse(
         feedbacks=feedback_data,
         message="피드백 데이터 생성 완료",
