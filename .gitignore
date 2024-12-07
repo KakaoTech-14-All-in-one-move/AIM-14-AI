@@ -19,6 +19,7 @@ vlm_model/utils/__pycache__/
 *.log.*
 
 # Ignore logs directory and its contents
-logs/**
-logs
 logs/
+/logs/
+**logs/
+logs/**
