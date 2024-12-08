@@ -19,7 +19,7 @@ class FeedbackSections(BaseModel):
     movement: FeedbackDetails # 갑작스러운 행동 및 움직임
 
 class FeedbackFrame(BaseModel):
-    video_id: str
+    video_id: str # video_id 추가
     frame_index: int
     timestamp: str  # 예: "0m 0s"
     feedback_text: FeedbackSections  # 피드백 섹션 구조로 변환된 텍스트

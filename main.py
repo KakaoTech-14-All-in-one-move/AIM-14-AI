@@ -28,8 +28,8 @@ import traceback
 # Context variables import
 from vlm_model.context_var import request_id_ctx_var
 
-# ASGI types import
-from starlette.types import ASGIApp, Receive, Scope, Send
+# Middleware import
+from vlm_model.middleware import RequestIDMiddleware
 
 app = FastAPI()
 
@@ -50,18 +50,6 @@ app.add_middleware(
     allow_headers=["*"],
     allow_credentials=False,  # credentials를 반드시 False로 설정
 )
-
-# Request ID 미들웨어: 각 요청에 고유한 ID와 클라이언트 IP를 설정
-class RequestIDMiddleware:
-    def __init__(self, app: ASGIApp):
-        self.app = app
-
-    async def __call__(self, scope: Scope, receive: Receive, send: Send):
-        if scope["type"] == "http":
-            request = Request(scope, receive=receive)
-            request_id = request.headers.get("X-User-ID", "unknown")
-            request_id_ctx_var.set(request_id)
-        await self.app(scope, receive, send)
 
 # Request ID 미들웨어 추가
 app.add_middleware(RequestIDMiddleware)
