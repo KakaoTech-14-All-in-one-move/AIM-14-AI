@@ -7,6 +7,7 @@ from .analysis import analyze_frames
 from .visualization import plot_problematic_frames
 from .encoding_image import encode_image
 from .user_prompt import generate_user_prompt
+from .processing_video import process_video
 
 __all__ = [
     "read_video_opencv",
@@ -15,5 +16,6 @@ __all__ = [
     "analyze_frames",
     "plot_problematic_frames",
     "encode_image",
-    "generate_user_prompt"
+    "generate_user_prompt",
+    "process_video"
 ]
