@@ -11,7 +11,9 @@ from fastapi import HTTPException
 
 from vlm_model.schemas.feedback import FeedbackFrame
 from vlm_model.utils.download_video import download_and_sample_video_local
-from vlm_model.utils.analysis import analyze_frames, parse_feedback_text
+from vlm_model.utils.analysis import analyze_frames
+from vlm_model.utils.analysis_video.load_prompt import load_user_prompt
+from vlm_model.utils.analysis_video.parse_feedback import parse_feedback_text
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.utils.video_duration import get_video_duration
 from vlm_model.exceptions import VideoProcessingError, ImageEncodingError

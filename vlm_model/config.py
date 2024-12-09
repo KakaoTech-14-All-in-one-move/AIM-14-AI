@@ -42,6 +42,7 @@ except Exception as e:
 UPLOAD_DIR = BASE_DIR / os.getenv("UPLOAD_DIR", "storage/input_video")
 FEEDBACK_DIR = BASE_DIR / os.getenv("FEEDBACK_DIR", "storage/output_feedback_frame")
 LOGS_DIR = BASE_DIR / os.getenv("LOGS_DIR", "logs") # logs 디렉토리 추가
+PROMPT_PATH = BASE_DIR /  "prompt.txt"
 
 # 디렉토리 존재 여부 확인 및 생성
 try:

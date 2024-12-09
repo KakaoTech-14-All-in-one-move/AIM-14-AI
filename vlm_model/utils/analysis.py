@@ -4,14 +4,17 @@ import json
 from typing import List, Tuple
 from openai import OpenAI # import openai
 import numpy as np
-from vlm_model.openai_config import SYSTEM_INSTRUCTION
-from vlm_model.constants.behaviors import PROBLEMATIC_BEHAVIORS
-from vlm_model.utils.encoding_image import encode_image
-from vlm_model.schemas.feedback import FeedbackSections, FeedbackDetails
-from vlm_model.exceptions import PromptImportingError
 from pathlib import Path
 import logging
 from fastapi import HTTPException
+
+from vlm_model.openai_config import SYSTEM_INSTRUCTION
+from vlm_model.constants.behaviors import PROBLEMATIC_BEHAVIORS
+from vlm_model.utils.encoding_image import encode_image
+from vlm_model.utils.analysis_video.load_prompt import load_user_prompt
+from vlm_model.utils.analysis_video.parse_feedback import parse_feedback_text
+from vlm_model.schemas.feedback import FeedbackSections, FeedbackDetails
+from vlm_model.exceptions import PromptImportingError
 
 # 모듈별 로거 생성
 logger = logging.getLogger(__name__) 
