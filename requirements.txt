@@ -10,3 +10,4 @@ uvicorn
 python-multipart
 python-json-logger
 colorlog
+sentry-sdk[fastapi]
