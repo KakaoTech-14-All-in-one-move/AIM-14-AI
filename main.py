@@ -18,12 +18,18 @@ from vlm_model.routers.send_feedback import router as send_feedback_router
 from vlm_model.routers.delete_files import router as delete_files_router 
 
 from pathlib import Path
+from dotenv import load_dotenv 
 import json
 import uvicorn
 import logging
 import logging.config
 import uuid
 import traceback
+import os
+import sentry_sdk
+
+# Sentry Logging Integration
+from sentry_sdk.integrations.logging import LoggingIntegration
 
 # Context variables import
 from vlm_model.context_var import request_id_ctx_var
@@ -31,12 +37,43 @@ from vlm_model.context_var import request_id_ctx_var
 # Middleware import
 from vlm_model.middleware import RequestIDMiddleware
 
+# 환경 변수 로드
+load_dotenv()
+
+# 환경 변수 가져오기
+SENTRY_DSN = os.getenv("SENTRY_DSN")
+TRACE_SAMPLE_RATE = float(os.getenv("TRACE_SAMPLE_RATE", 1.0))  # 기본값 1.0
+
+# Sentry 로깅 통합 설정
+sentry_logging = LoggingIntegration(
+    level=logging.INFO,          # Sentry가 기록할 최소 로깅 레벨 (Breadcrumbs)
+    event_level=logging.ERROR    # Sentry 이벤트로 기록할 최소 로깅 레벨
+)
+
+# Sentry 초기화
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    traces_sample_rate=TRACE_SAMPLE_RATE,
+    integrations=[sentry_logging],
+    _experiments={
+        "continuous_profiling_auto_start": True,
+    },
+)
+
 app = FastAPI()
 
 # JSON 기반 로깅 설정 적용
 logging_config_path = Path(__file__).resolve().parent / "logging_config.json"  # 프로젝트 루트에 위치한 파일 경로
 with open(logging_config_path, "r") as f:
     logging_config = json.load(f)
+
+# Sentry 핸들러 추가 대신 LoggingIntegration 사용
+# 기존에 Sentry 핸들러가 있다면 제거
+if "sentry" in logging_config["handlers"]:
+    del logging_config["handlers"]["sentry"]
+    for logger in logging_config["loggers"].values():
+        if "sentry" in logger.get("handlers", []):
+            logger["handlers"].remove("sentry")
 
 logging.config.dictConfig(logging_config)
 logger = logging.getLogger("vlm_model")
@@ -173,6 +210,11 @@ async def general_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={"detail": "서버 내부 오류가 발생했습니다."},
     )
+
+# Sentry 테스트 엔드포인트 추가
+@app.get("/sentry-debug")
+async def trigger_error():
+    division_by_zero = 1 / 0
 
 # 테스트 엔드포인트 추가
 @app.get("/test-logging")
