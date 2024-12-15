@@ -14,11 +14,17 @@ from vlm_model.utils.download_video import download_and_sample_video_local
 from vlm_model.utils.analysis import analyze_frames
 from vlm_model.utils.analysis_video.load_prompt import load_user_prompt
 from vlm_model.utils.analysis_video.parse_feedback import parse_feedback_text
+from vlm_model.utils.image_process.extract_bounding_box import extract_bounding_boxes
+from vlm_model.utils.image_process.add_bounding_box import add_bounding_boxes_to_image
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.utils.video_duration import get_video_duration
 from vlm_model.exceptions import VideoProcessingError, ImageEncodingError
 from vlm_model.openai_config import SYSTEM_INSTRUCTION
 from vlm_model.config import FEEDBACK_DIR
+
+from PIL import Image
+import numpy as np
+import cv2
 
 logger = logging.getLogger(__name__) 
 
@@ -122,13 +128,55 @@ def process_video(file_path: str, video_id: str):
                 })
                 raise VideoProcessingError("피드백 텍스트를 생성하는 중 오류가 발생했습니다.") from e
 
-            # 피드백 데이터 추가
+            # Bounding Box 좌표 추출
+            try:
+                bounding_boxes = extract_bounding_boxes(feedback_sections)
+            except ValueError as ve:
+                logger.error(f"Bounding box 추출 중 오류 발생: {ve}", extra={
+                    "errorType": "BoundingBoxExtractionError",
+                    "error_message": str(ve)
+                })
+                raise VideoProcessingError("Bounding box 좌표를 추출하는 중 오류가 발생했습니다.") from ve
+
+            # PIL 이미지로 변환
+            pil_image = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+
+            # Bounding Box 그리기
+            try:
+                pil_image_with_boxes = add_bounding_boxes_to_image(pil_image, bounding_boxes)
+            except ValueError as ve:
+                logger.error(f"Bounding box 그리기 중 오류 발생: {ve}", extra={
+                    "errorType": "BoundingBoxDrawingError",
+                    "error_message": str(ve)
+                })
+                raise VideoProcessingError("Bounding box를 그리는 중 오류가 발생했습니다.") from ve
+
+            # PIL 이미지를 다시 NumPy 배열로 변환
+            frame_with_boxes = cv2.cvtColor(np.array(pil_image_with_boxes), cv2.COLOR_RGB2BGR)
+
+            # 수정된 프레임을 다시 인코딩
+            try:
+                image_base64_with_boxes = encode_image(frame_with_boxes)
+                if not image_base64_with_boxes:
+                    logger.error(f"프레임 {frame_number}의 Bounding Box 이미지 인코딩 실패", extra={
+                        "errorType": "ImageEncodingError",
+                        "error_message": f"Bounding Box 이미지 인코딩 실패. 프레임 {frame_number}"
+                    })
+                    raise ImageEncodingError("Bounding Box 이미지 인코딩이 실패했습니다.")
+            except ImageEncodingError as iee:
+                logger.error(f"Bounding Box 이미지 인코딩 실패: {iee.message}", extra={
+                    "errorType": "ImageEncodingError",
+                    "error_message": f"Bounding Box 이미지 인코딩 실패: {iee.message}"
+                })
+                raise ImageEncodingError("Bounding Box 이미지 인코딩 중 오류가 발생했습니다.") from iee
+
+            # 피드백 데이터 추가 (Bounding Box가 포함된 이미지로 업데이트)
             feedback_frame = FeedbackFrame(
                 video_id=video_id,
                 frame_index=frame_number,
                 timestamp=timestamp,
                 feedback_text=feedback_sections,
-                image_base64=image_base64
+                image_base64=image_base64_with_boxes  # 수정된 이미지 사용 
             )
             feedback_data.append(feedback_frame.dict())
 
@@ -140,7 +188,7 @@ def process_video(file_path: str, video_id: str):
                 image_path = os.path.join(FEEDBACK_DIR, image_filename)
                 try:
                     with open(image_path, "wb") as img_file:
-                        img_file.write(base64.b64decode(image_base64))
+                        img_file.write(base64.b64decode(image_base64_with_boxes))
                     if not os.path.exists(image_path):
                         raise IOError("이미지가 지정된 경로에 저장되지 않았습니다.")
 

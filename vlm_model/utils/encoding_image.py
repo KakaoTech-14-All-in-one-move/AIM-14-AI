@@ -6,6 +6,7 @@ import numpy as np
 from typing import Optional
 import logging
 from vlm_model.exceptions import ImageEncodingError
+from PIL import Image
 
 # 모듈별 로거 생성
 logger = logging.getLogger(__name__) 
