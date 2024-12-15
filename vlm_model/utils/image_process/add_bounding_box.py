@@ -3,7 +3,6 @@
 from typing import List, Dict
 from vlm_model.schemas.feedback import BoundingBox
 from PIL import Image, ImageDraw, ImageFont
-from .draw_bounding_box import draw_bounding_boxes
 import os
 import logging
 
