@@ -10,7 +10,7 @@ import traceback
 # 모듈별 로거 생성
 logger = logging.getLogger(__name__) 
 
-def download_and_sample_video_local(video_path: str, start_time: int = 0, duration: int = 60, frame_interval: int = 3, target_size=(640, 480)) -> Optional[np.ndarray]:
+def download_and_sample_video_local(video_path: str, start_time: int = 0, duration: int = 60, frame_interval: int = 1, target_size=(640, 480)) -> Optional[np.ndarray]:
     """
     주어진 비디오 파일에서 지정된 시작 시간과 지속 시간 내에서 일정 간격으로 프레임을 추출합니다.
     

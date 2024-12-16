@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 # OpenAI 모듈을 client로 정의
 client = OpenAI() # openai
 
-def analyze_frames(frames: List[np.ndarray], mediapipe_results: List[dict], segment_idx: int, duration: int, segment_length: int, system_instruction: str, frame_interval: int = 3) -> Tuple[List[Tuple[np.ndarray, int, int, str]], List[str]]:
+def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_results: List[dict], segment_idx: int, duration: int, segment_length: int, system_instruction: str, frame_interval: int = 1) -> Tuple[List[Tuple[np.ndarray, int, int, str]], List[str]]:
     """
     주어진 프레임들을 분석하여 문제 행동을 감지하고 피드백을 생성합니다.
 
@@ -47,10 +47,6 @@ def analyze_frames(frames: List[np.ndarray], mediapipe_results: List[dict], segm
     feedbacks = []
 
     num_frames = len(frames)
-    time_stamps = [
-        segment_idx * segment_length + i * frame_interval
-        for i in range(num_frames)
-    ]
 
     # 프롬프트 파일 절대 경로 설정
     user_prompt = load_user_prompt()
@@ -60,10 +56,17 @@ def analyze_frames(frames: List[np.ndarray], mediapipe_results: List[dict], segm
         logger.error("mediapipe_results의 길이와 frames의 길이가 일치하지 않습니다.")
         raise ValueError("mediapipe_results의 길이와 frames의 길이가 일치하지 않습니다.")
 
-    for i, (frame, frame_time_sec, mediapipe_feedback) in enumerate(zip(frames, time_stamps, mediapipe_results)):
-        minutes = int(frame_time_sec // 60)
-        seconds = int(frame_time_sec % 60)
-        timestamp = f"{minutes}m {seconds}s"
+    for i, (frame, timestamp, mediapipe_feedback) in enumerate(zip(frames, timestamps, mediapipe_results)):
+        try:
+            minutes = int(timestamp // 60)
+            seconds = int(timestamp % 60)
+            timestamp_str = f"{minutes}m {seconds}s"
+        except Exception as e:
+            logger.error(f"타임스탬프 변환 중 오류 발생: {e}", extra={
+                "errorType": "TimestampConversionError",
+                "error_message": str(e)
+            })
+            timestamp_str = "0m 0s"  # 기본값 설정 또는 적절한 처리
 
         img_type = "image/jpeg"
 

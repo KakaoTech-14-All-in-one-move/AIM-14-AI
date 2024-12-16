@@ -1,4 +1,4 @@
-# vlm_model/utils/video_processing.py
+# utils/video_processing.py
 
 import os
 import re
@@ -72,6 +72,7 @@ def process_video(file_path: str, video_id: str):
         # Mediapipe 기반 문제 프레임 필터링
         problematic_frames = []
         mediapipe_results_segment = []  # 세그먼트별 Mediapipe 결과 저장
+        problematic_timestamps = []  # 타임스탬프 리스트 추가
         previous_pose_landmarks = None
         previous_hand_landmarks = None
 
@@ -105,8 +106,10 @@ def process_video(file_path: str, video_id: str):
                 mediapipe_feedback["sudden_movement_score"] > 0.5):
 
                 # 문제 프레임 및 Mediapipe 결과 저장
-                timestamp = start_time + idx * frame_interval  # 타임스탬프 계산
-                problematic_frames.append((frame, segment_index, idx, timestamp))
+                timestamp_sec = start_time + idx * frame_interval  # 타임스탬프 계산
+                problematic_frames.append((frame, segment_index, idx, timestamp_sec))
+                problematic_timestamps.append(timestamp_sec)  # 타임스탬프 추가
+
                 mediapipe_results_segment.append({
                     "gaze_processing": {
                         "score": mediapipe_feedback["gaze_score"]
@@ -126,13 +129,16 @@ def process_video(file_path: str, video_id: str):
             previous_pose_landmarks = current_pose_landmarks if current_pose_landmarks else previous_pose_landmarks
             previous_hand_landmarks = current_hand_landmarks if current_hand_landmarks else previous_hand_landmarks
 
-        # 문제가 되는 프레임만 추가 처리
+        # 문제가 되는 프레임만 처리
         if problematic_frames:
             try:
                 frames_to_analyze = [frame_info[0] for frame_info in problematic_frames]
+                timestamps_to_analyze = [frame_info[3] for frame_info in problematic_frames]  # 초 단위 타임스탬프 전달
                 mediapipe_results_subset = mediapipe_results_segment[:len(problematic_frames)]
+
                 problematic_frames_processed, feedbacks = analyze_frames(
                     frames=frames_to_analyze,
+                    timestamps=timestamps_to_analyze,  # 초 단위 타임스탬프 전달
                     mediapipe_results=mediapipe_results_subset,
                     segment_idx=segment_index,
                     duration=segment_length,
@@ -153,7 +159,7 @@ def process_video(file_path: str, video_id: str):
         logger.debug(f"프레임 수: {len(problematic_frames_processed)}, 피드백 수: {len(feedbacks)}")
 
         for frame_info, feedback_text in zip(problematic_frames_processed, feedbacks):
-            frame, segment_number, frame_number, timestamp = frame_info
+            frame, segment_number, frame_number, timestamp = frame_info  # timestamp는 float
 
             # 이미지 인코딩 (Base64)
             try:
@@ -188,11 +194,16 @@ def process_video(file_path: str, video_id: str):
                 })
                 raise VideoProcessingError("피드백 텍스트를 생성하는 중 오류가 발생했습니다.") from e
 
-            # 피드백 데이터 추가
+            # 초 단위 타임스탬프를 "Xm Ys" 형식으로 변환
+            minutes = int(timestamp // 60)
+            seconds = int(timestamp % 60)
+            timestamp_str = f"{minutes}m {seconds}s"
+
+            # FeedbackFrame creation:
             feedback_frame = FeedbackFrame(
                 video_id=video_id,
                 frame_index=frame_number,
-                timestamp=timestamp,
+                timestamp=timestamp_str,  # 문자열 타임스탬프 전달
                 feedback_text=feedback_sections,
                 image_base64=image_base64
             )
@@ -200,7 +211,9 @@ def process_video(file_path: str, video_id: str):
 
             # 피드백 이미지를 저장하는 경우
             if FEEDBACK_DIR:
-                safe_timestamp = re.sub(r'[^\w_]', '', timestamp.replace("m ", "m_").replace(" ", "_").replace("s", "s_").strip("_"))
+                # 초 단위 타임스탬프를 "Xm Ys" 형식으로 변환 (이미 변환됨)
+                # safe_timestamp는 timestamp_str을 기반으로 생성
+                safe_timestamp = re.sub(r'[^\w_]', '', timestamp_str.replace("m ", "m_").replace(" ", "_").replace("s", "s_").strip("_"))
                 unique_id = uuid.uuid4().hex  # 고유한 식별자 생성
                 image_filename = f"{video_id}_segment_{segment_number}_frame_{frame_number}_{safe_timestamp}_{unique_id}.jpg"  # video_id 포함
                 image_path = os.path.join(FEEDBACK_DIR, image_filename)

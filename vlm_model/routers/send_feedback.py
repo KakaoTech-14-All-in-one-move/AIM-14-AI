@@ -49,7 +49,7 @@ async def send_feedback_endpoint(video_id: str):
 
     # 비디오 처리하여 피드백 생성
     try:
-        feedback_data = process_video(video_path, video_id)
+        feedback_data = process_video(str(video_path), video_id)
     except VideoProcessingError as vpe:
         logger.error(f"비디오 처리 중 오류 발생: {vpe.message}", extra={
             "errorType": "VideoProcessingError",
