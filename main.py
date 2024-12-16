@@ -8,6 +8,7 @@ from fastapi import Response
 
 from vlm_model.exceptions import (
     VideoImportingError,
+    MediapipeHandlingError,
     PromptImportingError,
     VideoProcessingError,
     ImageEncodingError
@@ -148,6 +149,21 @@ async def video_importing_exception_handler(request: Request, exc: VideoImportin
     })
     return JSONResponse(
         status_code=400,  #  비디오 파일이 유효하지 않을 때 사용됩니다. 예를 들어, 잘못된 비디오 형식이나 손상된 파일을 업로드한 경우
+        content={"detail": exc.detail},
+    )
+
+# 예외 처리 핸들러: MediapipeHandlingError 발생 시
+@app.exception_handler(MediapipeHandlingError)
+async def mediapipe_handling_exception_handler(request: Request, exc: MediapipeHandlingError):
+    """
+    MediapipeHandlingError 발생 시 400 Bad Request 응답을 반환합니다.
+    """
+    logger.error("Mediapipe Handling error", extra={
+        "errorType": "MediapipeHandlingError",
+        "error_message": exc.detail
+    })
+    return JSONResponse(
+        status_code=500,  # Mediapipe로 CV 행동 탐지를 처리하는 중 예상치 못한 오류가 발생했을 때 사용
         content={"detail": exc.detail},
     )
 

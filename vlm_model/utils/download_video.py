@@ -10,7 +10,7 @@ import traceback
 # 모듈별 로거 생성
 logger = logging.getLogger(__name__) 
 
-def download_and_sample_video_local(video_path: str, start_time: int = 0, duration: int = 60, frame_interval: int = 3) -> Optional[np.ndarray]:
+def download_and_sample_video_local(video_path: str, start_time: int = 0, duration: int = 60, frame_interval: int = 3, target_size=(640, 480)) -> Optional[np.ndarray]:
     """
     주어진 비디오 파일에서 지정된 시작 시간과 지속 시간 내에서 일정 간격으로 프레임을 추출합니다.
     
@@ -64,6 +64,8 @@ def download_and_sample_video_local(video_path: str, start_time: int = 0, durati
                 break
 
             if frame_counter in frame_indices:
+                # 이미지 크기 조정
+                frame = cv2.resize(frame, target_size)  # 지정된 크기로 리사이즈
                 frames.append(frame)
                 logger.debug(f"프레임 {frame_counter} 추가")
                 if len(frames) == len(frame_indices):

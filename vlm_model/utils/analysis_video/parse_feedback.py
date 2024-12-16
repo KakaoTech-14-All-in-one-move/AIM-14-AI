@@ -1,9 +1,9 @@
-# vlm_model/utils/analysis_video/parse_feedback_text.py
+# vlm_model/utils/analysis/parse_feedback_text.py
 
 import json
 import logging
 from fastapi import HTTPException
-from vlm_model.schemas.feedback import FeedbackSections, FeedbackDetails, BoundingBox
+from vlm_model.schemas.feedback import FeedbackSections, FeedbackDetails
 from vlm_model.exceptions import VideoProcessingError
 
 # 로거 설정
@@ -37,15 +37,9 @@ def parse_feedback_text(feedback_text: str) -> FeedbackSections:
             section = feedback_json.get(section_key, {})
             improvement = section.get("improvement", "").strip()
             recommendations = section.get("recommendations", "").strip()
-            bounding_box = section.get("bounding_box", None)
-            if bounding_box:
-                bounding_box_obj = BoundingBox(**bounding_box)
-            else:
-                bounding_box_obj = None
             feedback_data[field_name] = FeedbackDetails(
                 improvement=improvement,
-                recommendations=recommendations,
-                bounding_box=bounding_box_obj
+                recommendations=recommendations
             )
         
         return FeedbackSections(**feedback_data)

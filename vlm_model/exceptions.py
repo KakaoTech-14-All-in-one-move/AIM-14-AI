@@ -10,6 +10,16 @@ class VideoImportingError(Exception):
     def __init__(self, message: str):
         self.message = message
 
+class MediapipeHandlingError(Exception):
+    """
+    Mediapipe 뷴석을 하는 중 발생하는 예외.
+
+    Attributes:
+        message (str): 예외에 대한 상세 메시지.
+    """
+    def __init__(self, message: str):
+        self.message = message
+
 
 class VideoProcessingError(Exception):
     """

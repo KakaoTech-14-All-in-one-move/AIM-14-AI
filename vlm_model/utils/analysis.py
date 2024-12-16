@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 # OpenAI 모듈을 client로 정의
 client = OpenAI() # openai
 
-def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, segment_length: int, system_instruction: str, frame_interval: int = 3) -> Tuple[List[Tuple[np.ndarray, int, int, str]], List[str]]:
+def analyze_frames(frames: List[np.ndarray], mediapipe_results: List[dict], segment_idx: int, duration: int, segment_length: int, system_instruction: str, frame_interval: int = 3) -> Tuple[List[Tuple[np.ndarray, int, int, str]], List[str]]:
     """
     주어진 프레임들을 분석하여 문제 행동을 감지하고 피드백을 생성합니다.
 
@@ -34,11 +34,16 @@ def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, se
     - segment_length: 세그먼트의 길이 (초 단위)
     - system_instruction: 시스템 지침 문자열
     - frame_interval: 프레임 추출 간격 (초 단위)
+    - mediapipe_results: Mediapipe 분석 결과 리스트
 
     Returns:
     - problematic_frames: 문제 행동이 감지된 프레임 정보 리스트
     - feedbacks: 생성된 피드백 리스트
     """
+    if not mediapipe_results:
+        logger.error(f"Mediapipe 결과가 비어 있습니다. mediapipe_results: {mediapipe_results}")
+        raise ValueError("Mediapipe 결과가 비어 있습니다. 필수 입력값입니다.")
+
     problematic_frames = []
     feedbacks = []
 
@@ -58,6 +63,11 @@ def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, se
 
         img_type = "image/jpeg"
 
+       # Mediapipe에서 필터링된 결과를 메시지에 포함
+        mediapipe_feedback_text = "\n".join(
+            [f"{key}: {value}" for key, value in mediapipe_feedback.items()]
+        )
+
         # 이미지를 인코딩
         img_b64_str = encode_image(frame)
 
@@ -65,7 +75,7 @@ def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, se
             continue
 
         # 사용자 메시지 구성
-        user_message = f"{user_prompt}\n\n이미지 데이터: data:{img_type};base64,{img_b64_str}"
+        user_message = f"{user_prompt}\n\nMediapipe에서 감지된 문제 행동:\n{mediapipe_feedback_text}\n\n이미지 데이터: data:{img_type};base64,{img_b64_str}"
 
         try:
             response = client.chat.completions.create(

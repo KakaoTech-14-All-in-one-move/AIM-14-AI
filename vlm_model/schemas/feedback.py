@@ -7,16 +7,9 @@ class UploadResponse(BaseModel):
     video_id: str
     message: str
 
-class BoundingBox(BaseModel):
-    x_min: float
-    y_min: float
-    x_max: float
-    y_max: float
-
 class FeedbackDetails(BaseModel):
     improvement: str # 개선이 필요한 점
     recommendations: str # 권장 사항
-    bounding_box: Optional[BoundingBox] = None
 
 class FeedbackSections(BaseModel):
     gaze_processing: FeedbackDetails # 시선 처리
