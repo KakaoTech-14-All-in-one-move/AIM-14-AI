@@ -97,7 +97,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
                         "content": user_message
                     }
                 ],
-                max_tokens=800,
+                max_tokens=2000,
                 temperature=0.4,
                 top_p=0.8
             )
@@ -126,7 +126,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
                 problematic_frames.append((frame, segment_idx + 1, i + 1, timestamp))
                 feedbacks.append(generated_text)
 
-        except openai.error.AuthenticationError as e:
+        except openai.AuthenticationError as e:
             # 401 - Invalid Authentication
             logger.error(f"프레임 {i+1} 처리 중 인증 오류 발생: {e}", extra={
                 "errorType": "AuthenticationError",
@@ -134,7 +134,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
             })
             raise HTTPException(status_code=401, detail="인증 오류: API 키를 확인해주세요.") from e
         
-        except openai.error.PermissionError as e:
+        except openai.PermissionError as e:
             # 403 - Permission Denied (e.g., Country not supported)
             logger.error(f"프레임 {i+1} 처리 중 권한 오류 발생: {e}", extra={
                 "errorType": "PermissionError",
@@ -142,7 +142,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
             })
             raise HTTPException(status_code=403, detail="권한 오류: API 사용 권한을 확인해주세요.") from e
 
-        except openai.error.RateLimitError as e:
+        except openai.RateLimitError as e:
             # 429 - Rate Limit Exceeded
             logger.error(f"프레임 {i+1} 처리 중 Rate Limit 초과: {e}", extra={
                 "errorType": "RateLimitError",
@@ -150,7 +150,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
             })
             raise HTTPException(status_code=429, detail="요청 제한 초과: 요청 속도를 줄여주세요.") from e
 
-        except openai.error.APIError as e:
+        except openai.APIError as e:
             # 500 - Server Error
             logger.error(f"프레임 {i+1} 처리 중 서버 오류 발생: {e}", extra={
                 "errorType": "APIError",
@@ -158,7 +158,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
             })
             raise HTTPException(status_code=502, detail="서버 오류: 나중에 다시 시도해주세요.") from e
 
-        except openai.error.APIConnectionError as e:
+        except openai.APIConnectionError as e:
             # 네트워크 연결 문제
             logger.error(f"프레임 {i+1} 처리 중 API 연결 오류 발생: {e}", extra={
                 "errorType": "APIConnectionError",
@@ -166,7 +166,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
             })
             raise HTTPException(status_code=503, detail="연결 오류: 네트워크 상태를 확인해주세요.") from e
         
-        except openai.error.InvalidRequestError as e:
+        except openai.InvalidRequestError as e:
             # 400 - Invalid Request
             logger.error(f"프레임 {i+1} 처리 중 잘못된 요청 오류 발생: {e}", extra={
                 "errorType": "InvalidRequestError",
@@ -174,7 +174,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
             })
             raise HTTPException(status_code=400, detail="잘못된 요청: 요청 데이터를 확인해주세요.") from e
 
-        except openai.error.OpenAIError as e:
+        except openai.OpenAIError as e:
             # 기타 OpenAI 관련 오류
             logger.error(f"프레임 {i+1} 처리 중 OpenAI 라이브러리 오류 발생: {e}", extra={
                 "errorType": "OpenAIError",

@@ -5,6 +5,7 @@ import re
 import uuid
 import base64
 import logging
+import openai
 from pathlib import Path
 
 from fastapi import HTTPException
@@ -101,9 +102,9 @@ def process_video(file_path: str, video_id: str):
 
             # 특정 기준을 초과하는 경우 문제 프레임으로 간주
             if (mediapipe_feedback["posture_score"] > 0.8 or
-                mediapipe_feedback["gaze_score"] > 0.5 or
-                mediapipe_feedback["gestures_score"] > 0.5 or
-                mediapipe_feedback["sudden_movement_score"] > 0.5):
+                mediapipe_feedback["gaze_score"] > 0.7 or
+                mediapipe_feedback["gestures_score"] > 0.7 or
+                mediapipe_feedback["sudden_movement_score"] > 0.7):
 
                 # 문제 프레임 및 Mediapipe 결과 저장
                 timestamp_sec = start_time + idx * frame_interval  # 타임스탬프 계산
