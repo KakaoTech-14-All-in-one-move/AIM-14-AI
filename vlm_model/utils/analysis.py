@@ -2,6 +2,7 @@
 
 import json
 from typing import List, Tuple
+import openai
 from openai import OpenAI # import openai
 import numpy as np
 from pathlib import Path
@@ -80,6 +81,8 @@ def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, se
                     }
                 ],
                 max_tokens=800,
+                temperature=0.4,
+                top_p=0.8
             )
 
             # 생성된 텍스트과 문제 행동 추출
@@ -106,23 +109,74 @@ def analyze_frames(frames: List[np.ndarray], segment_idx: int, duration: int, se
                 problematic_frames.append((frame, segment_idx + 1, i + 1, timestamp))
                 feedbacks.append(generated_text)
 
-        except client.error.OpenAIError as e:
-            logger.error(f"프레임 {i+1} 처리 중 OpenAI 오류 발생: {e}", extra={
+        except openai.error.AuthenticationError as e:
+            # 401 - Invalid Authentication
+            logger.error(f"프레임 {i+1} 처리 중 인증 오류 발생: {e}", extra={
+                "errorType": "AuthenticationError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=401, detail="인증 오류: API 키를 확인해주세요.") from e
+        
+        except openai.error.PermissionError as e:
+            # 403 - Permission Denied (e.g., Country not supported)
+            logger.error(f"프레임 {i+1} 처리 중 권한 오류 발생: {e}", extra={
+                "errorType": "PermissionError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=403, detail="권한 오류: API 사용 권한을 확인해주세요.") from e
+
+        except openai.error.RateLimitError as e:
+            # 429 - Rate Limit Exceeded
+            logger.error(f"프레임 {i+1} 처리 중 Rate Limit 초과: {e}", extra={
+                "errorType": "RateLimitError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=429, detail="요청 제한 초과: 요청 속도를 줄여주세요.") from e
+
+        except openai.error.APIError as e:
+            # 500 - Server Error
+            logger.error(f"프레임 {i+1} 처리 중 서버 오류 발생: {e}", extra={
+                "errorType": "APIError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=502, detail="서버 오류: 나중에 다시 시도해주세요.") from e
+
+        except openai.error.APIConnectionError as e:
+            # 네트워크 연결 문제
+            logger.error(f"프레임 {i+1} 처리 중 API 연결 오류 발생: {e}", extra={
+                "errorType": "APIConnectionError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=503, detail="연결 오류: 네트워크 상태를 확인해주세요.") from e
+        
+        except openai.error.InvalidRequestError as e:
+            # 400 - Invalid Request
+            logger.error(f"프레임 {i+1} 처리 중 잘못된 요청 오류 발생: {e}", extra={
+                "errorType": "InvalidRequestError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=400, detail="잘못된 요청: 요청 데이터를 확인해주세요.") from e
+
+        except openai.error.OpenAIError as e:
+            # 기타 OpenAI 관련 오류
+            logger.error(f"프레임 {i+1} 처리 중 OpenAI 라이브러리 오류 발생: {e}", extra={
                 "errorType": "OpenAIError",
                 "error_message": str(e)
             })
-            raise HTTPException(status_code=502, detail="OpenAI API 통신 오류.") from e
+            raise HTTPException(status_code=500, detail="OpenAI 처리 중 알 수 없는 오류가 발생했습니다.") from e
+
         except ValueError as ve:
             logger.error(f"프레임 {i+1} 피드백 파싱 중 오류 발생: {ve}", extra={
                 "errorType": "ValueError",
                 "error_message": str(ve)
             })
-            raise HTTPException(status_code=400, detail="피드백 파싱 과정중 오류.") from ve
+            raise HTTPException(status_code=400, detail="피드백 파싱 과정 중 오류.") from ve
+
         except Exception as e:
-            logger.error(f"프레임 {i+1} 처리 중 오류 발생: {e}", extra={
+            logger.error(f"프레임 {i+1} 처리 중 예기치 않은 오류 발생: {e}", extra={
                 "errorType": type(e).__name__,
                 "error_message": str(e)
             })
-            raise HTTPException(status_code=500, detail="프레임 처리 중 오류가 발생.") from e
+            raise HTTPException(status_code=500, detail="프레임 처리 중 예기치 않은 오류가 발생했습니다.") from e
 
     return problematic_frames, feedbacks
