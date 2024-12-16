@@ -39,8 +39,8 @@ def process_video(file_path: str, video_id: str):
     # 세그먼트 길이와 프레임 간격 설정
     segment_length = 60  # 초
     frame_interval = 1    # 초
-
     feedback_data = []
+    mediapipe_results = []
 
     # 디렉터리 경로가 지정되었는지 확인
     if FEEDBACK_DIR is None or not FEEDBACK_DIR.exists():
@@ -71,19 +71,32 @@ def process_video(file_path: str, video_id: str):
 
         # Mediapipe 기반 문제 프레임 필터링
         problematic_frames = []
-        mediapipe_results = []  # Mediapipe 분석 결과 저장
+        mediapipe_results_segment = []  # 세그먼트별 Mediapipe 결과 저장
         previous_pose_landmarks = None
         previous_hand_landmarks = None
 
         for idx, frame in enumerate(frames):
-            mediapipe_feedback, current_pose_landmarks, current_hand_landmarks = analyze_frame(
-                frame, previous_pose_landmarks, previous_hand_landmarks
-            )
-            
-            # Mediapipe 결과가 비어 있는지 확인
-            if all(value == 0 for value in mediapipe_feedback.values()):
-                logger.warning(f"프레임 {idx}에서 유효한 Mediapipe 결과가 없습니다. 0점으로 처리됩니다.")
-                continue
+            # 기본값으로 초기화
+            mediapipe_feedback = {
+                "posture_score": 0.0,
+                "gaze_score": 0.0,
+                "gestures_score": 0.0,
+                "sudden_movement_score": 0.0
+            }
+            current_pose_landmarks = previous_pose_landmarks
+            current_hand_landmarks = previous_hand_landmarks
+
+            # analyze_frame 호출 및 결과 처리
+            try:
+                mediapipe_feedback, current_pose_landmarks, current_hand_landmarks = analyze_frame(
+                    frame, previous_pose_landmarks, previous_hand_landmarks
+                )
+            except Exception as e:
+                logger.error(f"프레임 {idx} 분석 중 오류 발생: {str(e)}", extra={
+                    "errorType": type(e).__name__,
+                    "error_message": str(e)
+                })
+                continue  # 다음 프레임으로 계속 진행
 
             # 특정 기준을 초과하는 경우 문제 프레임으로 간주
             if (mediapipe_feedback["posture_score"] > 0.8 or
@@ -92,8 +105,9 @@ def process_video(file_path: str, video_id: str):
                 mediapipe_feedback["sudden_movement_score"] > 0.5):
 
                 # 문제 프레임 및 Mediapipe 결과 저장
-                problematic_frames.append((frame, segment_index, idx))
-                mediapipe_results.append({
+                timestamp = start_time + idx * frame_interval  # 타임스탬프 계산
+                problematic_frames.append((frame, segment_index, idx, timestamp))
+                mediapipe_results_segment.append({
                     "gaze_processing": {
                         "score": mediapipe_feedback["gaze_score"]
                     },
@@ -113,31 +127,32 @@ def process_video(file_path: str, video_id: str):
             previous_hand_landmarks = current_hand_landmarks if current_hand_landmarks else previous_hand_landmarks
 
         # 문제가 되는 프레임만 추가 처리
-        for frame_info, mediapipe_result in zip(problematic_frames, mediapipe_results):
-            frame, segment_index, frame_number = frame_info
+        if problematic_frames:
+            try:
+                frames_to_analyze = [frame_info[0] for frame_info in problematic_frames]
+                mediapipe_results_subset = mediapipe_results_segment[:len(problematic_frames)]
+                problematic_frames_processed, feedbacks = analyze_frames(
+                    frames=frames_to_analyze,
+                    mediapipe_results=mediapipe_results_subset,
+                    segment_idx=segment_index,
+                    duration=segment_length,
+                    segment_length=segment_length,
+                    system_instruction=SYSTEM_INSTRUCTION,
+                    frame_interval=frame_interval
+                )
+            except Exception as e:
+                logger.error(f"프레임 분석 중 오류 발생: {str(e)}",  extra={
+                    "errorType": type(e).__name__,
+                    "error_message": str(e)
+                })
+                raise HTTPException(status_code=422, detail="프레임 분석 중 오류가 발생했습니다.") from e
+        else:
+            problematic_frames_processed = []
+            feedbacks = []
 
-        # 문제가 되는 프레임만 추가 처리
-        try:
-            frames_to_analyze = [frame_info[0] for frame_info in problematic_frames]
-            problematic_frames, feedbacks = analyze_frames(
-                frames=frames_to_analyze,
-                mediapipe_results=mediapipe_results,
-                segment_idx=segment_index,
-                duration=segment_length,
-                segment_length=segment_length,
-                system_instruction=SYSTEM_INSTRUCTION,
-                frame_interval=frame_interval
-            )
-        except Exception as e:
-            logger.error(f"프레임 분석 중 오류 발생: {e}",  extra={
-                "errorType": type(e).__name__,
-                "error_message": str(e)
-            })
-            raise HTTPException(status_code=422, detail="프레임 분석 중 오류가 발생했습니다.") from e
+        logger.debug(f"프레임 수: {len(problematic_frames_processed)}, 피드백 수: {len(feedbacks)}")
 
-        logger.debug(f"프레임 수: {len(problematic_frames)}, 피드백 수: {len(feedbacks)}")
-
-        for frame_info, feedback_text in zip(problematic_frames, feedbacks):
+        for frame_info, feedback_text in zip(problematic_frames_processed, feedbacks):
             frame, segment_number, frame_number, timestamp = frame_info
 
             # 이미지 인코딩 (Base64)
@@ -148,11 +163,11 @@ def process_video(file_path: str, video_id: str):
                         "errorType": "ImageEncodingError",
                         "error_message": f"이미지 인코딩 실패. 프레임 {frame_number}"
                     })
-                    raise ImageEncodingError("이미지 인코딩이 실패했습니다.") from iee
+                    raise ImageEncodingError("이미지 인코딩이 실패했습니다.")
             except ImageEncodingError as iee:
-                logger.error(f"이미지 인코딩 실패: {iee.message}", extra={
+                logger.error(f"이미지 인코딩 실패: {iee}", extra={
                     "errorType": "ImageEncodingError",
-                    "error_message": f"이미지 인코딩 실패: {iee.message}"
+                    "error_message": f"이미지 인코딩 실패: {iee}"
                 })
                 raise ImageEncodingError("이미지 인코딩 중 오류가 발생했습니다.") from iee
 

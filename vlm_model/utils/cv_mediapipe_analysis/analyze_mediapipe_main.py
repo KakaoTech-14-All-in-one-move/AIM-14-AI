@@ -9,9 +9,10 @@ from vlm_model.utils.cv_mediapipe_analysis.calculate_hand_move import calculate_
 from vlm_model.utils.cv_mediapipe_analysis.calculate_gesture import calculate_gestures_score
 import mediapipe as mp
 import logging
+from typing import Tuple, Dict, Optional
 
 # 모듈별 로거 생성
-logger = logging.getLogger(__name__) 
+logger = logging.getLogger(__name__)
 
 # Mediapipe 초기화
 mp_pose = mp.solutions.pose
@@ -23,8 +24,7 @@ hands = mp_hands.Hands(static_image_mode=False, max_num_hands=2, min_detection_c
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, min_detection_confidence=0.5)
 
-
-def analyze_frame(frame, previous_pose_landmarks=None, previous_hand_landmarks=None):
+def analyze_frame(frame: cv2.Mat, previous_pose_landmarks: Optional[object] = None, previous_hand_landmarks: Optional[object] = None) -> Tuple[Dict[str, float], Optional[object], Optional[object]]:
     """
     단일 프레임을 분석하여 자세, 시선, 손동작 등의 피드백 정보를 반환합니다.
 
@@ -42,9 +42,6 @@ def analyze_frame(frame, previous_pose_landmarks=None, previous_hand_landmarks=N
         frame_height, frame_width, _ = frame.shape
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-        # PROJECTION_MATRIX 설정 (예시, 필요에 따라 조정)
-        projection_matrix = mp_pose.Pose.PROJECTION_MATRIX
-
         # Mediapipe 결과 처리
         pose_results = pose.process(rgb_frame)
         face_results = face_mesh.process(rgb_frame)
@@ -55,11 +52,11 @@ def analyze_frame(frame, previous_pose_landmarks=None, previous_hand_landmarks=N
         logger.debug(f"Hand results: {hand_results.multi_hand_landmarks if hand_results.multi_hand_landmarks else 'None'}")
 
         # 초기 점수들
-        posture_score = 0
-        gaze_score = 0
-        excessive_gestures_score = 0
-        sudden_movement_score = 0
-        hand_movement_score = 0
+        posture_score = 0.0
+        gaze_score = 0.0
+        excessive_gestures_score = 0.0
+        sudden_movement_score = 0.0
+        hand_movement_score = 0.0
 
         current_pose_landmarks = None
         current_hand_landmarks = None
@@ -86,10 +83,6 @@ def analyze_frame(frame, previous_pose_landmarks=None, previous_hand_landmarks=N
                     m_score = calculate_hand_movement_score(hl, previous_hand_landmarks)
                     if m_score > hand_movement_score:
                         hand_movement_score = m_score
-        else:
-            # 손이 탐지되지 않았을 경우 점수를 0으로 설정
-            excessive_gestures_score = 0.0
-            hand_movement_score = 0.0
 
         # gestures 평균 점수 계산
         gestures_score = calculate_gestures_score(excessive_gestures_score, hand_movement_score)
@@ -98,7 +91,7 @@ def analyze_frame(frame, previous_pose_landmarks=None, previous_hand_landmarks=N
         feedback = {
             "posture_score": round(posture_score, 2),
             "gaze_score": round(gaze_score, 2),
-            "gestures_score": gestures_score,  # gestures의 평균 점수
+            "gestures_score": round(gestures_score, 2),
             "sudden_movement_score": round(sudden_movement_score, 2)
         }
 
@@ -109,4 +102,10 @@ def analyze_frame(frame, previous_pose_landmarks=None, previous_hand_landmarks=N
             "errorType": type(e).__name__,
             "error_message": str(e)
         })
-        raise MediapipeHandlingError("Mediapipe로 CV 분석 중 오류가 발생했습니다.") from e
+        # 기본값 반환
+        return {
+            "posture_score": 0.0,
+            "gaze_score": 0.0,
+            "gestures_score": 0.0,
+            "sudden_movement_score": 0.0
+        }, None, None

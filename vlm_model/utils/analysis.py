@@ -34,7 +34,6 @@ def analyze_frames(frames: List[np.ndarray], mediapipe_results: List[dict], segm
     - segment_length: 세그먼트의 길이 (초 단위)
     - system_instruction: 시스템 지침 문자열
     - frame_interval: 프레임 추출 간격 (초 단위)
-    - mediapipe_results: Mediapipe 분석 결과 리스트
 
     Returns:
     - problematic_frames: 문제 행동이 감지된 프레임 정보 리스트
@@ -56,14 +55,19 @@ def analyze_frames(frames: List[np.ndarray], mediapipe_results: List[dict], segm
     # 프롬프트 파일 절대 경로 설정
     user_prompt = load_user_prompt()
 
-    for i, (frame, frame_time_sec) in enumerate(zip(frames, time_stamps)):
+    # mediapipe_results의 길이와 frames의 길이가 동일한지 확인
+    if len(mediapipe_results) != len(frames):
+        logger.error("mediapipe_results의 길이와 frames의 길이가 일치하지 않습니다.")
+        raise ValueError("mediapipe_results의 길이와 frames의 길이가 일치하지 않습니다.")
+
+    for i, (frame, frame_time_sec, mediapipe_feedback) in enumerate(zip(frames, time_stamps, mediapipe_results)):
         minutes = int(frame_time_sec // 60)
         seconds = int(frame_time_sec % 60)
         timestamp = f"{minutes}m {seconds}s"
 
         img_type = "image/jpeg"
 
-       # Mediapipe에서 필터링된 결과를 메시지에 포함
+        # Mediapipe에서 필터링된 결과를 메시지에 포함
         mediapipe_feedback_text = "\n".join(
             [f"{key}: {value}" for key, value in mediapipe_feedback.items()]
         )

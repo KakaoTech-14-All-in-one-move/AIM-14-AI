@@ -10,7 +10,7 @@ from pathlib import Path
 
 from vlm_model.schemas.feedback import FeedbackResponse
 from vlm_model.utils.processing_video import process_video
-from vlm_model.exceptions import VideoProcessingError, ImageEncodingError, MediapipeHandlingError
+from vlm_model.exceptions import VideoProcessingError, ImageEncodingError
 from vlm_model.config import FEEDBACK_DIR, UPLOAD_DIR
 
 import logging
