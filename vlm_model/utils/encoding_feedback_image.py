@@ -1,4 +1,4 @@
-# utils/encoding_image.py
+# utils/encoding_feedback_image.py
 
 import cv2
 import base64
@@ -11,13 +11,13 @@ from PIL import Image
 # 모듈별 로거 생성
 logger = logging.getLogger(__name__) 
 
-def encode_image(image: np.ndarray, max_size: tuple = (256, 256), quality: int = 70) -> Optional[str]:
+def encode_feedback_image(image: np.ndarray, max_size: tuple = (1280, 720), quality: int = 100) -> Optional[str]:
     """
-    이미지를 리사이즈하고 JPEG 형식으로 인코딩한 후 Base64 문자열로 반환합니다.
+    피드백용 이미지를 리사이즈하고 JPEG 형식으로 인코딩한 후 Base64 문자열로 반환합니다.
 
     Args:
         image (np.ndarray): 인코딩할 이미지의 NumPy 배열.
-        max_size (tuple, optional): 리사이즈할 최대 크기 (가로, 세로). 기본값은 (720, 480).
+        max_size (tuple, optional): 리사이즈할 최대 크기 (가로, 세로). 기본값은 (1280, 720).
         quality (int, optional): JPEG 인코딩 품질 (0-100). 기본값은 70.
 
     Returns:

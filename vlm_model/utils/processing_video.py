@@ -16,6 +16,7 @@ from vlm_model.utils.analysis import analyze_frames
 from vlm_model.utils.analysis_video.load_prompt import load_user_prompt
 from vlm_model.utils.analysis_video.parse_feedback import parse_feedback_text
 from vlm_model.utils.encoding_image import encode_image
+from vlm_model.utils.encoding_feedback_image import encode_feedback_image
 from vlm_model.utils.video_duration import get_video_duration
 from vlm_model.utils.cv_mediapipe_analysis.analyze_mediapipe_main import analyze_frame
 from vlm_model.exceptions import VideoProcessingError, ImageEncodingError
@@ -55,7 +56,7 @@ def process_video(file_path: str, video_id: str):
     for start_time in range(0, int(video_duration), segment_length):
         segment_index = start_time // segment_length
         try:
-            frames = download_and_sample_video_local(file_path, start_time, segment_length, frame_interval)
+            frames_low_res = download_and_sample_video_local(file_path, start_time, segment_length, frame_interval)
         except VideoProcessingError as vpe:
             logger.error(f"프레임을 추출할 수 없습니다: {vpe.message}", extra={
                 "errorType": "VideoProcessingError",
@@ -63,7 +64,7 @@ def process_video(file_path: str, video_id: str):
             })
             raise VideoProcessingError("프레임을 추출할 수 없습니다.") from vpe
 
-        if frames is None or len(frames) == 0:
+        if frames_low_res is None or len(frames_low_res) == 0:
             logger.error(f"프레임을 추출할 수 없습니다. 비디오 파일에 문제가 있을 수 있습니다: {file_path}", extra={
                 "errorType": "VideoProcessingError",
                 "error_message": f"비디오 파일에 문제가 있을 수 있습니다. {file_path}"
@@ -77,7 +78,7 @@ def process_video(file_path: str, video_id: str):
         previous_pose_landmarks = None
         previous_hand_landmarks = None
 
-        for idx, frame in enumerate(frames):
+        for idx, frame_low_res in enumerate(frames_low_res):
             # 기본값으로 초기화
             mediapipe_feedback = {
                 "posture_score": 0.0,
@@ -91,7 +92,7 @@ def process_video(file_path: str, video_id: str):
             # analyze_frame 호출 및 결과 처리
             try:
                 mediapipe_feedback, current_pose_landmarks, current_hand_landmarks = analyze_frame(
-                    frame, previous_pose_landmarks, previous_hand_landmarks
+                    frame_low_res, previous_pose_landmarks, previous_hand_landmarks
                 )
             except Exception as e:
                 logger.error(f"프레임 {idx} 분석 중 오류 발생: {str(e)}", extra={
@@ -108,7 +109,7 @@ def process_video(file_path: str, video_id: str):
 
                 # 문제 프레임 및 Mediapipe 결과 저장
                 timestamp_sec = start_time + idx * frame_interval  # 타임스탬프 계산
-                problematic_frames.append((frame, segment_index, idx, timestamp_sec))
+                problematic_frames.append((frame_low_res, segment_index, idx, timestamp_sec))
                 problematic_timestamps.append(timestamp_sec)  # 타임스탬프 추가
 
                 mediapipe_results_segment.append({
@@ -160,11 +161,11 @@ def process_video(file_path: str, video_id: str):
         logger.debug(f"프레임 수: {len(problematic_frames_processed)}, 피드백 수: {len(feedbacks)}")
 
         for frame_info, feedback_text in zip(problematic_frames_processed, feedbacks):
-            frame, segment_number, frame_number, timestamp = frame_info  # timestamp는 float
+            frame_low_res, segment_number, frame_number, timestamp = frame_info  # timestamp는 float
 
             # 이미지 인코딩 (Base64)
             try:
-                image_base64 = encode_image(frame)
+                image_base64 = encode_feedback_image(frame_low_res)
                 if not image_base64:
                     logger.error(f"프레임 {frame_number}의 이미지 인코딩 실패", extra={
                         "errorType": "ImageEncodingError",
