@@ -8,6 +8,7 @@ from .visualization import plot_problematic_frames
 from .encoding_image import encode_image
 from .user_prompt import generate_user_prompt
 from .processing_video import process_video
+from .encoding_feedback_image import encode_feedback_image
 
 __all__ = [
     "read_video_opencv",
@@ -17,5 +18,6 @@ __all__ = [
     "plot_problematic_frames",
     "encode_image",
     "generate_user_prompt",
-    "process_video"
+    "process_video",
+    "encode_feedback_image"
 ]
