@@ -12,4 +12,3 @@ python-json-logger
 colorlog
 sentry-sdk[fastapi]
 mediapipe
-tensorflow

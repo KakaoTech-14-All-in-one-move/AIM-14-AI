@@ -99,7 +99,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
                 ],
                 max_tokens=2000,
                 temperature=0.4,
-                top_p=0.8
+                top_p=0.3
             )
 
             # 생성된 텍스트과 문제 행동 추출
