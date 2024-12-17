@@ -6,6 +6,7 @@ import numpy as np
 from typing import Optional
 import logging
 from vlm_model.exceptions import ImageEncodingError
+from PIL import Image
 
 # 모듈별 로거 생성
 logger = logging.getLogger(__name__) 
@@ -13,17 +14,22 @@ logger = logging.getLogger(__name__)
 def encode_image(image: np.ndarray, max_size: tuple = (256, 256), quality: int = 70) -> Optional[str]:
     """
     이미지를 리사이즈하고 JPEG 형식으로 인코딩한 후 Base64 문자열로 반환합니다.
+
+    Args:
+        image (np.ndarray): 인코딩할 이미지의 NumPy 배열.
+        max_size (tuple, optional): 리사이즈할 최대 크기 (가로, 세로). 기본값은 (720, 480).
+        quality (int, optional): JPEG 인코딩 품질 (0-100). 기본값은 70.
+
+    Returns:
+        Optional[str]: Base64로 인코딩된 JPEG 이미지 문자열. 인코딩에 실패하면 None 반환.
+
+    Raises:
+        ImageEncodingError: 이미지 인코딩 과정에서 오류가 발생한 경우.
     """
     try:
-        # 현재 이미지의 크기 가져오기
-        height, width = image.shape[:2]
-        max_width, max_height = max_size
-
-        # 비율 유지하며 크기 조정
-        scaling_factor = min(max_width / width, max_height / height, 1)  # 원본보다 작게만 조정
-        new_width = int(width * scaling_factor)
-        new_height = int(height * scaling_factor)
-        resized_image = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_AREA)
+        # 정확한 크기로 이미지 리사이즈 (비율 유지 안함)
+        resized_image = cv2.resize(image, max_size, interpolation=cv2.INTER_AREA)
+        logger.debug(f"이미지 정확한 크기 {max_size}으로 리사이즈 완료")
 
         # JPEG로 인코딩
         encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality]

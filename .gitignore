@@ -19,6 +19,7 @@ vlm_model/routers/__pycache__/
 vlm_model/schemas/__pycache__/
 vlm_model/utils/__pycache__/
 vlm_model/utils/analysis_video/__pycache__/
+vlm_model/utils/image_process/__pycache__/
 
 # Ignore all log files within logs/ directory
 logs/*.log
