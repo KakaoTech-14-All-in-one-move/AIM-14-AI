@@ -1,6 +1,8 @@
 # vlm_model/utils/cv_mediapipe_analysis/analyze_mediapipe_main.py
 
-import cv2
+# Mediapipe 초기화
+from vlm_model.utils.cv_mediapipe_analysis.mediapipe_initializer import pose, face_mesh, hands
+
 from vlm_model.utils.cv_mediapipe_analysis.posture_analysis import calculate_head_position_score
 from vlm_model.utils.cv_mediapipe_analysis.movement_analysis import calculate_sudden_movement_score
 from vlm_model.utils.cv_mediapipe_analysis.gaze_analysis import calculate_lack_of_eye_contact_score
@@ -8,21 +10,13 @@ from vlm_model.utils.cv_mediapipe_analysis.gesture_analysis import calculate_exc
 from vlm_model.utils.cv_mediapipe_analysis.calculate_hand_move import calculate_hand_movement_score
 from vlm_model.utils.cv_mediapipe_analysis.calculate_gesture import calculate_gestures_score
 import mediapipe as mp
+
 import logging
+import cv2
 from typing import Tuple, Dict, Optional
 
 # 모듈별 로거 생성
 logger = logging.getLogger(__name__)
-
-# Mediapipe 초기화
-mp_pose = mp.solutions.pose
-pose = mp_pose.Pose()
-
-mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(static_image_mode=False, max_num_hands=2, min_detection_confidence=0.5)
-
-mp_face_mesh = mp.solutions.face_mesh
-face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, min_detection_confidence=0.5)
 
 def analyze_frame(frame: cv2.Mat, previous_pose_landmarks: Optional[object] = None, previous_hand_landmarks: Optional[object] = None) -> Tuple[Dict[str, float], Optional[object], Optional[object]]:
     """
