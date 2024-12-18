@@ -1,5 +1,4 @@
 openai
-matplotlib
 pillow
 tqdm
 opencv-python

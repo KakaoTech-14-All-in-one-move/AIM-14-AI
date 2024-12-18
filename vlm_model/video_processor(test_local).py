@@ -10,7 +10,6 @@ from utils import (
     analyze_frames,
     plot_problematic_frames,
     encode_image,
-    generate_user_prompt
 )
 import openai
 

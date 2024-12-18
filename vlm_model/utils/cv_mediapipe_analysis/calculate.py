@@ -1,4 +1,5 @@
 # vlm_model/utils/cv_mediapipe_analysis/calculate.py
+# 이건 utils/processing_video 안에 들어가 있음. 2차 Refactoring때 분리 or 삭제 진행 예정
 
 from vlm_model.utils.cv_mediapipe_analysis.analyze_mediapipe_main import analyze_frame
 

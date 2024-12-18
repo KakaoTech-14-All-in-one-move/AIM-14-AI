@@ -1,4 +1,4 @@
-# vlm_model/utils/cv_mediapipe_analysis/bounding_box.py
+# vlm_model/utils/cv_mediapipe_analysis/bounding_box.py - 의논후 삭제 or 유지 결론
 
 import cv2
 from vlm_model.utils.cv_mediapipe_analysis.mediapipe_initializer import mp_pose, mp_hands

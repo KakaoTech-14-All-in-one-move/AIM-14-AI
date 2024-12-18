@@ -2,6 +2,7 @@
 
 import json
 import logging
+import re
 from fastapi import HTTPException
 from vlm_model.schemas.feedback import FeedbackSections, FeedbackDetails
 from vlm_model.exceptions import VideoProcessingError
@@ -15,7 +16,19 @@ def parse_feedback_text(feedback_text: str) -> FeedbackSections:
     feedback_text를 FeedbackSections 형식으로 파싱합니다.
     """
     try:
-        feedback_json = json.loads(feedback_text)
+        if not feedback_text:
+            logger.error("비어있는 피드백 텍스트가 전달되었습니다.", extra={
+                "errorType": "EmptyFeedbackText",
+                "error_message": "비어있는 피드백 텍스트가 전달되었습니다."
+            })
+            raise VideoProcessingError("비어있는 피드백 텍스트가 전달되었습니다.")
+
+        # 코드 블록 제거 (```json\n ... \n```)
+        clean_text = re.sub(r'^```json\s*', '', feedback_text, flags=re.MULTILINE)
+        clean_text = re.sub(r'```\s*$', '', clean_text, flags=re.MULTILINE)
+
+        feedback_json = json.loads(clean_text)
+
         if feedback_json.get("problem") == "none":
             return FeedbackSections(
                 gaze_processing=FeedbackDetails(improvement="", recommendations=""),
@@ -27,17 +40,12 @@ def parse_feedback_text(feedback_text: str) -> FeedbackSections:
         
         # 섹션별로 데이터 추출
         feedback_data = {}
-        for section_key, field_name in {
-            "gaze_processing": "gaze_processing",
-            "facial_expression": "facial_expression",
-            "gestures": "gestures",
-            "posture_body": "posture_body",
-            "movement": "movement"
-        }.items():
+        sections = ["gaze_processing", "facial_expression", "gestures", "posture_body", "movement"]
+        for section_key in sections:
             section = feedback_json.get(section_key, {})
             improvement = section.get("improvement", "").strip()
             recommendations = section.get("recommendations", "").strip()
-            feedback_data[field_name] = FeedbackDetails(
+            feedback_data[section_key] = FeedbackDetails(
                 improvement=improvement,
                 recommendations=recommendations
             )

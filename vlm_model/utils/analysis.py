@@ -1,8 +1,22 @@
 # utils/analysis.py
 
 import json
+import re
 from typing import List, Tuple
-import openai
+from openai import (
+    AuthenticationError,
+    APIError,
+    APITimeoutError,
+    APIConnectionError,
+    RateLimitError,
+    BadRequestError,
+    OpenAIError,
+    ConflictError,
+    InternalServerError,
+    NotFoundError,
+    PermissionDeniedError,
+    UnprocessableEntityError
+)
 from openai import OpenAI # import openai
 import numpy as np
 from pathlib import Path
@@ -10,7 +24,6 @@ import logging
 from fastapi import HTTPException
 
 from vlm_model.openai_config import SYSTEM_INSTRUCTION
-from vlm_model.constants.behaviors import PROBLEMATIC_BEHAVIORS
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.utils.analysis_video.load_prompt import load_user_prompt
 from vlm_model.utils.analysis_video.parse_feedback import parse_feedback_text
@@ -101,12 +114,17 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
                 temperature=0.4,
                 top_p=0.3
             )
+            logger.info(f"프레임 {i+1} OpenAI 응답: {response}")
 
             # 생성된 텍스트과 문제 행동 추출
             generated_text = response.choices[0].message.content
 
+            # 코드 블록 제거 (```json\n ... \n```)
+            clean_text = re.sub(r'^```json\s*', '', generated_text, flags=re.MULTILINE)
+            clean_text = re.sub(r'```\s*$', '', clean_text, flags=re.MULTILINE)
+
             # JSON 형식으로 응답을 파싱
-            feedback_sections = parse_feedback_text(generated_text)
+            feedback_sections = parse_feedback_text(clean_text)
 
             # 문제 행동 감지 여부 확인
             problem_detected = any(
@@ -126,23 +144,23 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
                 problematic_frames.append((frame, segment_idx + 1, i + 1, timestamp))
                 feedbacks.append(generated_text)
 
-        except openai.AuthenticationError as e:
+        except AuthenticationError as e:
             # 401 - Invalid Authentication
             logger.error(f"프레임 {i+1} 처리 중 인증 오류 발생: {e}", extra={
                 "errorType": "AuthenticationError",
                 "error_message": str(e)
             })
             raise HTTPException(status_code=401, detail="인증 오류: API 키를 확인해주세요.") from e
-        
-        except openai.PermissionError as e:
+
+        except PermissionDeniedError as e:
             # 403 - Permission Denied (e.g., Country not supported)
             logger.error(f"프레임 {i+1} 처리 중 권한 오류 발생: {e}", extra={
-                "errorType": "PermissionError",
+                "errorType": "PermissionDeniedError",
                 "error_message": str(e)
             })
             raise HTTPException(status_code=403, detail="권한 오류: API 사용 권한을 확인해주세요.") from e
 
-        except openai.RateLimitError as e:
+        except RateLimitError as e:
             # 429 - Rate Limit Exceeded
             logger.error(f"프레임 {i+1} 처리 중 Rate Limit 초과: {e}", extra={
                 "errorType": "RateLimitError",
@@ -150,32 +168,72 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
             })
             raise HTTPException(status_code=429, detail="요청 제한 초과: 요청 속도를 줄여주세요.") from e
 
-        except openai.APIError as e:
-            # 500 - Server Error
-            logger.error(f"프레임 {i+1} 처리 중 서버 오류 발생: {e}", extra={
+        except BadRequestError as e:
+            # 400 - Bad Request
+            logger.error(f"프레임 {i+1} 처리 중 잘못된 요청 오류 발생: {e}", extra={
+                "errorType": "BadRequestError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=400, detail="잘못된 요청: 요청 데이터를 확인해주세요.") from e
+
+        except ConflictError as e:
+            # 409 - Conflict
+            logger.error(f"프레임 {i+1} 처리 중 충돌 오류 발생: {e}", extra={
+                "errorType": "ConflictError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=409, detail="충돌 오류: 요청을 다시 시도해주세요.") from e
+
+        except InternalServerError as e:
+            # 500 - Internal Server Error
+            logger.error(f"프레임 {i+1} 처리 중 내부 서버 오류 발생: {e}", extra={
+                "errorType": "InternalServerError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=502, detail="내부 서버 오류: 나중에 다시 시도해주세요.") from e
+
+        except NotFoundError as e:
+            # 404 - Not Found
+            logger.error(f"프레임 {i+1} 처리 중 자원 미존재 오류 발생: {e}", extra={
+                "errorType": "NotFoundError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=404, detail="자원이 존재하지 않습니다.") from e
+
+        except UnprocessableEntityError as e:
+            # 422 - Unprocessable Entity
+            logger.error(f"프레임 {i+1} 처리 중 처리 불가능한 엔티티 오류 발생: {e}", extra={
+                "errorType": "UnprocessableEntityError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=422, detail="처리 불가능한 데이터입니다.") from e
+
+        except APIError as e:
+            # 502 - Bad Gateway
+            logger.error(f"프레임 {i+1} 처리 중 API 오류 발생: {e}", extra={
                 "errorType": "APIError",
                 "error_message": str(e)
             })
             raise HTTPException(status_code=502, detail="서버 오류: 나중에 다시 시도해주세요.") from e
 
-        except openai.APIConnectionError as e:
-            # 네트워크 연결 문제
+        except APITimeoutError as e:
+            # 504 - Gateway Timeout
+            logger.error(f"프레임 {i+1} 처리 중 API 타임아웃 오류 발생: {e}", extra={
+                "errorType": "APITimeoutError",
+                "error_message": str(e)
+            })
+            raise HTTPException(status_code=504, detail="서버 응답 지연: 나중에 다시 시도해주세요.") from e
+
+        except APIConnectionError as e:
+            # 503 - Service Unavailable
             logger.error(f"프레임 {i+1} 처리 중 API 연결 오류 발생: {e}", extra={
                 "errorType": "APIConnectionError",
                 "error_message": str(e)
             })
             raise HTTPException(status_code=503, detail="연결 오류: 네트워크 상태를 확인해주세요.") from e
-        
-        except openai.InvalidRequestError as e:
-            # 400 - Invalid Request
-            logger.error(f"프레임 {i+1} 처리 중 잘못된 요청 오류 발생: {e}", extra={
-                "errorType": "InvalidRequestError",
-                "error_message": str(e)
-            })
-            raise HTTPException(status_code=400, detail="잘못된 요청: 요청 데이터를 확인해주세요.") from e
 
-        except openai.OpenAIError as e:
-            # 기타 OpenAI 관련 오류
+        except OpenAIError as e:
+            # 500 - OpenAI 관련 기타 오류
             logger.error(f"프레임 {i+1} 처리 중 OpenAI 라이브러리 오류 발생: {e}", extra={
                 "errorType": "OpenAIError",
                 "error_message": str(e)
@@ -183,6 +241,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
             raise HTTPException(status_code=500, detail="OpenAI 처리 중 알 수 없는 오류가 발생했습니다.") from e
 
         except ValueError as ve:
+            # JSON 디코딩 오류 등
             logger.error(f"프레임 {i+1} 피드백 파싱 중 오류 발생: {ve}", extra={
                 "errorType": "ValueError",
                 "error_message": str(ve)
@@ -190,6 +249,7 @@ def analyze_frames(frames: List[np.ndarray], timestamps: List[float], mediapipe_
             raise HTTPException(status_code=400, detail="피드백 파싱 과정 중 오류.") from ve
 
         except Exception as e:
+            # 기타 모든 예외
             logger.error(f"프레임 {i+1} 처리 중 예기치 않은 오류 발생: {e}", extra={
                 "errorType": type(e).__name__,
                 "error_message": str(e)
