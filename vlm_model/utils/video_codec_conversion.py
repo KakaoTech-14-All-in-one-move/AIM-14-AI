@@ -14,16 +14,37 @@ from vlm_model.exceptions import VideoImportingError
 
 logger = logging.getLogger(__name__) # 로거 사용
 
-def convert_to_vp9(input_path: str, output_path: str) -> bool:
+def convert_to_vp9(input_path: str, output_path: str, preset: str = 'faster', cpu_used: int = 8, threads: int = 0, tile_columns: int = 4, tile_rows: int = 2, bitrate: str = '1M') -> bool:
     """
     H.264 코덱 비디오를 VP9 코덱으로 변환합니다.
+
+    Parameters:
+    - input_path: 입력 비디오 파일 경로
+    - output_path: 출력 비디오 파일 경로
+    - preset: 인코딩 프리셋 (예: 'faster', 'fast', 'medium', 'slow', 'best')
+    - cpu_used: 인코딩 속도 조절 (0-8, 높을수록 빠름)
+    - threads: FFmpeg가 사용할 스레드 수 (0은 자동)
+    - tile_columns: 타일 열 수
+    - tile_rows: 타일 행 수
+    - bitrate: 비디오 비트레이트 (예: '1M', '800k')
     """
     try:
         command = [
             'ffmpeg', '-i', input_path,
-            '-c:v', 'libvpx-vp9', '-b:v', '1M',
-            '-c:a', 'libopus', output_path
+            '-c:v', 'libvpx-vp9',
+            '-b:v', bitrate,
+            '-cpu-used', str(cpu_used),          # 인코딩 속도 향상을 위한 옵션
+            '-deadline', 'realtime',            # 인코딩 속도 우선
+            '-threads', str(threads),            # 스레드 수 자동 설정
+            '-tile-columns', str(tile_columns),  # 타일 열 수
+            '-tile-rows', str(tile_rows),        # 타일 행 수
+            '-g', '120',                          # GOP 크기 (프레임 수에 따라 조정 가능)
+            '-aq-mode', '0',                      # 오디오 인코딩 속도 최적화 (필요 시 조정)
+            '-c:a', 'libopus',
+            output_path
         ]
+
+        logger.debug(f"FFmpeg 명령어: {' '.join(command)}")
         subprocess.run(command, check=True)
         logger.info(f"비디오 변환 성공: {output_path}")
         return True
@@ -49,7 +70,7 @@ def convert_to_vp9(input_path: str, output_path: str) -> bool:
         })
         raise VideoImportingError("예기치 않은 변환 오류가 발생했습니다.") from e
 
-def get_video_codec_info(video_path: str):
+def get_video_codec_info(video_path: str) -> str:
     """
     FFmpeg로 비디오 파일의 코덱 정보를 확인합니다.
     """
@@ -58,6 +79,16 @@ def get_video_codec_info(video_path: str):
         result = subprocess.run(command, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         output = result.stderr.decode()
         logger.debug(f"코덱 정보: {output}")
+
+        # 코덱 정보를 추출하기 위한 정규 표현식
+        codec_match = re.search(r'Stream #\d+:\d+.*Video: ([^ ,]+)', output)
+        if codec_match:
+            codec_info = codec_match.group(1)
+            logger.debug(f"추출된 코덱 정보: {codec_info}")
+            return codec_info
+        else:
+            logger.error(f"비디오 코덱 정보를 찾을 수 없습니다: {video_path}")
+            return ""
 
     except subprocess.CalledProcessError as e:
         logger.error(f"코덱 정보 확인 실패: {str(e)}", extra={
@@ -72,3 +103,40 @@ def get_video_codec_info(video_path: str):
             "error_message": str(e)
         })
         raise VideoImportingError("코덱 정보 확인 중 오류 발생") from e
+
+def is_vp9(video_path: str) -> bool:
+    """
+    주어진 비디오 파일이 VP9 코덱인지 확인합니다.
+    
+    Parameters:
+    - video_path: 비디오 파일 경로
+    
+    Returns:
+    - bool: VP9 코덱인 경우 True, 아니면 False
+    """
+    codec_info = get_video_codec_info(video_path)
+    is_vp9_codec = 'vp9' in codec_info.lower()
+    logger.debug(f"파일 {video_path}의 VP9 여부: {is_vp9_codec}")
+    return is_vp9_codec
+
+def convert_to_vp9_if_needed(input_path: str, output_path: str, preset: str = 'faster', cpu_used: int = 8, threads: int = 0, tile_columns: int = 4, tile_rows: int = 2, bitrate: str = '1M') -> bool:
+    """
+    주어진 비디오 파일이 VP9 코덱이 아닌 경우에만 VP9으로 변환합니다.
+    
+    Parameters:
+    - input_path: 입력 비디오 파일 경로
+    - output_path: 출력 비디오 파일 경로
+    - preset: 인코딩 프리셋 (예: 'faster', 'fast', 'medium', 'slow', 'best')
+    - cpu_used: 인코딩 속도 조절 (0-8, 높을수록 빠름)
+    - threads: FFmpeg가 사용할 스레드 수 (0은 자동)
+    - tile_columns: 타일 열 수
+    - tile_rows: 타일 행 수
+    - bitrate: 비디오 비트레이트 (예: '1M', '800k')
+    
+    Returns:
+    - bool: 변환이 수행되면 True, 이미 VP9인 경우 False
+    """
+    if is_vp9(input_path):
+        logger.info(f"이미 VP9 코덱인 파일입니다: {input_path}")
+        return False
+    return convert_to_vp9(input_path, output_path, preset, cpu_used, threads, tile_columns, tile_rows, bitrate)
