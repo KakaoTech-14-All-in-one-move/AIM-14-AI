@@ -10,7 +10,6 @@ import logging
 from fastapi import HTTPException
 
 from vlm_model.openai_config import SYSTEM_INSTRUCTION
-from vlm_model.constants.behaviors import PROBLEMATIC_BEHAVIORS
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.utils.analysis_video.load_prompt import load_user_prompt
 from vlm_model.utils.analysis_video.parse_feedback import parse_feedback_text

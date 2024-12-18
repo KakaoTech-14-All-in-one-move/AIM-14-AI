@@ -9,7 +9,6 @@ import subprocess
 from pathlib import Path
 
 from vlm_model.schemas.feedback import UploadResponse
-from vlm_model.utils.video_duration import get_video_duration
 from vlm_model.utils.video_codec_conversion import convert_to_vp9, get_video_codec_info 
 from vlm_model.config import UPLOAD_DIR
 from vlm_model.exceptions import VideoImportingError

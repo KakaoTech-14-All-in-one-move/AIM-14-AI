@@ -1,4 +1,4 @@
-# vlm_model/utils/cv_mediapipe_analysis/process_visualize.py
+# vlm_model/utils/cv_mediapipe_analysis/process_visualize.py - 삭제 예정?
 
 from vlm_model.utils.cv_mediapipe_analysis.bounding_box import draw_bounding_boxes
 
