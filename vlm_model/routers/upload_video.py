@@ -9,7 +9,6 @@ import subprocess
 from pathlib import Path
 
 from vlm_model.schemas.feedback import UploadResponse
-from vlm_model.utils.video_codec_conversion import convert_to_vp9_if_needed
 from vlm_model.config import UPLOAD_DIR
 from vlm_model.exceptions import VideoImportingError
 
@@ -46,7 +45,6 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
 
     # 비디오 파일 저장 경로 설정
     original_file_path = UPLOAD_DIR / f"{video_id}_original.{file_extension}"
-    converted_file_path = UPLOAD_DIR / f"{video_id}_vp9.webm"
 
     # 비디오 파일 저장
     try:
@@ -64,39 +62,17 @@ async def receive_video_endpoint(response: Response, file: UploadFile = File(...
         file_size = os.path.getsize(original_file_path)
         logger.info(f"파일이 성공적으로 저장되었습니다. 크기: {file_size} bytes")
 
-        # VP9 변환 (코덱이 VP9이 아닌 경우에만)
-        success = convert_to_vp9_if_needed(
-            input_path=str(original_file_path),
-            output_path=str(converted_file_path),
-            preset='faster',        # 인코딩 프리셋
-            cpu_used=8,             # 최대 속도
-            threads=0,              # FFmpeg가 사용할 스레드 수 (0은 자동)
-            tile_columns=4,         # 타일 열 수
-            tile_rows=2,            # 타일 행 수
-            bitrate='1M'          # 비트레이트 조정
+        return UploadResponse(
+            video_id=video_id,
+            message=f"비디오 업로드 완료. 피드백 데이터를 받으려면 /video-send-feedback/{video_id}/ 엔드포인트를 호출하세요."
         )
-
-        if success:
-            # 변환이 성공적으로 수행된 경우
-            logger.info(f"비디오 변환이 완료되었습니다: {converted_file_path}")
-            return UploadResponse(
-                video_id=video_id,
-                message=f"비디오 업로드 및 VP9 변환 완료. 피드백 데이터를 받으려면 /send-feedback/{video_id} 엔드포인트를 호출하세요."
-            )
-        else:
-            # 이미 VP9 코덱인 경우
-            logger.info(f"이미 VP9 코덱인 파일입니다: {original_file_path}")
-            return UploadResponse(
-                video_id=video_id,
-                message=f"비디오 업로드 완료. 이미 VP9 코덱인 파일입니다. 피드백 데이터를 받으려면 /send-feedback/{video_id} 엔드포인트를 호출하세요."
-            )
 
     except VideoImportingError as vie:
         # 변환 실패 시 원본 파일 삭제
         if os.path.exists(original_file_path):
             os.remove(original_file_path)
             logger.info(f"원본 파일 삭제됨: {original_file_path}")
-        logger.error(f"비디오 변환 중 오류 발생: {vie.detail}")
+        logger.error(f"비디오 저장 중 오류 발생: {vie.detail}")
         raise vie
 
     except IOError as e:
