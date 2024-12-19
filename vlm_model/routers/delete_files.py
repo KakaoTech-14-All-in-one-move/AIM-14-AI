@@ -11,14 +11,19 @@ router = APIRouter()
 
 logger = logging.getLogger(__name__)
 
+# 허용된 비디오 확장자 목록 (upload_video.py와 동일하게 유지)
+ALLOWED_EXTENSIONS = {"webm", "mp4", "mov", "avi", "mkv"}
+
 @router.delete("/delete_files/{video_id}", response_class=JSONResponse)
 async def delete_files(video_id: str):
     """
     특정 video_id와 연관된 파일들을 삭제하는 API.
     """
     try:
-        # video_id를 포함한 파일 찾기
-        input_files = list(UPLOAD_DIR.glob(f"*{video_id}*.webm"))
+        # UPLOAD_DIR에서 video_id를 포함하고 허용된 확장자를 가진 모든 파일 찾기
+        input_files = [file for ext in ALLOWED_EXTENSIONS for file in UPLOAD_DIR.glob(f"*{video_id}*.{ext}")]
+
+        # FEEDBACK_DIR에서 video_id를 포함한 .jpg 파일 찾기
         output_files = list(FEEDBACK_DIR.glob(f"*{video_id}*.jpg"))
 
         if not input_files and not output_files:
@@ -27,6 +32,9 @@ async def delete_files(video_id: str):
                     "error_message": f"{video_id}와 관련 파일 찾는중 오류 발생",
                 })
             raise HTTPException(status_code=404, detail="해당 video_id와 관련된 파일을 찾을 수 없습니다.")
+
+        # 삭제할 파일 목록 결합
+        files_to_delete = input_files + output_files
 
         # 파일 삭제
         deleted_files = []
