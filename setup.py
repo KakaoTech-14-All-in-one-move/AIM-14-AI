@@ -1,5 +1,3 @@
-# setup.py
-
 from setuptools import setup, find_packages
 
 setup(
@@ -7,13 +5,22 @@ setup(
     version='0.1.0',
     packages=find_packages(),
     install_requires=[
-        "fastapi",
-        "pytest",
-        "pytest-mock",
-        "mediapipe",
+        "openai",
+        "pillow",
+        "tqdm",
         "opencv-python",
-        "numpy",
         "python-dotenv",
-        # 기타 필요한 패키지들
+        "numpy",
+        "fastapi",
+        "uvicorn",
+        "python-multipart",
+        "python-json-logger",
+        "colorlog",
+        "sentry-sdk[fastapi]",
+        "mediapipe",
+        "pytest",
+        "pytest-cov",
+        "pytest-mock",
+        "httpx",
     ],
 )
