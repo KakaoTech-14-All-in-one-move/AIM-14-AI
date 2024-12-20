@@ -2,6 +2,8 @@
 
 import pytest
 import numpy as np
+import subprocess
+from fastapi import HTTPException
 from unittest import mock
 from vlm_model.utils.read_video import read_video_opencv
 from vlm_model.exceptions import VideoProcessingError

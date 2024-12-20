@@ -2,6 +2,8 @@
 
 import pytest
 import numpy as np
+import subprocess
+from fastapi import HTTPException
 from vlm_model.utils.encoding_image import encode_image
 from vlm_model.exceptions import ImageEncodingError
 from unittest import mock

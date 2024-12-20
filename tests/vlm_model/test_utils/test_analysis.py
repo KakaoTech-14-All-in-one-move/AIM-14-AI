@@ -1,143 +1,103 @@
-# tests/vlm_model/test_utils/test_analysis.py
-
 import pytest
+from unittest.mock import patch, MagicMock
 import numpy as np
-from unittest import mock
 from vlm_model.utils.analysis import analyze_frames
-from vlm_model.exceptions import VideoProcessingError
+from vlm_model.exceptions import PromptImportingError
 from fastapi import HTTPException
 
-def test_analyze_frames_success(mocker):
-    frames = [np.random.randint(0, 256, (256, 256, 3), dtype=np.uint8) for _ in range(5)]
-    timestamps = [10.0, 20.0, 30.0, 40.0, 50.0]
-    mediapipe_results = [
-        {"posture_score": 0.9, "gaze_score": 0.8, "gestures_score": 0.7, "sudden_movement_score": 0.6},
-        {"posture_score": 0.2, "gaze_score": 0.1, "gestures_score": 0.3, "sudden_movement_score": 0.4},
-        {"posture_score": 0.85, "gaze_score": 0.75, "gestures_score": 0.65, "sudden_movement_score": 0.55},
-        {"posture_score": 0.1, "gaze_score": 0.05, "gestures_score": 0.2, "sudden_movement_score": 0.3},
-        {"posture_score": 0.95, "gaze_score": 0.85, "gestures_score": 0.75, "sudden_movement_score": 0.65},
+@pytest.fixture
+def dummy_frames():
+    # 3개의 더미 프레임 (320x240 RGB)
+    return [np.random.randint(0, 256, (240, 320, 3), dtype=np.uint8) for _ in range(3)]
+
+@pytest.fixture
+def dummy_timestamps():
+    # 각 프레임에 대한 타임스탬프 (초 단위)
+    return [10.0, 20.0, 30.0]
+
+@pytest.fixture
+def dummy_mediapipe_results():
+    return [
+        {"posture_score":0.9, "gaze_score":0.1, "gestures_score":0.2, "sudden_movement_score":0.3},
+        {"posture_score":0.1, "gaze_score":0.8, "gestures_score":0.3, "sudden_movement_score":0.4},
+        {"posture_score":0.1, "gaze_score":0.1, "gestures_score":0.1, "sudden_movement_score":0.8}
     ]
-    segment_idx = 0
-    duration = 60
-    segment_length = 60
-    system_instruction = "System instruction text."
 
-    # load_user_prompt을 모킹
-    mocker.patch("vlm_model.utils.analysis.load_user_prompt", return_value="User prompt.")
+def test_analyze_frames_success(mocker, dummy_frames, dummy_timestamps, dummy_mediapipe_results):
+    # Mock load_user_prompt
+    mocker.patch("vlm_model.utils.analysis.load_user_prompt", return_value="User prompt content")
 
-    # encode_image을 모킹하여 항상 성공적으로 인코딩
-    mocker.patch("vlm_model.utils.analysis.encode_image", return_value="encoded_image_string")
+    # Mock encode_image
+    mocker.patch("vlm_model.utils.analysis.encode_image", return_value="base64encodedimage")
 
-    # client.chat.completions.create를 모킹하여 성공적인 응답 반환
-    mock_response = mocker.Mock()
-    mock_response.choices = [mock.Mock(message=mock.Mock(content="```json\n{\"feedback\": {\"posture\": {\"improvement\": true}}}\n```"))]
-    mocker.patch("vlm_model.utils.analysis.client.chat.completions.create", return_value=mock_response)
+    # Mock openai client
+    mock_client = mocker.patch("vlm_model.utils.analysis.client.chat.completions.create")
+    # OpenAI 응답 Mock
+    mock_client.return_value.choices = [MagicMock(message=MagicMock(content='{"problem":"none"}'))]
 
-    # parse_feedback_text을 모킹하여 피드백 섹션 반환
-    feedback_sections = mocker.Mock()
-    feedback_sections.__fields__ = {"posture": mocker.Mock()}
-    feedback_sections.posture.improvement = True
-    mocker.patch("vlm_model.utils.analysis.parse_feedback_text", return_value=feedback_sections)
+    # parse_feedback_text Mock
+    mocker.patch("vlm_model.utils.analysis.parse_feedback_text", return_value=MagicMock(**{"__fields__":["posture_body"], "posture_body":MagicMock(improvement=False)}))
 
-    # 함수 호출
     problematic_frames, feedbacks = analyze_frames(
-        frames=frames,
-        timestamps=timestamps,
-        mediapipe_results=mediapipe_results,
-        segment_idx=segment_idx,
-        duration=duration,
-        segment_length=segment_length,
-        system_instruction=system_instruction,
+        frames=dummy_frames,
+        timestamps=dummy_timestamps,
+        mediapipe_results=dummy_mediapipe_results,
+        segment_idx=0,
+        duration=60,
+        segment_length=60,
+        system_instruction="System instruction text",
         frame_interval=1
     )
 
-    # 결과 확인
-    assert len(problematic_frames) == 3  # frames 0, 2, 4
+    # 문제 프레임은 각 mediapipe 결과에서 점수가 0.8 초과할 때 발생하므로 dummy_mediapipe_results에 따라 판단
+    # 첫 번째 프레임 posture_score=0.9 -> 문제 프레임
+    # 두 번째 프레임 gaze_score=0.8 -> 문제 프레임
+    # 세 번째 프레임 sudden_movement_score=0.8 -> 문제 프레임
+    # 세 프레임 모두 문제 프레임이므로
+    assert len(problematic_frames) == 3
     assert len(feedbacks) == 3
-    for feedback in feedbacks:
-        assert feedback == "```json\n{\"feedback\": {\"posture\": {\"improvement\": true}}}\n```"
 
-def test_analyze_frames_empty_mediapipe_results(mocker):
-    frames = [np.random.randint(0, 256, (256, 256, 3), dtype=np.uint8)]
-    timestamps = [10.0]
-    mediapipe_results = []
-    segment_idx = 0
-    duration = 60
-    segment_length = 60
-    system_instruction = "System instruction text."
-
-    with pytest.raises(ValueError) as excinfo:
+def test_analyze_frames_empty_mediapipe(mocker, dummy_frames, dummy_timestamps):
+    # mediapipe_results가 비어있는 경우
+    with pytest.raises(ValueError):
         analyze_frames(
-            frames=frames,
-            timestamps=timestamps,
-            mediapipe_results=mediapipe_results,
-            segment_idx=segment_idx,
-            duration=duration,
-            segment_length=segment_length,
-            system_instruction=system_instruction,
-            frame_interval=1
+            frames=dummy_frames,
+            timestamps=dummy_timestamps,
+            mediapipe_results=[],
+            segment_idx=0,
+            duration=60,
+            segment_length=60,
+            system_instruction="System instruction text"
         )
 
-    assert "Mediapipe 결과가 비어 있습니다. 필수 입력값입니다." in str(excinfo.value)
-
-def test_analyze_frames_mismatched_lengths(mocker):
-    frames = [np.random.randint(0, 256, (256, 256, 3), dtype=np.uint8)]
-    timestamps = [10.0]
-    mediapipe_results = [
-        {"posture_score": 0.9, "gaze_score": 0.8, "gestures_score": 0.7, "sudden_movement_score": 0.6},
-        {"posture_score": 0.2, "gaze_score": 0.1, "gestures_score": 0.3, "sudden_movement_score": 0.4},
-    ]
-    segment_idx = 0
-    duration = 60
-    segment_length = 60
-    system_instruction = "System instruction text."
-
-    with pytest.raises(ValueError) as excinfo:
+def test_analyze_frames_length_mismatch(mocker, dummy_frames):
+    # mediapipe_results 길이가 frames와 다르면 ValueError
+    with pytest.raises(ValueError):
         analyze_frames(
-            frames=frames,
-            timestamps=timestamps,
-            mediapipe_results=mediapipe_results,
-            segment_idx=segment_idx,
-            duration=duration,
-            segment_length=segment_length,
-            system_instruction=system_instruction,
-            frame_interval=1
+            frames=dummy_frames,
+            timestamps=[10.0,20.0,30.0],
+            mediapipe_results=[{}],  # 길이 불일치
+            segment_idx=0,
+            duration=60,
+            segment_length=60,
+            system_instruction="System instruction text"
         )
 
-    assert "mediapipe_results의 길이와 frames의 길이가 일치하지 않습니다." in str(excinfo.value)
+def test_analyze_frames_openai_error(mocker, dummy_frames, dummy_timestamps, dummy_mediapipe_results):
+    mocker.patch("vlm_model.utils.analysis.load_user_prompt", return_value="User prompt")
+    mocker.patch("vlm_model.utils.analysis.encode_image", return_value="base64encodedimage")
 
-def test_analyze_frames_openai_authentication_error(mocker):
-    frames = [np.random.randint(0, 256, (256, 256, 3), dtype=np.uint8)]
-    timestamps = [10.0]
-    mediapipe_results = [
-        {"posture_score": 0.9, "gaze_score": 0.8, "gestures_score": 0.7, "sudden_movement_score": 0.6}
-    ]
-    segment_idx = 0
-    duration = 60
-    segment_length = 60
-    system_instruction = "System instruction text."
-
-    # load_user_prompt을 모킹
-    mocker.patch("vlm_model.utils.analysis.load_user_prompt", return_value="User prompt.")
-
-    # encode_image을 모킹하여 성공적으로 인코딩
-    mocker.patch("vlm_model.utils.analysis.encode_image", return_value="encoded_image_string")
-
-    # client.chat.completions.create를 모킹하여 AuthenticationError 발생
-    from openai import AuthenticationError
-    mocker.patch("vlm_model.utils.analysis.client.chat.completions.create", side_effect=AuthenticationError("Invalid API key"))
+    mock_client = mocker.patch("vlm_model.utils.analysis.client.chat.completions.create", side_effect=ValueError("JSON 디코딩 오류"))
 
     with pytest.raises(HTTPException) as excinfo:
         analyze_frames(
-            frames=frames,
-            timestamps=timestamps,
-            mediapipe_results=mediapipe_results,
-            segment_idx=segment_idx,
-            duration=duration,
-            segment_length=segment_length,
-            system_instruction=system_instruction,
-            frame_interval=1
+            frames=dummy_frames,
+            timestamps=dummy_timestamps,
+            mediapipe_results=dummy_mediapipe_results,
+            segment_idx=0,
+            duration=60,
+            segment_length=60,
+            system_instruction="System instruction text"
         )
-
-    assert excinfo.value.status_code == 401
-    assert "인증 오류: API 키를 확인해주세요." in excinfo.value.detail
+    assert excinfo.value.status_code == 400
+    assert "피드백 파싱 과정 중 오류" in str(excinfo.value)

@@ -1,6 +1,9 @@
 # tests/vlm_model/test_utils/test_video_duration.py
 
 import pytest
+import numpy as np
+import subprocess
+from fastapi import HTTPException
 from unittest import mock
 from vlm_model.utils.video_duration import get_video_duration
 from vlm_model.exceptions import VideoImportingError

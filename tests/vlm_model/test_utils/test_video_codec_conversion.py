@@ -1,5 +1,8 @@
 # tests/vlm_model/test_utils/test_video_codec_conversion.py
 
+from fastapi import HTTPException
+import subprocess
+import numpy as np
 import pytest
 from unittest import mock
 from vlm_model.utils.video_codec_conversion import convert_to_vp9_if_needed, convert_to_vp9, is_vp9, get_video_codec_info
