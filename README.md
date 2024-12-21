@@ -481,3 +481,8 @@ httpx
     - 현재 디렉터리의 모든 파일을 컨테이너의 `/app` 디렉터리로 복사합니다.
 
 ---
+
+MIT License
+
+Copyright (c) 2024 Kakaotech-Pitching Develop Team
+
