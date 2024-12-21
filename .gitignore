@@ -25,7 +25,3 @@ vlm_model/utils/cv_mediapipe_analysis/__pycache__/
 # Ignore all log files within logs/ directory
 logs/*.log
 logs/*.log.*
-
-# Dockerfile과 빌드 관련 파일들
-Dockerfile
-Dockerfile.*
