@@ -1,0 +1,31 @@
+# 기타 무시할 파일 또는 폴더
+.env
+.DS_Store
+
+# 저장소 관련 디렉토리 무시
+storage/
+
+# 파이썬 캐시 파일 무시
+*.pyc
+
+# Ignore all __pycache__ directories
+__pycache__/
+**/__pycache__/
+
+# Ignore specific __pycache__ directories
+vlm_model/__pycache__/
+vlm_model/constants/__pycache__/
+vlm_model/routers/__pycache__/
+vlm_model/schemas/__pycache__/
+vlm_model/utils/__pycache__/
+vlm_model/utils/analysis_video/__pycache__/
+vlm_model/utils/image_process/__pycache__/
+vlm_model/utils/cv_mediapipe_analysis/__pycache__/
+
+# Ignore all log files within logs/ directory
+logs/*.log
+logs/*.log.*
+
+# Dockerfile과 빌드 관련 파일들
+Dockerfile
+Dockerfile.*

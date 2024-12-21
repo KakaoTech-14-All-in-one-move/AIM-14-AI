@@ -1,0 +1,17 @@
+openai
+pillow
+tqdm
+opencv-python
+python-dotenv
+numpy
+fastapi
+uvicorn
+python-multipart
+python-json-logger
+colorlog
+sentry-sdk[fastapi]
+mediapipe
+pytest
+pytest-cov
+pytest-mock
+httpx

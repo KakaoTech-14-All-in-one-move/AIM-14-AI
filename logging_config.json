@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "filters": {
+    "context_filter": {
+      "()": "vlm_model.logging_filter.ContextFilter"
+    }
+  },
+  "formatters": {
+    "json": {
+      "()": "vlm_model.logging_filter.CustomJsonFormatter",
+      "format": "%(asctime)s %(levelname)s %(service)s %(request_id)s %(class_name)s %(method_name)s %(error_type)s %(error_message)s",
+      "json_indent": 4
+    },
+    "colored": {
+      "()": "colorlog.ColoredFormatter",
+      "format": "%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s%(reset)s",
+      "log_colors": {
+          "DEBUG": "cyan",
+          "INFO": "green",
+          "ERROR": "bold_red"
+      }
+    }
+  },
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "formatter": "colored",
+      "filters": ["context_filter"],
+      "level": "DEBUG",
+      "stream": "ext://sys.stdout"
+    },
+    "file": {
+      "class": "logging.FileHandler",
+      "formatter": "json",
+      "filters": ["context_filter"],
+      "filename": "logs/app.log",
+      "encoding": "utf8",
+      "level": "INFO"
+    },
+    "error_file": {
+      "class": "logging.FileHandler",
+      "formatter": "json",
+      "filters": ["context_filter"],
+      "filename": "logs/error.log",
+      "encoding": "utf8",
+      "level": "ERROR"
+    },
+    "access_file": {
+      "class": "logging.FileHandler",
+      "formatter": "json",
+      "filters": ["context_filter"],
+      "filename": "logs/access.log",
+      "encoding": "utf8",
+      "level": "INFO"
+    }
+  },
+    "loggers": {
+      "uvicorn": {
+        "handlers": ["console", "file"],
+        "level": "INFO",
+        "propagate": false
+      },
+      "uvicorn.error": {
+        "handlers": ["console", "file", "error_file"],
+        "level": "INFO",
+        "propagate": false
+      },
+      "uvicorn.access": {
+        "handlers": ["access_file"],
+        "level": "INFO",
+        "propagate": false
+      },
+      "vlm_model": { 
+        "handlers": ["console", "file", "error_file"],
+        "level": "INFO",
+        "propagate": false
+      },
+      "vlm_model.routers": {
+        "level": "INFO",
+        "propagate": true
+      },
+      "vlm_model.utils": {
+        "level": "INFO",
+        "propagate": true
+      },
+      "vlm_model.config": { 
+        "level": "INFO",
+        "propagate": true
+      }
+  },
+  "root": {
+      "level": "INFO",
+      "handlers": ["console", "file"]
+  }
+}
