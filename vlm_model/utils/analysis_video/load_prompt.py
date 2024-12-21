@@ -1,4 +1,4 @@
-# vlm_model/utils/analysis/load_user_prompt.py
+# vlm_model/utils/analysis_video/load_prompt.py
 
 from pathlib import Path
 import logging
@@ -17,9 +17,9 @@ def load_user_prompt() -> str:
         with PROMPT_PATH.open('r', encoding='utf-8') as file:
             return file.read()
     except FileNotFoundError as e:
-        logger.error(f"프롬프트 파일을 찾을 수 없음: {prompt_path}", extra={
+        logger.error(f"프롬프트 파일을 찾을 수 없음: {PROMPT_PATH}", extra={
             "errorType": "FileNotFoundError",
-            "error_message": f"프롬프트 파일을 찾을 수 없음: {prompt_path}"
+            "error_message": f"프롬프트 파일을 찾을 수 없음: {PROMPT_PATH}"
         })
         raise PromptImportingError("프롬프트 파일을 찾을 수 없습니다") from e
     except Exception as e:

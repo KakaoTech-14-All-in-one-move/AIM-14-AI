@@ -11,3 +11,7 @@ python-json-logger
 colorlog
 sentry-sdk[fastapi]
 mediapipe
+pytest
+pytest-cov
+pytest-mock
+httpx
