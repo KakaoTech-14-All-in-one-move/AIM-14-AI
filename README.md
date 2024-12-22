@@ -1,31 +1,31 @@
-# AIM-14-AI (VLM Model)
+# AIM-14-AI-VLM (Pitching 영상 처리 엔진)
 
 "Pitching" 플랫폼의 인공지능 모델을 활용하여 비디오 분석을 수행하여 발표에 대하여 피드백을 제공하는 모델 입니다.
- **FastAPI**와 **Swagger UI**를 사용하여 VLM(Video Language Model)를 활용한 영상 처리 서버입니다.
+ **FastAPI**와 **Swagger UI**를 사용하여 CV(Computer Vision) & VLM(Video Language Model)를 활용한 영상 처리 서버입니다.
  이를 **AWS EC2**에 **Docker**로 배포한 후 **프론트엔드(FE)** 애플리케이션과 연동하는 과정을 다룹니다. 서버는 영상 업로드를 처리하고, 피드백 데이터를 생성하여 프론트엔드에 제공합니다. 또한, **OpenCV**와 **FFmpeg**를 활용하여 영상 코덱 변환 및 비디오 길이 계산 등의 기능을 포함합니다.
-
+ 
 ---
 
 ## 목차
 
 - [사전 요구사항](#사전-요구사항)
-  - [Swagger UI Test용 요구사항](#swagger-ui-test용-요구사항)
+  - [Swagger UI 테스트용 요구사항](#swagger-ui-테스트용-요구사항)
   - [배포 (CI/CD)용 요구사항](#배포-cicd용-요구사항)
-- [Directory 구조](#Directory-구조)
+- [디렉토리 구조](#디렉토리-구조)
 - [설치 및 배포](#설치-및-배포)
   - [1. 리포지토리 클론](#1-리포지토리-클론)
   - [2. 환경 변수 설정](#2-환경-변수-설정)
-  - [3. Docker 이미지 빌드](#3-docker-이미지-빌드)
-  - [4. Docker 컨테이너 실행](#4-docker-컨테이너-실행)
-  - [5. 로컬 테스트](#5-local-test)
-    - [사전 요구사항](#사전-요구사항-1)
-    - [1. 리포지토리 클론](#1-리포지토리-클론-1)
-    - [2. 가상 환경 생성 (선택 사항)](#2-가상-환경-생성-선택-사항)
-    - [3. FFmpeg 설치](#3-ffmpeg-설치)
-    - [4. 의존성 설치](#4-의존성-설치)
-    - [5. 환경 변수 설정](#5-환경-변수-설정)
-    - [6. 서버 실행](#6-서버-실행)
-    - [7. API 테스트](#7-api-테스트)
+  - [3. FFmpeg 설치](#3-ffmpeg-설치)
+  - [4. Docker 이미지 빌드](#4-docker-이미지-빌드)
+  - [5. Docker 컨테이너 실행](#5-docker-컨테이너-실행)
+  - [6. 로컬 테스트](#6-로컬-테스트)
+    - [6.1 사전 요구사항](#61-사전-요구사항)
+    - [6.2 리포지토리 클론](#62-리포지토리-클론)
+    - [6.3 가상 환경 생성 (선택 사항)](#63-가상-환경-생성-선택-사항)
+    - [6.4 의존성 설치](#64-의존성-설치)
+    - [6.5 환경 변수 설정](#65-환경-변수-설정)
+    - [6.6 서버 실행](#66-서버-실행)
+  - [7 API 테스트](#7-api-테스트)
 - [CORS 설정](#cors-설정)
   - [발생한 이슈](#발생한-이슈)
   - [해결 방법](#해결-방법)
@@ -34,15 +34,15 @@
   - [2. 코덱 변환 (H.264 → VP9)](#2-코덱-변환-h264--vp9)
 - [영상 처리 오류 처리](#영상-처리-오류-처리)
 - [사용법](#사용법)
-  - [영상 업로드](#영상-업로드)
-  - [피드백 조회](#피드백-조회)
+  - [1. 영상 업로드](#1-영상-업로드)
+  - [2. 피드백 조회](#2-피드백-조회)
 - [추가 자료](#추가-자료)
-  
+
 ---
 
-## 사전 요구사항
+### 사전 요구사항
 
-### Swagger UI Test용 요구사항
+#### Swagger UI 테스트용 요구사항
 
 - **FastAPI**: 백엔드 프레임워크.
 - **Swagger UI**: API 문서화 및 테스트 도구.
@@ -52,15 +52,15 @@
 
 ---
 
-### 배포 (CI/CD)용 요구사항
+#### 배포 (CI/CD)용 요구사항
 
 - **프론트엔드 애플리케이션**: 백엔드 서버와 연동하는 클라이언트 애플리케이션.
 - **AWS EC2 인스턴스**: FastAPI의 경우 8000번 포트 등 필요한 포트가 허용되도록 보안 그룹 설정.
 - **Docker**: EC2 인스턴스에 설치 필요.
-  
+
 ---
 
-## Directory 구조
+## 디렉토리 구조
 
 ```
 ├── LICENSE
@@ -77,6 +77,35 @@
 ├── storage
 │   ├── input_video
 │   └── output_feedback_frame
+├── tests
+│   ├── conftest.py
+│   ├── test_main.py
+│   └── vlm_model
+│       ├── test_routers
+│       │   ├── test_delete_files.py
+│       │   ├── test_send_feedback.py
+│       │   └── test_upload_video.py
+│       └── test_utils
+│           ├── test_analysis.py
+│           ├── test_analysis_video
+│           │   ├── test_load_prompt.py
+│           │   └── test_parse_feedback.py
+│           ├── test_cv_mediapipe_analysis
+│           │   ├── test_analyze_mediapipe_main.py
+│           │   ├── test_calculate_gesture.py
+│           │   ├── test_calculate_hand_move.py
+│           │   ├── test_gaze_analysis.py
+│           │   ├── test_gesture_analysis.py
+│           │   ├── test_mediapipe_initializer.py
+│           │   ├── test_movement_analysis.py
+│           │   └── test_posture_analysis.py
+│           ├── test_download_video.py
+│           ├── test_encoding_feedback_image.py
+│           ├── test_encoding_image.py
+│           ├── test_processing_video.py
+│           ├── test_read_video.py
+│           ├── test_video_codec_conversion.py
+│           └── test_video_duration.py
 └── vlm_model
     ├── README.md
     ├── __init__.py
@@ -106,7 +135,6 @@
     │   ├── video_duration.py
     │   └── visualization.py
     └── video_processor(test_local).py
-
 ```
 
 ---
@@ -116,8 +144,7 @@
 ### 1. 리포지토리 클론
 
 ```bash
-git clone https://github.com/your-username/vlm_video_processing.git
-cd vlm_video_processing
+git clone https://github.com/KakaoTech-14-All-in-one-move/AIM-14-AI-VLM.git
 ```
 
 ### 2. 환경 변수 설정
@@ -125,81 +152,101 @@ cd vlm_video_processing
 `.env` 파일을 생성하여 필요한 환경 변수를 설정합니다. 예:
 
 ```bash
-OPENAI_API_KEY=API_KEY
+OPENAI_API_KEY=your_openai_api_key
 PROMPT_PATH=./prompt.txt
+UPLOAD_DIR=storage/input_video
+FEEDBACK_DIR=storage/output_feedback_frame
+SENTRY_DSN=your_sentry_api_key
+TRACE_SAMPLE_RATE=1.0
+
+# 폰트 관련 환경 변수
+FONT_DIR=fonts
+FONT_FILE=NotoSans-VariableFont_wdth,wght.ttf
+FONT_SIZE=15
 ```
 
-해당 디렉터리가 존재하지 않으면 배포 중 자동으로 생성됩니다.
+---
 
-### 3. Docker 이미지 빌드
+### 3. FFmpeg 설치
+
+FFmpeg는 비디오 코덱 변환에 필수적입니다. 사용 중인 운영체제에 맞게 설치하세요.
+
+#### MacOS (Homebrew 사용)
+
+```bash
+brew install ffmpeg
+```
+
+#### Ubuntu
+
+```bash
+sudo apt update
+sudo apt install ffmpeg
+```
+
+#### Windows
+
+1. [FFmpeg 공식 웹사이트](https://ffmpeg.org/download.html)에서 Windows용 바이너리를 다운로드합니다.
+2. FFmpeg 설치 디렉토리를 시스템 경로에 추가합니다.
+
+---
+
+### 4. Docker 이미지 빌드
 
 `Dockerfile`에 **FFmpeg**와 **OpenCV** 등의 필요한 모든 의존성이 포함되어 있는지 확인합니다.
 
-**Dockerfile 예시:**
-
-```dockerfile
-FROM python:3.9-slim
-
-# 시스템 의존성 설치
-RUN apt-get update && apt-get install -y \
+    build-essential \
+    libffi-dev \
+    libssl-dev \
     ffmpeg \
-    libsm6 \
-    libxext6 \
-    libvpx6 \
+    libsndfile1 \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libjpeg-dev \
+    zlib1g-dev \
+    libcairo2 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
-# 작업 디렉터리 설정
-WORKDIR /app
-
-# Python 의존성 설치
+# Python 종속성 설치
 COPY requirements.txt .
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 애플리케이션 코드 복사
-COPY . /app
 
-# 포트 노출
-EXPOSE 8000
-
-# 애플리케이션 실행
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
-
-**Docker 이미지 빌드:**
+### Docker 이미지 빌드
 
 ```bash
 docker build -t vlm-video-processing .
 ```
 
-### 4. Docker 컨테이너 실행
+---
+
+### 5. Docker 컨테이너 실행
 
 ```bash
 docker run -d -p 8000:8000 --name vlm-container vlm-video-processing
 ```
 
-포트가 올바르게 매핑되고 EC2 보안 그룹에서 포트 `8000`으로의 인바운드 트래픽이 허용되어 있는지 확인하세요.
+---
 
-### 5. Local Test 
+### 6. 로컬 테스트
 
-#### 사전 요구사항
+#### 6.1 사전 요구사항
 
 - Python 3.9 이상
 - FFmpeg 설치 (코덱 변환 기능 사용 시 필요)
 - OpenCV 설치
 
-
-#### 1. 리포지토리 클론
-
-먼저 프로젝트를 클론합니다.
+#### 6.2 리포지토리 클론
 
 ```bash
-git clone https://github.com/your-username/vlm_video_processing.git
-cd vlm_video_processing
+git clone https://github.com/KakaoTech-14-All-in-one-move/AIM-14-AI-VLM.git
 ```
 
-#### 2. 가상 환경 생성 (선택 사항)
-
-의존성 충돌을 방지하기 위해 가상 환경을 생성하는 것을 권장합니다.
+#### 6.3 가상 환경 생성 (선택 사항)
 
 ```bash
 python3 -m venv venv
@@ -207,72 +254,28 @@ source venv/bin/activate  # MacOS/Linux
 venv\Scripts\activate  # Windows
 ```
 
-#### 3. FFmpeg 설치
-
-FFmpeg는 비디오 코덱 변환에 필요합니다. OS에 맞게 FFmpeg를 설치하세요.
-
-- **MacOS** (Homebrew 사용)
-
-  ```bash
-  brew install ffmpeg
-  ```
-
-- **Ubuntu**
-
-  ```bash
-  sudo apt update
-  sudo apt install ffmpeg
-  ```
-
-- **Windows**
-
-  1. [FFmpeg 공식 웹사이트](https://ffmpeg.org/download.html)에서 Windows용 바이너리를 다운로드합니다.
-  2. 시스템 경로에 FFmpeg 폴더를 추가합니다.
-
-#### 4. 의존성 설치
-
-프로젝트의 **requirements.txt** 파일을 사용해 의존성을 설치합니다.
+#### 6.4 의존성 설치
 
 ```bash
 pip install -r requirements.txt
 ```
 
-#### 5. 환경 변수 설정
-
-로컬 환경에서 필요한 디렉터리를 설정합니다. `.env` 파일을 만들어 아래와 같이 설정합니다.
+#### 6.5 환경 변수 설정
 
 ```bash
 UPLOAD_DIR=storage/input_video
 FEEDBACK_DIR=storage/output_feedback_frame
 ```
 
-디렉터리가 존재하지 않으면 자동으로 생성됩니다.
-
-#### 6. 서버 실행
-
-FastAPI 서버를 실행합니다. 기본적으로 `main.py` 파일이 FastAPI 애플리케이션의 엔트리 포인트라고 가정합니다.
+#### 6.6 서버 실행
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload --log-config logging_config.json
 ```
 
-- **--host 0.0.0.0**: 로컬 네트워크에서도 접근 가능하도록 설정
-- **--port 8000**: 포트를 8000번으로 설정 (필요 시 다른 포트로 변경 가능)
-- **--reload**: 코드 변경 시 자동으로 서버를 다시 시작하도록 설정 (개발 환경에서 유용)
+## 7 API 테스트
 
-서버가 성공적으로 실행되면 다음과 같은 메시지가 출력됩니다.
-
-```
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [12345] using watchgod
-INFO:     Started server process [12347]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-```
-
-#### 7. API 테스트
-
-서버가 실행 중이면 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)로 이동하여 Swagger UI에서 API를 테스트할 수 있습니다. 
+[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)에서 Swagger UI로 API를 테스트할 수 있습니다.
 
 ---
 
@@ -280,31 +283,23 @@ INFO:     Application startup complete.
 
 ### 발생한 이슈
 
-FastAPI 서버를 AWS EC2에 Docker로 배포한 후 프론트엔드와 연결할 때 **CORS (Cross-Origin Resource Sharing)** 이슈가 발생할 수 있습니다.
+CORS 정책으로 인해 프론트엔드와의 연결
 
-**오류 예시:**
-
-```
-CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-```
+ 문제가 발생할 수 있습니다.
 
 ### 해결 방법
-
-FastAPI에서 CORS 이슈를 해결하기 위해 **`CORSMiddleware`**를 사용하여 미들웨어를 설정할 수 있습니다.
 
 ```python
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # 프론트엔드 도메인 또는 IP로 변경
+    allow_origins=["http://localhost:3000"],  # 프론트엔드 URL로 변경
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 ```
-
-- **운영 환경**에서는 보안을 위해 특정 출처만 허용하도록 설정하는 것이 권장됩니다.
 
 ---
 
@@ -312,40 +307,30 @@ app.add_middleware(
 
 ### 1. 비디오 길이 계산
 
-비디오 파일의 길이를 초 단위로 계산하기 위해 OpenCV와 FFmpeg를 활용합니다.
-
-**`utils/video_duration.py` 예시:**
-
 ```python
 import cv2
-from typing import Optional
 
-def get_video_duration(video_path: str) -> Optional[float]:
+def get_video_duration(video_path: str) -> float:
     cap = cv2.VideoCapture(video_path)
-    if not cap.isOpened():
-        return None
-
-    fps = cap.get(cv2.CAP_PROP_FPS) or 30
-    total_frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
-    duration = total_frames / fps
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    frame_count = cap.get(cv2.CAP_PROP_FRAME_COUNT)
+    duration = frame_count / fps
     cap.release()
     return duration
 ```
 
+---
+
 ### 2. 코덱 변환 (H.264 → VP9)
-
-H.264 코덱으로 인코딩된 비디오를 VP9 코덱으로 변환하기 위해 FFmpeg를 사용합니다.
-
-**`utils/convert_codec.py` 예시:**
 
 ```python
 import subprocess
 
 def convert_to_vp9(input_path: str, output_path: str) -> bool:
     command = [
-        'ffmpeg', '-i', input_path,
-        '-c:v', 'libvpx-vp9', '-b:v', '1M',
-        '-c:a', 'libopus', output_path
+        "ffmpeg", "-i", input_path,
+        "-c:v", "libvpx-vp9", "-b:v", "1M",
+        "-c:a", "libopus", output_path
     ]
     try:
         subprocess.run(command, check=True)
@@ -353,31 +338,18 @@ def convert_to_vp9(input_path: str, output_path: str) -> bool:
     except subprocess.CalledProcessError:
         return False
 ```
----
-
-## 영상 처리 오류 처리
-
-다양한 오류 상황을 대비하여 아래와 같은 예외 처리를 추가했습니다:
-
-- **파일 없음**: `HTTPException(status_code=404, detail="파일을 찾을 수 없습니다")`
-- **지원되지 않는 형식**: 허용된 파일 형식을 안내하는 응답 반환.
-- **FFmpeg 또는 코덱 문제**: `HTTPException(status_code=500, detail="코덱 변환 실패")`
 
 ---
 
 ## 사용법
 
-### 영상 업로드
-
-**엔드포인트:**
+### 1. 영상 업로드
 
 ```
-POST /api/video/receive-video/
+POST api/video/receive-video/
 ```
 
-### 피드백 조회
-
-**엔드포인트:**
+### 2. 피드백 조회
 
 ```
 GET /api/video/video-send-feedback/{video_id}/
@@ -389,8 +361,79 @@ GET /api/video/video-send-feedback/{video_id}/
 
 - **FastAPI 문서**: [https://fastapi.tiangolo.com/](https://fastapi.tiangolo.com/)
 - **Docker 문서**: [https://docs.docker.com/](https://docs.docker.com/)
-- **FFmpeg 문서**: [https://ffmpeg.org/documentation.html/](https://ffmpeg.org/documentation.html/)
+- **FFmpeg 문서**: [https://ffmpeg.org/documentation.html](https://ffmpeg.org/documentation.html)
 - **OpenCV 문서**: [https://docs.opencv.org/](https://docs.opencv.org/)
-- **FastAPI CORS 미들웨어**: [FastAPI CORS Middleware](https://fastapi.tiangolo.com/tutorial/cors/)
+- **Mediapipe 문서**: [https://google.github.io/mediapipe/](https://google.github.io/mediapipe/)
+- **OpenAI Vision API 문서**: [https://platform.openai.com/docs/](https://platform.openai.com/docs/)
+- **FastAPI CORS 미들웨어**: [https://fastapi.tiangolo.com/tutorial/cors/](https://fastapi.tiangolo.com/tutorial/cors/)
+
+---
+
+## .dockerignore
+
+```dockerignore
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+.git
+.gitignore
+*.md
+*.ipynb
+storage/
+logs/
+```
+
+- **Python 캐시 파일:** `__pycache__`, `.pyc`, `.pyo`, `.pyd`
+- **환경 파일:** `.env`
+- **Git 관련 파일:** `.git`, `.gitignore`
+- **문서 파일:** `*.md`, `*.ipynb`
+- **데이터 및 로그 디렉토리:** `storage/`, `logs/`
+- **기타:** `fonts/`, `htmlcov/`
+
+---
+
+## requirements.txt
+
+```plaintext
+openai
+pillow
+tqdm
+opencv-python
+python-dotenv
+numpy
+fastapi
+uvicorn
+python-multipart
+python-json-logger
+colorlog
+sentry-sdk[fastapi]
+mediapipe
+pytest
+pytest-cov
+pytest-mock
+httpx
+```
+
+---
+
+## Dockerfile
+
+- **베이스 이미지 선택**
+    - `python:3.12-slim`: 가벼운 Python 3.12 이미지를 사용하여 최종 이미지 크기를 최소화합니다.
+- **환경 변수 설정**
+    - `PYTHONDONTWRITEBYTECODE=1`: Python이 `.pyc` 파일을 생성하지 않도록 설정.
+    - `PYTHONUNBUFFERED=1`: Python 출력이 버퍼링되지 않고 즉시 터미널에 출력되도록 설정.
+- **작업 디렉터리 설정**
+    - `/app` 디렉터리를 작업 디렉터리로 설정합니다.
+- **시스템 종속성 설치**
+    - `build-essential`, `libffi-dev`, `libssl-dev`, `ffmpeg`, `libsndfile1` 등을 설치합니다.
+    - `ffmpeg`: 오디오 및 비디오 처리에 필요합니다.
+    - `libsndfile1`: 오디오 파일 처리를 위한 라이브러리입니다.
+- **Python 종속성 설치**
+    - `requirements.txt` 파일을 복사한 후, `pip`을 업그레이드하고 필요한 Python 패키지를 설치합니다.
+- **프로젝트 파일 복사**
+    - 현재 디렉터리의 모든 파일을 컨테이너의 `/app` 디렉터리로 복사합니다.
 
 ---
