@@ -31,7 +31,6 @@ def main():
     # 비디오를 세그먼트로 분할하기 위한 세그먼트 수 계산
     num_segments = math.ceil(video_duration / segment_length)
     print(f"비디오 전체 길이: {int(video_duration // 60)}분 {int(video_duration % 60)}초")
-    print(f"총 {num_segments}개의 세그먼트로 분할됩니다.")
 
     all_segments_frames = []  # 모든 세그먼트의 프레임들을 저장할 리스트
     all_durations = []        # 각 세그먼트의 지속 시간을 저장할 리스트
