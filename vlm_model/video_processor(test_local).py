@@ -25,7 +25,6 @@ def main():
     video_duration = get_video_duration(video_path)
 
     if video_duration is None:
-        print("비디오 길이를 가져올 수 없습니다.")
         return
 
     # 비디오를 세그먼트로 분할하기 위한 세그먼트 수 계산
