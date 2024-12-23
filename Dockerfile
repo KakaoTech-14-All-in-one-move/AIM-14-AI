@@ -29,10 +29,11 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# OpenCV 런타임 의존성 설치
+# OpenCV 런타임 의존성 및 ffmpeg 설치
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1-mesa-glx \
     libglib2.0-0 \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # 빌드된 Python 패키지 복사
